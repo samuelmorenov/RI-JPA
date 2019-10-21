@@ -1,6 +1,0 @@
-2019-10-21 11:03:26,184 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
-2019-10-21 11:04:52,659 [Worker-3: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: uo.alb:AlbUtil:1.0.0-SNAPSHOT @ C:\Users\UO266321\Downloads\workspace\AlbUtil\pom.xml.
-2019-10-21 11:04:58,328 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
-2019-10-21 11:04:58,329 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\UO266321\Downloads\workspace\AlbUtil\src\main\resources
-2019-10-21 11:04:58,332 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
-2019-10-21 11:04:58,333 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\UO266321\Downloads\workspace\AlbUtil\src\test\resources
