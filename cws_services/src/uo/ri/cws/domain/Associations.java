@@ -97,6 +97,28 @@ public class Associations {
 
 	public static class Sustitute {
 
+		public static void link(SparePart sparePart, Substitution substitution, Intervention intervention) {
+			substitution._setIntervention(intervention);
+			substitution._setSparePart(sparePart);
+			
+			intervention._getSubstitutions().add(substitution);
+			sparePart._getSubstitutions().add(substitution);
+			
+		}
+		
+		public static void unlink(Substitution substitution) {
+
+			Intervention intervention = substitution.getIntervention();
+			SparePart sparePart = substitution.getSparePart();
+			
+			intervention._getSubstitutions().add(substitution);
+			sparePart._getSubstitutions().add(substitution);
+			
+			substitution._setIntervention(null);
+			substitution._setSparePart(null);
+			
+		}
+
 	}
 
 }

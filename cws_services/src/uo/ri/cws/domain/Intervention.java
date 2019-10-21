@@ -1,14 +1,17 @@
 package uo.ri.cws.domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Intervention {
 	private WorkOrder workOrder;
 	private Mechanic mechanic;
-	
+
 	private Date date;
 	private int minutes;
-	
+	private Set<Substitution> substitutions = new HashSet<Substitution>();
+
 	public Intervention(WorkOrder workOrder, Mechanic mechanic) {
 		this.date = new Date();
 		Associations.Intervene.link(workOrder, this, mechanic);
@@ -41,6 +44,14 @@ public class Intervention {
 
 	public int getMinutes() {
 		return minutes;
+	}
+
+	Set<Substitution> _getSubstitutions() {
+		return substitutions;
+	}
+
+	public Set<Substitution> getSubstitutions() {
+		return new HashSet<Substitution>(substitutions);
 	}
 
 	@Override
@@ -85,7 +96,10 @@ public class Intervention {
 		return "Intervention [workOrder=" + workOrder + ", mechanic=" + mechanic + ", date=" + date + ", minutes="
 				+ minutes + "]";
 	}
-	
-	
-	
+
+	public Set<Substitution> getSustitutions() {
+		// TODO para arreglar los test
+		return this.getSubstitutions();
+	}
+
 }
