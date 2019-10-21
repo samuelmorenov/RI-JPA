@@ -10,6 +10,8 @@ public class Mechanic {
 
 	private Set<WorkOrder> workOrders = new HashSet<WorkOrder>();
 
+	private Set<Intervention> interventions = new HashSet<Intervention>();
+
 	public Mechanic(String dni) {
 		super();
 		this.dni = dni;
@@ -47,6 +49,14 @@ public class Mechanic {
 
 	public Set<WorkOrder> getAssigned() {
 		return this.getWorkOrders();
+	}
+
+	Set<Intervention> _getInterventions() {
+		return interventions;
+	}
+
+	public Set<Intervention> getInterventions() {
+		return new HashSet<Intervention>(interventions);
 	}
 
 	@Override

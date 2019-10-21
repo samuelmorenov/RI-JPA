@@ -73,6 +73,26 @@ public class Associations {
 
 	public static class Intervene {
 
+		public static void link(WorkOrder workOrder, Intervention intervention, Mechanic mechanic) {
+			intervention._setMechanic(mechanic);
+			intervention._setWorkOrder(workOrder);
+
+			workOrder._getInterventions().add(intervention);
+			mechanic._getInterventions().add(intervention);
+		}
+
+		public static void unlink(Intervention intervention) {
+			
+			Mechanic mechanic = intervention.getMechanic();
+			WorkOrder workOrder = intervention.getWorkOrder();
+			
+			workOrder._getInterventions().remove(intervention);
+			mechanic._getInterventions().remove(intervention);
+
+			intervention._setMechanic(null);
+			intervention._setWorkOrder(null);
+		}
+
 	}
 
 	public static class Sustitute {

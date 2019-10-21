@@ -1,6 +1,8 @@
 package uo.ri.cws.domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class WorkOrder {
 	public enum WorkOrderStatus {
@@ -16,6 +18,8 @@ public class WorkOrder {
 
 	private Mechanic mechanic;
 	private Invoice invoice;
+	
+	private Set<Intervention> interventions = new HashSet<Intervention>();
 
 	public WorkOrder(Vehicle vehicle) {
 		this.date = new Date();
@@ -65,6 +69,16 @@ public class WorkOrder {
 
 	void _setInvoice(Invoice invoice) {
 		this.invoice = invoice;
+	}
+
+	
+	
+	Set<Intervention> _getInterventions() {
+		return interventions;
+	}
+
+	public Set<Intervention> getInterventions() {
+		return new HashSet<Intervention>(interventions);
 	}
 
 	@Override
