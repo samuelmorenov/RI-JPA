@@ -1,5 +1,8 @@
 package uo.ri.cws.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Client {
 	private String dni;
 	private String name;
@@ -7,30 +10,55 @@ public class Client {
 	private String email;
 	private String phone;
 	private Address address;
-	
-	Client(){}
+
+	private Set<Vehicle> vehicles = new HashSet<>();
+
 	public Client(String dni) {
 		super();
 		this.dni = dni;
 	}
+
+	public Client(String dni, String name, String surname) {
+		this(dni);
+		this.name = name;
+		this.surname = surname;
+	}
+
 	public String getDni() {
 		return dni;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public String getSurname() {
 		return surname;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public String getPhone() {
 		return phone;
 	}
+
 	public Address getAddress() {
 		return address;
 	}
+	
+
+	//El _ es solo de paquetes
+	Set<Vehicle> _getVehicles() {
+		return vehicles;
+	}
+	
+	//El que no tiene _ devuelve una copia, es publico
+	public Set<Vehicle> getVehicles() {
+		return new HashSet<Vehicle>(vehicles);
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -38,6 +66,7 @@ public class Client {
 		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -54,6 +83,7 @@ public class Client {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Client [dni=" + dni + ", name=" + name + ", surname=" + surname + ", email=" + email + ", phone="
@@ -61,4 +91,3 @@ public class Client {
 	}
 
 }
-

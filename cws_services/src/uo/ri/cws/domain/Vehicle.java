@@ -4,9 +4,16 @@ public class Vehicle {
 	private String plateNumber;
 	private String make;
 	private String model;
+	
+	private Client client;
 	public Vehicle(String plateNumber) {
 		super();
 		this.plateNumber = plateNumber;
+	}
+	public Vehicle(String plateNumber, String make, String model) {
+		this(plateNumber);
+		this.make = make;
+		this.model = model;
 	}
 	public String getPlateNumber() {
 		return plateNumber;
@@ -19,6 +26,16 @@ public class Vehicle {
 	}
 	public String getModel() {
 		return model;
+	}
+	
+	//Es publico porque no se puede modificar
+	public Client getClient() {
+		return client;
+	}
+	
+	//Es privado porque no se puede modificar
+	void _setClient(Client client) {
+		this.client = client;
 	}
 	@Override
 	public int hashCode() {

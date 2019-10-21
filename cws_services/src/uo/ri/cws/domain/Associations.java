@@ -4,6 +4,18 @@ public class Associations {
 
 	public static class Own {
 
+		public static void link(Client client, Vehicle vehicle) {
+			vehicle._setClient(client);
+			client._getVehicles().add(vehicle);
+
+		}
+
+		public static void unlink(Client client, Vehicle vehicle) {
+			client._getVehicles().remove(vehicle);
+			vehicle._setClient(null);
+
+		}
+
 	}
 
 	public static class Classify {
