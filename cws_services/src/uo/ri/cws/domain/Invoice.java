@@ -1,7 +1,9 @@
 package uo.ri.cws.domain;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Invoice {
 	public enum InvoiceStatus { NOT_YET_PAID, PAID }
@@ -12,6 +14,8 @@ public class Invoice {
 	private double amount;
 	private double vat;
 	private InvoiceStatus status = InvoiceStatus.NOT_YET_PAID;
+	
+	private Set<WorkOrder> workOrders = new HashSet<WorkOrder>();
 
 	public Invoice(Long number) {
 		this(number, new Date());
@@ -57,6 +61,13 @@ public class Invoice {
 		return status;
 	}
 	
+	Set<WorkOrder> _getWorkOrders() {
+		return workOrders;
+	}
+
+	public Set<WorkOrder> getWorkOrders() {
+		return new HashSet<WorkOrder>(workOrders);
+	}
 
 	@Override
 	public int hashCode() {

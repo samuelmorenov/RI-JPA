@@ -14,6 +14,9 @@ public class WorkOrder {
 
 	private Vehicle vehicle;
 
+	private Mechanic mechanic;
+	private Invoice invoice;
+
 	public WorkOrder(Vehicle vehicle) {
 		this.date = new Date();
 		Associations.Order.link(vehicle, this);
@@ -46,6 +49,22 @@ public class WorkOrder {
 
 	void _setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
+	}
+
+	public Mechanic getMechanic() {
+		return mechanic;
+	}
+
+	void _setMechanic(Mechanic mechanic) {
+		this.mechanic = mechanic;
+	}
+
+	public Invoice getInvoice() {
+		return invoice;
+	}
+
+	void _setInvoice(Invoice invoice) {
+		this.invoice = invoice;
 	}
 
 	@Override

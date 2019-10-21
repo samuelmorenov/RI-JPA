@@ -49,7 +49,7 @@ public class Associations {
 	}
 
 	public static class ToInvoice {
-
+		// TODO
 	}
 
 	public static class Charges {
@@ -57,6 +57,17 @@ public class Associations {
 	}
 
 	public static class Assign {
+
+		public static void link(Mechanic mechanic, WorkOrder workOrder) {
+			workOrder._setMechanic(mechanic);
+			mechanic._getWorkOrders().add(workOrder);
+		}
+
+		public static void unlink(Mechanic mechanic, WorkOrder workOrder) {
+
+			mechanic._getWorkOrders().remove(workOrder);
+			workOrder._setMechanic(null);
+		}
 
 	}
 
