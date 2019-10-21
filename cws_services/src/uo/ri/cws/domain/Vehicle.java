@@ -6,6 +6,10 @@ public class Vehicle {
 	private String model;
 	
 	private Client client;
+	private VehicleType vehicleType;
+	
+	
+	
 	public Vehicle(String plateNumber) {
 		super();
 		this.plateNumber = plateNumber;
@@ -37,6 +41,15 @@ public class Vehicle {
 	void _setClient(Client client) {
 		this.client = client;
 	}
+	
+	
+	public VehicleType getVehicleType() {
+		return vehicleType;
+	}
+	void _setVehicleType(VehicleType vehicletype) {
+		this.vehicleType = vehicletype;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
