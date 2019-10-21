@@ -21,13 +21,11 @@ public class Associations {
 		public static void link(VehicleType vehicleType, Vehicle vehicle) {
 			vehicle._setVehicleType(vehicleType);
 			vehicleType._getVehicles().add(vehicle);
-			
 		}
 
 		public static void unlink(VehicleType vehicleType, Vehicle vehicle) {
 			vehicleType._getVehicles().remove(vehicle);
 			vehicle._setVehicleType(null);
-			
 		}
 
 	}
@@ -37,6 +35,16 @@ public class Associations {
 	}
 
 	public static class Order {
+
+		public static void link(Vehicle vehicle, WorkOrder workOrder) {
+			workOrder._setVehicle(vehicle);
+			vehicle._getWorkOrders().add(workOrder);
+		}
+
+		public static void unlink(Vehicle vehicle, WorkOrder workOrder) {
+			vehicle._getWorkOrders().remove(workOrder);
+			workOrder._setVehicle(null);
+		}
 
 	}
 

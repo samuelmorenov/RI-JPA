@@ -1,55 +1,70 @@
 package uo.ri.cws.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Vehicle {
 	private String plateNumber;
 	private String make;
 	private String model;
-	
+
 	private Client client;
 	private VehicleType vehicleType;
-	
-	
-	
+	private Set<WorkOrder> workOrders = new HashSet<WorkOrder>();
+
 	public Vehicle(String plateNumber) {
 		super();
 		this.plateNumber = plateNumber;
 	}
+
 	public Vehicle(String plateNumber, String make, String model) {
 		this(plateNumber);
 		this.make = make;
 		this.model = model;
 	}
+
 	public String getPlateNumber() {
 		return plateNumber;
 	}
+
 	public void setPlateNumber(String plateNumber) {
 		this.plateNumber = plateNumber;
 	}
+
 	public String getMake() {
 		return make;
 	}
+
 	public String getModel() {
 		return model;
 	}
-	
-	//Es publico porque no se puede modificar
+
+	// Es publico porque no se puede modificar
 	public Client getClient() {
 		return client;
 	}
-	
-	//Es privado porque no se puede modificar
+
+	// Es privado porque no se puede modificar
 	void _setClient(Client client) {
 		this.client = client;
 	}
-	
-	
+
 	public VehicleType getVehicleType() {
 		return vehicleType;
 	}
+
 	void _setVehicleType(VehicleType vehicletype) {
 		this.vehicleType = vehicletype;
 	}
-	
+
+	Set<WorkOrder> _getWorkOrders() {
+		return workOrders;
+	}
+
+	public Set<WorkOrder> getWorkOrders() {
+		return new HashSet<WorkOrder>(workOrders);
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -57,6 +72,7 @@ public class Vehicle {
 		result = prime * result + ((plateNumber == null) ? 0 : plateNumber.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -73,10 +89,10 @@ public class Vehicle {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Vehicle [plateNumber=" + plateNumber + ", make=" + make + ", model=" + model + "]";
 	}
-
 
 }
