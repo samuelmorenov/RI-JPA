@@ -32,6 +32,17 @@ public class Associations {
 
 	public static class Pay {
 
+		public static void link(PaymentMean p, Client client) {
+			p._setClient(client);
+			client._getPaymentMeans().add(p);
+		}
+		
+		public static void unlink(PaymentMean p, Client client) {
+
+			client._getPaymentMeans().remove(p);
+			p._setClient(null);
+		}
+
 	}
 
 	public static class Order {

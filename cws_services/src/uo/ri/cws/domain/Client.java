@@ -11,7 +11,9 @@ public class Client {
 	private String phone;
 	private Address address;
 
-	private Set<Vehicle> vehicles = new HashSet<>();
+	private Set<Vehicle> vehicles = new HashSet<Vehicle>();
+	
+	private Set<PaymentMean> paymentMeans = new HashSet<PaymentMean>();
 
 	public Client(String dni) {
 		super();
@@ -57,6 +59,16 @@ public class Client {
 	//El que no tiene _ devuelve una copia, es publico
 	public Set<Vehicle> getVehicles() {
 		return new HashSet<Vehicle>(vehicles);
+	}
+	
+	
+
+	 Set<PaymentMean> _getPaymentMeans() {
+		return paymentMeans;
+	}
+	
+	public Set<PaymentMean> getPaymentMeans() {
+		return new HashSet<PaymentMean>(paymentMeans);
 	}
 
 	@Override
