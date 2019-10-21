@@ -15,6 +15,12 @@ public class Mechanic {
 		this.dni = dni;
 	}
 
+	public Mechanic(String dni, String name, String surname) {
+		this(dni);
+		this.name = name;
+		this.surname = surname;
+	}
+
 	public String getDni() {
 		return dni;
 	}
@@ -37,6 +43,10 @@ public class Mechanic {
 
 	public Set<WorkOrder> getWorkOrders() {
 		return new HashSet<WorkOrder>(workOrders);
+	}
+
+	public Set<WorkOrder> getAssigned() {
+		return this.getWorkOrders();
 	}
 
 	@Override
