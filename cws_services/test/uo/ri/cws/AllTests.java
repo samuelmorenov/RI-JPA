@@ -8,6 +8,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
 	uo.ri.cws.associations.AllTests.class,
-	uo.ri.cws.domain.AllTests.class
+	uo.ri.cws.domain.AllTests.class,
+	uo.ri.cws.persistence.PersistenceTest.class
 })
 public class AllTests { }
