@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 @Entity
 public class Client extends BaseEntity {
@@ -14,9 +15,10 @@ public class Client extends BaseEntity {
 	private String phone;
 	private Address address;
 
-	private Set<Vehicle> vehicles = new HashSet<Vehicle>();
+	
+	@Transient private Set<Vehicle> vehicles = new HashSet<Vehicle>();
 
-	private Set<PaymentMean> paymentMeans = new HashSet<PaymentMean>();
+	@Transient private Set<PaymentMean> paymentMeans = new HashSet<PaymentMean>();
 
 	Client() {
 	}
