@@ -6,8 +6,8 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 @Entity
@@ -20,7 +20,7 @@ public class Intervention extends BaseEntity {
 
 	private Date date;
 	private int minutes;
-	@Transient
+	@OneToMany(mappedBy = "intervention")
 	private Set<Substitution> substitutions = new HashSet<Substitution>();
 
 	Intervention() {

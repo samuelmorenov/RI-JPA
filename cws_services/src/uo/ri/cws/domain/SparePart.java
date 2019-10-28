@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 
 @Entity
 public class SparePart extends BaseEntity {
@@ -12,7 +12,7 @@ public class SparePart extends BaseEntity {
 	private String description;
 	private double price;
 
-	@Transient
+	@OneToMany(mappedBy = "sparePart")
 	private Set<Substitution> substitutions = new HashSet<Substitution>();
 
 	SparePart() {
