@@ -6,7 +6,6 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 
 @Entity
 public class Mechanic extends BaseEntity {
@@ -18,7 +17,7 @@ public class Mechanic extends BaseEntity {
 	@OneToMany(mappedBy = "mechanic")
 	private Set<WorkOrder> workOrders = new HashSet<WorkOrder>();
 
-	@Transient
+	@OneToMany(mappedBy = "mechanic")
 	private Set<Intervention> interventions = new HashSet<Intervention>();
 
 	Mechanic() {

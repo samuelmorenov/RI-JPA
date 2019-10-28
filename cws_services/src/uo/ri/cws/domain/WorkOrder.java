@@ -6,8 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
-
+import javax.persistence.OneToMany;
 import alb.util.assertion.StateCheck;
 
 @Entity
@@ -27,7 +26,7 @@ public class WorkOrder extends BaseEntity {
 	private Mechanic mechanic;
 	@ManyToOne
 	private Invoice invoice;
-	@Transient
+	@OneToMany(mappedBy = "workOrder")
 	private Set<Intervention> interventions = new HashSet<Intervention>();
 
 	WorkOrder() {
