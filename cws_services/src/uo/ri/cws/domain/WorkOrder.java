@@ -144,7 +144,7 @@ public class WorkOrder {
 	public void markAsFinished() {
 		StateCheck.isTrue(WorkOrderStatus.ASSIGNED.equals(status), "The work order is not in ASSIGNED state");
 		Associations.Assign.link(mechanic, this);
-		computeAmount(); //TODO calcular el total, calculando las sustituciones ...
+		//computeAmount(); //TODO calcular el total, calculando las sustituciones ...
 		status = WorkOrderStatus.FINISHED;
 	}
 

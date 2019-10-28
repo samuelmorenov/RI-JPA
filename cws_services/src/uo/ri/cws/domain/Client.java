@@ -3,7 +3,10 @@ package uo.ri.cws.domain;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Client {
+import javax.persistence.Entity;
+
+@Entity
+public class Client extends BaseEntity {
 	private String dni;
 	private String name;
 	private String surname;
@@ -12,8 +15,11 @@ public class Client {
 	private Address address;
 
 	private Set<Vehicle> vehicles = new HashSet<Vehicle>();
-	
+
 	private Set<PaymentMean> paymentMeans = new HashSet<PaymentMean>();
+
+	Client() {
+	}
 
 	public Client(String dni) {
 		super();
@@ -49,24 +55,21 @@ public class Client {
 	public Address getAddress() {
 		return address;
 	}
-	
 
-	//El _ es solo de paquetes
+	// El _ es solo de paquetes
 	Set<Vehicle> _getVehicles() {
 		return vehicles;
 	}
-	
-	//El que no tiene _ devuelve una copia, es publico
+
+	// El que no tiene _ devuelve una copia, es publico
 	public Set<Vehicle> getVehicles() {
 		return new HashSet<Vehicle>(vehicles);
 	}
-	
-	
 
-	 Set<PaymentMean> _getPaymentMeans() {
+	Set<PaymentMean> _getPaymentMeans() {
 		return paymentMeans;
 	}
-	
+
 	public Set<PaymentMean> getPaymentMeans() {
 		return new HashSet<PaymentMean>(paymentMeans);
 	}
