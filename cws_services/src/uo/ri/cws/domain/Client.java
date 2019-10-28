@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
@@ -17,7 +18,7 @@ public class Client extends BaseEntity {
 	private String phone;
 	private Address address;
 
-	@Transient
+	@OneToMany (mappedBy = "client_nombre_que_quiera" )
 	private Set<Vehicle> vehicles = new HashSet<Vehicle>();
 
 	@Transient

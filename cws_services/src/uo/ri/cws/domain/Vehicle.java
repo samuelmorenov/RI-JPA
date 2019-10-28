@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -14,8 +15,8 @@ public class Vehicle extends BaseEntity {
 	private String make;
 	private String model;
 
-	@Transient
-	private Client client;
+	@ManyToOne
+	private Client client_nombre_que_quiera;
 	@Transient
 	private VehicleType vehicleType;
 	@Transient
@@ -53,12 +54,12 @@ public class Vehicle extends BaseEntity {
 
 	// Es publico porque no se puede modificar
 	public Client getClient() {
-		return client;
+		return client_nombre_que_quiera;
 	}
 
 	// Es privado porque no se puede modificar
 	void _setClient(Client client) {
-		this.client = client;
+		this.client_nombre_que_quiera = client;
 	}
 
 	public VehicleType getVehicleType() {
