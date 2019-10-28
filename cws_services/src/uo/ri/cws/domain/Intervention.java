@@ -5,13 +5,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "WORKORDER_ID", "MECHANIC_ID", "DATE" }) })
 public class Intervention extends BaseEntity {
-	@Transient
+	@ManyToOne
 	private WorkOrder workOrder;
-	@Transient
+	@ManyToOne
 	private Mechanic mechanic;
 
 	private Date date;
