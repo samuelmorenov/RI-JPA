@@ -3,11 +3,13 @@ package uo.ri.cws.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 
 @Entity
 public class Client extends BaseEntity {
+	@Column(unique = true)
 	private String dni;
 	private String name;
 	private String surname;
@@ -15,10 +17,11 @@ public class Client extends BaseEntity {
 	private String phone;
 	private Address address;
 
-	
-	@Transient private Set<Vehicle> vehicles = new HashSet<Vehicle>();
+	@Transient
+	private Set<Vehicle> vehicles = new HashSet<Vehicle>();
 
-	@Transient private Set<PaymentMean> paymentMeans = new HashSet<PaymentMean>();
+	@Transient
+	private Set<PaymentMean> paymentMeans = new HashSet<PaymentMean>();
 
 	Client() {
 	}
