@@ -7,9 +7,13 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 import alb.util.assertion.StateCheck;
 
 @Entity
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "DATE", "VEHICLE_ID" }) })
 public class WorkOrder extends BaseEntity {
 	public enum WorkOrderStatus {
 		OPEN, ASSIGNED, FINISHED, INVOICED

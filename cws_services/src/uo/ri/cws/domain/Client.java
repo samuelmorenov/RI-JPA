@@ -6,7 +6,6 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 
 @Entity
 public class Client extends BaseEntity {
@@ -21,7 +20,7 @@ public class Client extends BaseEntity {
 	@OneToMany(mappedBy = "client")
 	private Set<Vehicle> vehicles = new HashSet<Vehicle>();
 
-	@Transient
+	@OneToMany(mappedBy = "client")
 	private Set<PaymentMean> paymentMeans = new HashSet<PaymentMean>();
 
 	Client() {

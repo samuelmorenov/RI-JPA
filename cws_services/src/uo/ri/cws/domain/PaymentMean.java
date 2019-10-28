@@ -1,9 +1,24 @@
 package uo.ri.cws.domain;
 
-public abstract class PaymentMean {
+
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED) //TODO ver que pasa con las otras InheritanceType
+public abstract class PaymentMean extends BaseEntity {
 	private double accumulated = 0.0;
 
+	@ManyToOne
 	private Client client;
+	
+	@OneToMany Set<Charge> charges = new HashSet<Charge>(); //TODO
 
 	public Client getClient() {
 		return client;
