@@ -1,4 +1,4 @@
-package uo.ri;
+package uo.ri.cws;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
