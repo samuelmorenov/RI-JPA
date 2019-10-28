@@ -1,11 +1,17 @@
 package uo.ri.cws.domain;
 
+
 import java.util.UUID;
 
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
+
+@MappedSuperclass
 public abstract class BaseEntity {
 
-	private String id = UUID.randomUUID().toString();
-	private Long version;
+	@Id private String id = UUID.randomUUID().toString();
+	@Version private Long version;
 
 	public BaseEntity() {
 		super();
