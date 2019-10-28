@@ -60,7 +60,7 @@ public class Associations {
 	}
 
 	public static class ToInvoice {
-		// TODO
+		// TODO ToInvoice
 	}
 
 	public static class Charges {

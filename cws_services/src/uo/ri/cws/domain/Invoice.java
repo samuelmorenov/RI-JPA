@@ -23,8 +23,9 @@ public class Invoice extends BaseEntity {
 
 	@OneToMany(mappedBy = "invoice")
 	private Set<WorkOrder> workOrders = new HashSet<WorkOrder>();
-	
-	@OneToMany Set<Charge> charges = new HashSet<Charge>(); //TODO
+
+	@OneToMany(mappedBy = "invoice") 
+	private Set<Charge> charges = new HashSet<Charge>();
 
 	Invoice() {
 	}
