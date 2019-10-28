@@ -5,17 +5,27 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Invoice {
-	public enum InvoiceStatus { NOT_YET_PAID, PAID }
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
+@Entity
+public class Invoice extends BaseEntity {
+	public enum InvoiceStatus {
+		NOT_YET_PAID, PAID
+	}
 
 	private Long number;
-	
+
 	private Date date;
 	private double amount;
 	private double vat;
 	private InvoiceStatus status = InvoiceStatus.NOT_YET_PAID;
-	
+
+	@Transient
 	private Set<WorkOrder> workOrders = new HashSet<WorkOrder>();
+
+	Invoice() {
+	}
 
 	public Invoice(Long number) {
 		this(number, new Date());
@@ -34,8 +44,6 @@ public class Invoice {
 	public Invoice(Long number, Date date, List<WorkOrder> workOrders) {
 
 	}
-	
-	
 
 	public Long getNumber() {
 		return number;
@@ -60,7 +68,7 @@ public class Invoice {
 	public InvoiceStatus getStatus() {
 		return status;
 	}
-	
+
 	Set<WorkOrder> _getWorkOrders() {
 		return workOrders;
 	}
@@ -108,10 +116,12 @@ public class Invoice {
 	}
 
 	/**
-	 * Adds (double links) the workOrder to the invoice and updates the amount and vat 
+	 * Adds (double links) the workOrder to the invoice and updates the amount and
+	 * vat
+	 * 
 	 * @param workOrder
 	 * @see State diagrams on the problem statement document
-	 * @throws IllegalStateException if the invoice status is not NOT_YET_PAID  
+	 * @throws IllegalStateException if the invoice status is not NOT_YET_PAID
 	 */
 	public void addWorkOrder(WorkOrder workOrder) {
 
@@ -119,9 +129,10 @@ public class Invoice {
 
 	/**
 	 * Removes a work order from the invoice and recomputes amount and vat
+	 * 
 	 * @param workOrder
 	 * @see State diagrams on the problem statement document
-	 * @throws IllegalStateException if the invoice status is not NOT_YET_PAID  
+	 * @throws IllegalStateException if the invoice status is not NOT_YET_PAID
 	 */
 	public void removeWorkOrder(WorkOrder workOrder) {
 
@@ -129,10 +140,10 @@ public class Invoice {
 
 	/**
 	 * Marks the invoice as PAID, but
-	 * @throws IllegalStateException if
-	 * 	- Is already settled 
-	 *  - Or the amounts paid with charges to payment means do not cover 
-	 *  	the total of the invoice  
+	 * 
+	 * @throws IllegalStateException if - Is already settled - Or the amounts paid
+	 *                               with charges to payment means do not cover the
+	 *                               total of the invoice
 	 */
 	public void settle() {
 

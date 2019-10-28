@@ -1,9 +1,18 @@
 package uo.ri.cws.domain;
 
-public class Substitution {
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
+@Entity
+public class Substitution extends BaseEntity {
+	@Transient
 	private SparePart sparePart;
+	@Transient
 	private Intervention intervention;
 	private int quantity;
+
+	Substitution() {
+	}
 
 	public Substitution(SparePart sparePart, Intervention intervention) {
 		Associations.Sustitute.link(sparePart, this, intervention);

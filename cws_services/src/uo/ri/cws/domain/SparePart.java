@@ -3,12 +3,20 @@ package uo.ri.cws.domain;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SparePart {
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
+@Entity
+public class SparePart extends BaseEntity {
 	private String code;
 	private String description;
 	private double price;
 
+	@Transient
 	private Set<Substitution> substitutions = new HashSet<Substitution>();
+
+	SparePart() {
+	}
 
 	public SparePart(String code) {
 		super();

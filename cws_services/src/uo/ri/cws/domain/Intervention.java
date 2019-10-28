@@ -4,13 +4,23 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Intervention {
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
+@Entity
+public class Intervention extends BaseEntity {
+	@Transient
 	private WorkOrder workOrder;
+	@Transient
 	private Mechanic mechanic;
 
 	private Date date;
 	private int minutes;
+	@Transient
 	private Set<Substitution> substitutions = new HashSet<Substitution>();
+
+	Intervention() {
+	}
 
 	public Intervention(WorkOrder workOrder, Mechanic mechanic) {
 		this.date = new Date();

@@ -4,9 +4,13 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
 import alb.util.assertion.StateCheck;
 
-public class WorkOrder {
+@Entity
+public class WorkOrder extends BaseEntity {
 	public enum WorkOrderStatus {
 		OPEN, ASSIGNED, FINISHED, INVOICED
 	}
@@ -16,12 +20,19 @@ public class WorkOrder {
 	private double amount = 0.0;
 	private WorkOrderStatus status = WorkOrderStatus.OPEN;
 
+	@Transient
 	private Vehicle vehicle;
 
+	@Transient
 	private Mechanic mechanic;
+	@Transient
 	private Invoice invoice;
-	
+
+	@Transient
 	private Set<Intervention> interventions = new HashSet<Intervention>();
+
+	WorkOrder() {
+	}
 
 	public WorkOrder(Vehicle vehicle) {
 		this.date = new Date();
@@ -73,8 +84,6 @@ public class WorkOrder {
 		this.invoice = invoice;
 	}
 
-	
-	
 	Set<Intervention> _getInterventions() {
 		return interventions;
 	}
@@ -144,7 +153,7 @@ public class WorkOrder {
 	public void markAsFinished() {
 		StateCheck.isTrue(WorkOrderStatus.ASSIGNED.equals(status), "The work order is not in ASSIGNED state");
 		Associations.Assign.link(mechanic, this);
-		//computeAmount(); //TODO calcular el total, calculando las sustituciones ...
+		// computeAmount(); //TODO calcular el total, calculando las sustituciones ...
 		status = WorkOrderStatus.FINISHED;
 	}
 

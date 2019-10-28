@@ -3,11 +3,19 @@ package uo.ri.cws.domain;
 import java.util.HashSet;
 import java.util.Set;
 
-public class VehicleType {
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
+@Entity
+public class VehicleType extends BaseEntity{
 	private String name;
 	private double pricePerHour;
 
+	@Transient
 	private Set<Vehicle> vehicles = new HashSet<>();
+
+	VehicleType() {
+	}
 
 	public VehicleType(String name) {
 		super();

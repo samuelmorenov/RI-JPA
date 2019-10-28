@@ -3,14 +3,26 @@ package uo.ri.cws.domain;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Vehicle {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
+@Entity
+public class Vehicle extends BaseEntity {
+	@Column(unique = true)
 	private String plateNumber;
 	private String make;
 	private String model;
 
+	@Transient
 	private Client client;
+	@Transient
 	private VehicleType vehicleType;
+	@Transient
 	private Set<WorkOrder> workOrders = new HashSet<WorkOrder>();
+
+	Vehicle() {
+	}
 
 	public Vehicle(String plateNumber) {
 		super();

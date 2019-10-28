@@ -3,14 +3,25 @@ package uo.ri.cws.domain;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Mechanic {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
+@Entity
+public class Mechanic extends BaseEntity {
+	@Column(unique = true)
 	private String dni;
 	private String surname;
 	private String name;
 
+	@Transient
 	private Set<WorkOrder> workOrders = new HashSet<WorkOrder>();
 
+	@Transient
 	private Set<Intervention> interventions = new HashSet<Intervention>();
+
+	Mechanic() {
+	}
 
 	public Mechanic(String dni) {
 		super();
