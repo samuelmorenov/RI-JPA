@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Invoice extends BaseEntity {
@@ -21,7 +21,7 @@ public class Invoice extends BaseEntity {
 	private double vat;
 	private InvoiceStatus status = InvoiceStatus.NOT_YET_PAID;
 
-	@Transient
+	@OneToMany(mappedBy = "invoice")
 	private Set<WorkOrder> workOrders = new HashSet<WorkOrder>();
 
 	Invoice() {

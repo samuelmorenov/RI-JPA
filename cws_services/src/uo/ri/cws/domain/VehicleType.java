@@ -4,14 +4,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 
 @Entity
 public class VehicleType extends BaseEntity{
 	private String name;
 	private double pricePerHour;
 
-	@Transient
+	@OneToMany(mappedBy = "vehicleType")
 	private Set<Vehicle> vehicles = new HashSet<>();
 
 	VehicleType() {

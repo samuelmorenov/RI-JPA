@@ -18,7 +18,7 @@ public class Client extends BaseEntity {
 	private String phone;
 	private Address address;
 
-	@OneToMany (mappedBy = "client_nombre_que_quiera" )
+	@OneToMany(mappedBy = "client")
 	private Set<Vehicle> vehicles = new HashSet<Vehicle>();
 
 	@Transient

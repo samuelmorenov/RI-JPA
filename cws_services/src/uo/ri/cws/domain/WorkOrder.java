@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import alb.util.assertion.StateCheck;
@@ -20,14 +21,12 @@ public class WorkOrder extends BaseEntity {
 	private double amount = 0.0;
 	private WorkOrderStatus status = WorkOrderStatus.OPEN;
 
-	@Transient
+	@ManyToOne
 	private Vehicle vehicle;
-
-	@Transient
+	@ManyToOne
 	private Mechanic mechanic;
-	@Transient
+	@ManyToOne
 	private Invoice invoice;
-
 	@Transient
 	private Set<Intervention> interventions = new HashSet<Intervention>();
 

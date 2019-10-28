@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Vehicle extends BaseEntity {
@@ -16,10 +16,10 @@ public class Vehicle extends BaseEntity {
 	private String model;
 
 	@ManyToOne
-	private Client client_nombre_que_quiera;
-	@Transient
+	private Client client;
+	@ManyToOne
 	private VehicleType vehicleType;
-	@Transient
+	@OneToMany(mappedBy = "vehicle")
 	private Set<WorkOrder> workOrders = new HashSet<WorkOrder>();
 
 	Vehicle() {
@@ -54,12 +54,12 @@ public class Vehicle extends BaseEntity {
 
 	// Es publico porque no se puede modificar
 	public Client getClient() {
-		return client_nombre_que_quiera;
+		return client;
 	}
 
 	// Es privado porque no se puede modificar
 	void _setClient(Client client) {
-		this.client_nombre_que_quiera = client;
+		this.client = client;
 	}
 
 	public VehicleType getVehicleType() {
