@@ -24,7 +24,7 @@ public class Invoice extends BaseEntity {
 	@OneToMany(mappedBy = "invoice")
 	private Set<WorkOrder> workOrders = new HashSet<WorkOrder>();
 
-	@OneToMany(mappedBy = "invoice") 
+	@OneToMany(mappedBy = "invoice")
 	private Set<Charge> charges = new HashSet<Charge>();
 
 	Invoice() {
@@ -60,6 +60,11 @@ public class Invoice extends BaseEntity {
 		return date;
 	}
 
+	public void setDate(Date now) {
+		this.date = now;
+
+	}
+
 	public double getAmount() {
 		return amount;
 	}
@@ -79,14 +84,13 @@ public class Invoice extends BaseEntity {
 	public Set<WorkOrder> getWorkOrders() {
 		return new HashSet<WorkOrder>(workOrders);
 	}
-	
-	
 
 	Set<Charge> _getCharges() {
 		return charges;
 	}
+
 	public Set<Charge> getCharges() {
-		return new HashSet<Charge>(charges) ;
+		return new HashSet<Charge>(charges);
 	}
 
 	@Override
@@ -124,7 +128,7 @@ public class Invoice extends BaseEntity {
 	 * Computed amount and vat (vat depends on the date)
 	 */
 	private void computeAmount() {
-		//TODO computeAmount
+		// TODO computeAmount
 
 	}
 
@@ -134,7 +138,8 @@ public class Invoice extends BaseEntity {
 	 * 
 	 * @param workOrder
 	 * @see State diagrams on the problem statement document
-	 * @throws IllegalStateException if the invoice status is not NOT_YET_PAID
+	 * @throws IllegalStateException
+	 *             if the invoice status is not NOT_YET_PAID
 	 */
 	public void addWorkOrder(WorkOrder workOrder) {
 
@@ -145,7 +150,8 @@ public class Invoice extends BaseEntity {
 	 * 
 	 * @param workOrder
 	 * @see State diagrams on the problem statement document
-	 * @throws IllegalStateException if the invoice status is not NOT_YET_PAID
+	 * @throws IllegalStateException
+	 *             if the invoice status is not NOT_YET_PAID
 	 */
 	public void removeWorkOrder(WorkOrder workOrder) {
 
@@ -154,9 +160,9 @@ public class Invoice extends BaseEntity {
 	/**
 	 * Marks the invoice as PAID, but
 	 * 
-	 * @throws IllegalStateException if - Is already settled - Or the amounts paid
-	 *                               with charges to payment means do not cover the
-	 *                               total of the invoice
+	 * @throws IllegalStateException
+	 *             if - Is already settled - Or the amounts paid with charges to
+	 *             payment means do not cover the total of the invoice
 	 */
 	public void settle() {
 

@@ -116,4 +116,11 @@ public class Intervention extends BaseEntity {
 		return this.getSubstitutions();
 	}
 
+	public double getAmount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
 }

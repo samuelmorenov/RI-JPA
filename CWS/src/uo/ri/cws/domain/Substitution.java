@@ -37,6 +37,10 @@ public class Substitution extends BaseEntity {
 	public int getQuantity() {
 		return quantity;
 	}
+	public double getImporte() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	void _setSparePart(SparePart sparePart) {
 		this.sparePart = sparePart;
@@ -82,5 +86,7 @@ public class Substitution extends BaseEntity {
 		return "Substitution [sparePart=" + sparePart + ", intervention=" + intervention + ", quantity=" + quantity
 				+ "]";
 	}
+
+
 
 }

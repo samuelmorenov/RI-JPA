@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TCLIENTS") //TODO hacer esto para todas las tablas
+@Table(name = "TCLIENTS") // TODO hacer esto para todas las tablas
 public class Client extends BaseEntity {
 	@Column(unique = true)
 	private String dni;
@@ -61,6 +61,11 @@ public class Client extends BaseEntity {
 
 	public Address getAddress() {
 		return address;
+	}
+
+	public void setAddress(Address address2) {
+		address = address2;
+
 	}
 
 	// El _ es solo de paquetes

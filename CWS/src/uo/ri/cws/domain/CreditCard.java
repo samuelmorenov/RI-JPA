@@ -22,6 +22,13 @@ public class CreditCard extends PaymentMean {
 	}
 
 
+	public CreditCard(String number, String type, Date validThru) {
+		this(number);
+		this.type = type;
+		this.validThru = validThru;
+	}
+
+
 	public String getNumber() {
 		return number;
 	}
