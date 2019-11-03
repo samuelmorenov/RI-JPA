@@ -79,6 +79,15 @@ public class Invoice extends BaseEntity {
 	public Set<WorkOrder> getWorkOrders() {
 		return new HashSet<WorkOrder>(workOrders);
 	}
+	
+	
+
+	Set<Charge> _getCharges() {
+		return charges;
+	}
+	public Set<Charge> getCharges() {
+		return new HashSet<Charge>(charges) ;
+	}
 
 	@Override
 	public int hashCode() {
@@ -115,6 +124,7 @@ public class Invoice extends BaseEntity {
 	 * Computed amount and vat (vat depends on the date)
 	 */
 	private void computeAmount() {
+		//TODO computeAmount
 
 	}
 

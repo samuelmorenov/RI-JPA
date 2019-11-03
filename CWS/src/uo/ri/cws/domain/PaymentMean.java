@@ -28,6 +28,14 @@ public abstract class PaymentMean extends BaseEntity {
 		this.client = client;
 	}
 
+
+	Set<Charge> _getCharges() {
+		return charges;
+	}
+	public Set<Charge> getCharges() {
+		return new HashSet<Charge>(charges);
+	}
+
 	public double getAccumulated() {
 		return accumulated;
 	}
@@ -65,5 +73,7 @@ public abstract class PaymentMean extends BaseEntity {
 	public void pay(double importe) {
 		this.accumulated += importe;
 	}
+
+
 
 }

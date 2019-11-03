@@ -36,11 +36,17 @@ public class Associations {
 			p._setClient(client);
 			client._getPaymentMeans().add(p);
 		}
-		
+
 		public static void unlink(PaymentMean p, Client client) {
 
 			client._getPaymentMeans().remove(p);
 			p._setClient(null);
+		}
+
+		public static void unlink(Client client, Cash cash) {
+			// Para arreglar los test
+			unlink(cash, client);
+
 		}
 
 	}
@@ -64,6 +70,26 @@ public class Associations {
 	}
 
 	public static class Charges {
+
+		public static void link(Invoice invoice, Charge charge, PaymentMean paymentMean) {
+			charge._setInvoice(invoice);
+			charge._setPaymentMean(paymentMean);
+
+			invoice._getCharges().add(charge);
+			paymentMean._getCharges().add(charge);
+		}
+
+		public static void unlink(Charge charge) {
+
+			Invoice invoice = charge.getInvoice();
+			PaymentMean paymentMean = charge.getPaymentMean();
+
+			invoice._getCharges().remove(charge);
+			paymentMean._getCharges().remove(charge);
+
+			charge._setInvoice(null);
+			charge._setPaymentMean(null);
+		}
 
 	}
 
@@ -93,10 +119,10 @@ public class Associations {
 		}
 
 		public static void unlink(Intervention intervention) {
-			
+
 			Mechanic mechanic = intervention.getMechanic();
 			WorkOrder workOrder = intervention.getWorkOrder();
-			
+
 			workOrder._getInterventions().remove(intervention);
 			mechanic._getInterventions().remove(intervention);
 
@@ -111,23 +137,23 @@ public class Associations {
 		public static void link(SparePart sparePart, Substitution substitution, Intervention intervention) {
 			substitution._setIntervention(intervention);
 			substitution._setSparePart(sparePart);
-			
+
 			intervention._getSubstitutions().add(substitution);
 			sparePart._getSubstitutions().add(substitution);
-			
+
 		}
-		
+
 		public static void unlink(Substitution substitution) {
 
 			Intervention intervention = substitution.getIntervention();
 			SparePart sparePart = substitution.getSparePart();
-			
+
 			intervention._getSubstitutions().add(substitution);
 			sparePart._getSubstitutions().add(substitution);
-			
+
 			substitution._setIntervention(null);
 			substitution._setSparePart(null);
-			
+
 		}
 
 	}

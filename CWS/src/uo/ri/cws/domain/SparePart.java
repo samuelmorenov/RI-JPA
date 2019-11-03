@@ -84,7 +84,7 @@ public class SparePart extends BaseEntity {
 	}
 
 	public Set<Substitution> getSustituciones() {
-		// TODO para arreglar test
+		// Para arreglar los test
 		return this.getSubstitutions();
 	}
 

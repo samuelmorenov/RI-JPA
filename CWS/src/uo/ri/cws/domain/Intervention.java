@@ -112,7 +112,7 @@ public class Intervention extends BaseEntity {
 	}
 
 	public Set<Substitution> getSustitutions() {
-		// TODO para arreglar los test
+		// Para arreglar los test
 		return this.getSubstitutions();
 	}
 
