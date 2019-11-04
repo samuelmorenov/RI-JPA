@@ -82,8 +82,8 @@ public class DtoAssembler {
 
 		dto.clientId = v.getClient().getId();
 		dto.accumulated = v.getAccumulated();
-		dto.code = v.getCodigo();
-		dto.description = v.getDescripcion();
+		dto.code = v.getCode();
+		dto.description = v.getDescription();
 		dto.available = v.getDisponible();
 		return dto;
 	}
@@ -187,7 +187,7 @@ public class DtoAssembler {
 		dto.id = vt.getId();
 		dto.version = vt.getVersion();
 
-		dto.name = vt.getNombre();
+		dto.name = vt.getName();
 		dto.pricePerHour = vt.getPricePerHour();
 
 		return dto;
