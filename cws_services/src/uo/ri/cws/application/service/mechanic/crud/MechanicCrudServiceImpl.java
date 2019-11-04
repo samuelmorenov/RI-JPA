@@ -16,8 +16,8 @@ import uo.ri.cws.application.util.command.CommandExecutor;
 
 public class MechanicCrudServiceImpl implements MechanicCrudService {
 
-//	private CommandExecutor executor = Factory.executor.forExecutor();
-	private Executor executor = new Executor();
+	private CommandExecutor executor = Factory.executor.forExecutor();
+//	private Executor executor = new Executor();
 
 	@Override
 	public MechanicDto addMechanic(MechanicDto mecanico) throws BusinessException {
