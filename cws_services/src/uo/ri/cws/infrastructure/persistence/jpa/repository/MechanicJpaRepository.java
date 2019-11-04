@@ -5,6 +5,7 @@ import java.util.Optional;
 import uo.ri.cws.application.repository.MechanicRepository;
 import uo.ri.cws.domain.Mechanic;
 import uo.ri.cws.infrastructure.persistence.jpa.util.BaseJpaRepository;
+import uo.ri.cws.infrastructure.persistence.jpa.util.Jpa;
 
 public class MechanicJpaRepository extends BaseJpaRepository<Mechanic> implements MechanicRepository {
 
@@ -28,14 +29,14 @@ public class MechanicJpaRepository extends BaseJpaRepository<Mechanic> implement
 //
 //	@Override
 //	public List<Mechanic> findAll() {
-//		// TODO Auto-generated method stub
+//		// Auto-generated method stub
 //		return null;
 //	}
 
 	@Override
 	public Optional<Mechanic> findByDni(String dni) {
-		// TODO Auto-generated method stub
-		return null;
+		return Jpa.getManager().createNamedQuery("Mechanic.findByDni", Mechanic.class).setParameter(1, dni)
+				.getResultStream().findFirst();
 	}
 
 }
