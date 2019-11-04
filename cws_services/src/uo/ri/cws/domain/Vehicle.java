@@ -3,6 +3,7 @@ package uo.ri.cws.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -12,6 +13,8 @@ import javax.persistence.OneToMany;
 public class Vehicle extends BaseEntity {
 	@Column(unique = true)
 	private String plateNumber;
+	@Basic(optional = false)
+	@Column(name = "brand")
 	private String make;
 	private String model;
 
