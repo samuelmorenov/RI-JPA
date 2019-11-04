@@ -1,37 +1,34 @@
 package uo.ri.cws.application.service.mechanic.crud.command;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import java.util.Optional;
 
+import uo.ri.conf.Factory;
+import uo.ri.cws.application.repository.MechanicRepository;
 import uo.ri.cws.application.service.BusinessException;
 import uo.ri.cws.application.util.BusinessCheck;
+import uo.ri.cws.application.util.command.Command;
 import uo.ri.cws.domain.Mechanic;
 
-public class DeleteMechanic {
+public class DeleteMechanic implements Command<Void> {
 
 	private String mechanicId;
+	private MechanicRepository mr = Factory.repository.forMechanic();
 
 	public DeleteMechanic(String idMecanico) {
 		this.mechanicId = idMecanico;
 	}
 
 	public Void execute() throws BusinessException {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("carworkshop");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction et = em.getTransaction();
-		et.begin();
 
-		Mechanic m = em.find(Mechanic.class, mechanicId);
-		
-		BusinessCheck.isTrue(m!=null,  "This mechanic does not exist");
+		Optional<Mechanic> om = mr.findById(mechanicId);
+
+		BusinessCheck.isTrue(om.isPresent(), "This mechanic does not exist");
+
+		Mechanic m = om.get();
 		BusinessCheck.isTrue(m.getInterventions().size() == 0, "This mechanics has interventions");
 		
-		em.remove(m);
+		mr.remove(m);
 
-		et.commit();
-		em.close();
 		return null;
 	}
 

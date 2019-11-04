@@ -17,7 +17,6 @@ import uo.ri.cws.application.util.command.CommandExecutor;
 public class MechanicCrudServiceImpl implements MechanicCrudService {
 
 	private CommandExecutor executor = Factory.executor.forExecutor();
-//	private Executor executor = new Executor();
 
 	@Override
 	public MechanicDto addMechanic(MechanicDto mecanico) throws BusinessException {
@@ -27,22 +26,22 @@ public class MechanicCrudServiceImpl implements MechanicCrudService {
 
 	@Override
 	public void updateMechanic(MechanicDto mecanico) throws BusinessException {
-		new UpdateMechanic(mecanico).execute();
+		executor.execute(new UpdateMechanic(mecanico));
 	}
 
 	@Override
 	public void deleteMechanic(String idMecanico) throws BusinessException {
-		new DeleteMechanic(idMecanico).execute();
+		executor.execute(new DeleteMechanic(idMecanico));
 	}
 
 	@Override
 	public List<MechanicDto> findAllMechanics() throws BusinessException {
-		return new FindAllMechanics().execute();
+		return executor.execute(new FindAllMechanics());
 	}
 
 	@Override
 	public Optional<MechanicDto> findMechanicById(String id) throws BusinessException {
-		return new FindMechanicById(id).execute();
+		return executor.execute(new FindMechanicById(id));
 	}
 
 }
