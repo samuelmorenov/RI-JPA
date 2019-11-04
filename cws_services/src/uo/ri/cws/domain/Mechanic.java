@@ -50,6 +50,14 @@ public class Mechanic extends BaseEntity {
 		return name;
 	}
 
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	Set<WorkOrder> _getWorkOrders() {
 		return workOrders;
 	}
