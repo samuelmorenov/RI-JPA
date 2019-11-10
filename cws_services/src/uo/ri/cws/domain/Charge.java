@@ -5,6 +5,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import uo.ri.cws.domain.Invoice.InvoiceStatus;
+
 @Entity
 @Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "INVOICE_ID", "PAYMENTMEAN_ID" }) })
 public class Charge extends BaseEntity {
@@ -18,6 +20,11 @@ public class Charge extends BaseEntity {
 	}
 
 	public Charge(Invoice invoice, PaymentMean paymentMean, double amount) {
+		if (paymentMean instanceof CreditCard) { // I'm not sure about this...
+			CreditCard cc = (CreditCard) paymentMean;
+			if (cc.getValidThru().getTime() < invoice.getDate().getTime())
+				throw new IllegalStateException("A credit card cannot be charged if its expiration date is over");
+		}
 
 		// store the amount
 		this.amount = amount;
@@ -38,12 +45,10 @@ public class Charge extends BaseEntity {
 	public double getAmount() {
 		return amount;
 	}
-	
 
 	void _setInvoice(Invoice invoice) {
 		this.invoice = invoice;
 	}
-
 
 	void _setPaymentMean(PaymentMean paymentMean) {
 		this.paymentMean = paymentMean;
@@ -87,13 +92,18 @@ public class Charge extends BaseEntity {
 	/**
 	 * Unlinks this charge and restores the value to the payment mean
 	 * 
-	 * @throws IllegalStateException
-	 *             if the invoice is already settled
+	 * @throws IllegalStateException if the invoice is already settled
 	 */
 	public void rewind() {
+
 		// assert the invoice is not in PAID status
+		if (!this.invoice.getStatus().equals(InvoiceStatus.PAID)) {
+			throw new IllegalStateException("the invoice is already settled");
+		}
 		// decrement the payment mean accumulated ( paymentMean.pay( -amount) )
+		paymentMean.pay(-amount);
 		// unlink invoice, this and paymentMean
+		Associations.Charges.unlink(this);
 	}
 
 }

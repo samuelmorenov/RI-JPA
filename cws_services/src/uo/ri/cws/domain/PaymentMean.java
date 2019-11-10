@@ -70,8 +70,8 @@ public abstract class PaymentMean extends BaseEntity {
 		return "PaymentMean [accumulated=" + accumulated + ", client=" + client + "]";
 	}
 
-	public void pay(double importe) {
-		this.accumulated += importe;
+	public void pay(double amount) {
+		this.accumulated += amount;
 	}
 
 

@@ -40,9 +40,10 @@ public class Voucher extends PaymentMean {
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescripcion(String description) {
 		this.description = description;
-		
+
 	}
 
 	public double getDisponible() {
@@ -82,14 +83,16 @@ public class Voucher extends PaymentMean {
 	/**
 	 * Augments the accumulated and decrements the available
 	 * 
-	 * @throws IllegalStateException
-	 *             if not enough available to pay
+	 * @throws IllegalStateException if not enough available to pay
 	 */
 	@Override
 	public void pay(double amount) {
-
+		if (available < amount)
+			throw new IllegalStateException("not enough available to pay");
+		else {
+			this.available -= amount;
+			super.pay(amount);
+		}
 	}
-
-
 
 }

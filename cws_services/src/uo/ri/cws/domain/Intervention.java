@@ -68,6 +68,11 @@ public class Intervention extends BaseEntity {
 		return new HashSet<Substitution>(substitutions);
 	}
 
+	public Set<Substitution> getSustitutions() {
+		// Para arreglar los test
+		return this.getSubstitutions();
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -111,16 +116,12 @@ public class Intervention extends BaseEntity {
 				+ minutes + "]";
 	}
 
-	public Set<Substitution> getSustitutions() {
-		// Para arreglar los test
-		return this.getSubstitutions();
-	}
-
 	public double getAmount() {
-		// TODO Auto-generated method stub
-		return 0;
+		double amount = 0.0;
+		for (Substitution s : substitutions)
+			amount = amount + s.getAmount();
+		amount = amount + (minutes * workOrder.getVehicle().getVehicleType().getPricePerHour() / 60);
+		return amount;
 	}
-
-
 
 }

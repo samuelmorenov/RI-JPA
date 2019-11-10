@@ -23,6 +23,8 @@ public class Substitution extends BaseEntity {
 
 	public Substitution(SparePart sparePart2, Intervention intervention2, int i) {
 		this(sparePart2, intervention2);
+		if (i <= 0)
+			throw new IllegalArgumentException("Substitution with negative spare parts");
 		this.quantity = i;
 	}
 
@@ -36,10 +38,6 @@ public class Substitution extends BaseEntity {
 
 	public int getQuantity() {
 		return quantity;
-	}
-	public double getImporte() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	void _setSparePart(SparePart sparePart) {
@@ -87,6 +85,12 @@ public class Substitution extends BaseEntity {
 				+ "]";
 	}
 
+	public double getAmount() {
+		return quantity * sparePart.getPrice();
+	}
 
+	public double getImporte() {
+		return getAmount(); // Para pasar los test
+	}
 
 }

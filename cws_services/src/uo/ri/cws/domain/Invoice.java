@@ -35,12 +35,11 @@ public class Invoice extends BaseEntity {
 	}
 
 	public Invoice(Long number, Date date) {
-		this.number = number;
-		this.date = new Date(date.getTime());
-
 		// TODO check arguments (always), through IllegalArgumentException
 		// store the number
+		this.number = number;
 		// store a copy of the date
+		this.date = new Date(date.getTime());
 	}
 
 	public Invoice(Long number) {
@@ -49,7 +48,8 @@ public class Invoice extends BaseEntity {
 
 	public Invoice(Long number, Date date, List<WorkOrder> workOrders) {
 		this(number, date);
-		this.workOrders = new HashSet<WorkOrder>(workOrders);
+		for (WorkOrder wo : workOrders)
+			addWorkOrder(wo);
 	}
 
 	public Invoice(Long number, List<WorkOrder> workOrders) {
@@ -66,7 +66,7 @@ public class Invoice extends BaseEntity {
 	}
 
 	public Date getDate() {
-		return date;
+		return new Date(date.getTime());
 	}
 
 	public void setDate(Date now) {
@@ -75,6 +75,7 @@ public class Invoice extends BaseEntity {
 	}
 
 	public double getAmount() {
+		computeAmount();
 		return amount;
 	}
 

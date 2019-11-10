@@ -14,6 +14,10 @@ public class CreateInvoiceFor implements Command<InvoiceDto> {
 		this.workOrderIds = workOrderIds;
 	}
 
+	List<String> _getWorkOrderIds() {
+		return workOrderIds;
+	}
+
 	@Override
 	public InvoiceDto execute() throws BusinessException {
 		// TODO Auto-generated method stub
