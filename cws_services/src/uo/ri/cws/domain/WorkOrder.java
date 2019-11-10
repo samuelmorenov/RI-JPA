@@ -169,7 +169,39 @@ public class WorkOrder extends BaseEntity {
 	}
 
 	private void computeAmount() {
-		// TODO computeAmount: calcular el total, calculando las sustituciones ...
+		amount = checkTotalParts() + checkTotalLabor();
+	}
+
+	private double checkTotalParts() {
+
+		// String SQL = "SELECT SUM(S.QUANTITY * R.PRICE) FROM TSUBSTITUTIONS S,
+		// TSPAREPARTS R, TWORKORDERS W WHERE S.SPAREPART_ID = R.ID AND S.LABOR_ID =
+		// L.ID AND W.ID = ?";
+
+		double sum = 0.0;
+		for (Intervention i : interventions) {
+			for (Substitution s : i._getSubstitutions()) {
+				double importe = s.getImporte();
+				double price = s.getSparePart().getPrice();
+				sum = sum + (importe * price);
+			}
+		}
+		return sum;
+	}
+
+	private double checkTotalLabor() {
+
+		// String SQL = "SELECT SUM(I.MINUTES * TV.PRICEPERHOUR / 60) FROM TWORKORDERS
+		// A, TLABORS I, TVEHICLES V, TVEHICLETYPES TV WHERE I.WORKORDER_ID = A.ID AND
+		// A.VEHICLE_ID = V.ID AND V.VEHICLETYPE_ID = TV.ID AND A.ID = ?";
+
+		double sum = 0.0;
+		for (Intervention i : interventions) {
+			double minutes = i.getMinutes();
+			double pricePerHour = this.vehicle.getVehicleType().getPricePerHour();
+			sum = sum + (minutes * pricePerHour / 60);
+		}
+		return sum;
 	}
 
 	/**

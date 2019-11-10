@@ -8,6 +8,10 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import alb.util.assertion.StateCheck;
+import alb.util.date.Dates;
+import alb.util.math.Round;
+
 @Entity
 public class Invoice extends BaseEntity {
 	public enum InvoiceStatus {
@@ -30,21 +34,26 @@ public class Invoice extends BaseEntity {
 	Invoice() {
 	}
 
-	public Invoice(Long number) {
-		this(number, new Date());
-	}
-
 	public Invoice(Long number, Date date) {
-		// check arguments (always), through IllegalArgumentException
+		this.number = number;
+		this.date = new Date(date.getTime());
+
+		// TODO check arguments (always), through IllegalArgumentException
 		// store the number
 		// store a copy of the date
 	}
 
-	public Invoice(Long number, List<WorkOrder> workOrders) {
-
+	public Invoice(Long number) {
+		this(number, new Date());
 	}
 
 	public Invoice(Long number, Date date, List<WorkOrder> workOrders) {
+		this(number, date);
+		this.workOrders = new HashSet<WorkOrder>(workOrders);
+	}
+
+	public Invoice(Long number, List<WorkOrder> workOrders) {
+		this(number, new Date(), workOrders);
 
 	}
 
@@ -61,7 +70,7 @@ public class Invoice extends BaseEntity {
 	}
 
 	public void setDate(Date now) {
-		this.date = now;
+		this.date = new Date(now.getTime());
 
 	}
 
@@ -128,7 +137,13 @@ public class Invoice extends BaseEntity {
 	 * Computed amount and vat (vat depends on the date)
 	 */
 	private void computeAmount() {
-		// TODO computeAmount
+		amount = 0.0;
+		for (WorkOrder workOrder : workOrders) {
+			amount += workOrder.getAmount();
+		}
+		vat = Dates.fromString("1/7/2012").before(date) ? 21.0 : 18.0;
+		amount = amount * (1 + vat / 100); // vat included
+		amount = Round.twoCents(amount);
 
 	}
 
@@ -138,10 +153,13 @@ public class Invoice extends BaseEntity {
 	 * 
 	 * @param workOrder
 	 * @see State diagrams on the problem statement document
-	 * @throws IllegalStateException
-	 *             if the invoice status is not NOT_YET_PAID
+	 * @throws IllegalStateException if the invoice status is not NOT_YET_PAID
 	 */
 	public void addWorkOrder(WorkOrder workOrder) {
+		StateCheck.isTrue(InvoiceStatus.NOT_YET_PAID.equals(status), "The invoice is not in NOT_YET_PAID state");
+		Associations.ToInvoice.link(workOrder, this);
+		workOrder.markAsInvoiced();
+		computeAmount();
 
 	}
 
@@ -150,22 +168,26 @@ public class Invoice extends BaseEntity {
 	 * 
 	 * @param workOrder
 	 * @see State diagrams on the problem statement document
-	 * @throws IllegalStateException
-	 *             if the invoice status is not NOT_YET_PAID
+	 * @throws IllegalStateException if the invoice status is not NOT_YET_PAID
 	 */
 	public void removeWorkOrder(WorkOrder workOrder) {
+		StateCheck.isTrue(InvoiceStatus.NOT_YET_PAID.equals(status), "The invoice is not in NOT_YET_PAID state");
+		Associations.ToInvoice.unlink(workOrder, this);
+		workOrder.markBackToFinished();
+		computeAmount();
 
 	}
 
 	/**
 	 * Marks the invoice as PAID, but
 	 * 
-	 * @throws IllegalStateException
-	 *             if - Is already settled - Or the amounts paid with charges to
-	 *             payment means do not cover the total of the invoice
+	 * @throws IllegalStateException if - Is already settled - Or the amounts paid
+	 *                               with charges to payment means do not cover the
+	 *                               total of the invoice
 	 */
-	public void settle() {
-
-	}
+//	public void settle() {
+//
+//		// TODO
+//	}
 
 }

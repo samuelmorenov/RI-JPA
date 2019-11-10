@@ -66,7 +66,19 @@ public class Associations {
 	}
 
 	public static class ToInvoice {
-		// TODO ToInvoice
+
+		public static void link(WorkOrder workOrder, Invoice invoice) {
+			workOrder._setInvoice(invoice);
+			invoice._getWorkOrders().add(workOrder);
+
+		}
+
+		public static void unlink(WorkOrder workOrder, Invoice invoice) {
+			invoice._getWorkOrders().remove(workOrder);
+			workOrder._setInvoice(null);
+
+		}
+
 	}
 
 	public static class Charges {
@@ -148,8 +160,8 @@ public class Associations {
 			Intervention intervention = substitution.getIntervention();
 			SparePart sparePart = substitution.getSparePart();
 
-			intervention._getSubstitutions().add(substitution);
-			sparePart._getSubstitutions().add(substitution);
+			intervention._getSubstitutions().remove(substitution);
+			sparePart._getSubstitutions().remove(substitution);
 
 			substitution._setIntervention(null);
 			substitution._setSparePart(null);
