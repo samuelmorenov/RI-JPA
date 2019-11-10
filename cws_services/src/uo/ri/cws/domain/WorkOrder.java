@@ -143,13 +143,13 @@ public class WorkOrder extends BaseEntity {
 	 * from Invoice.addWorkOrder(...)
 	 * 
 	 * @see State diagrams on the problem statement document
-	 * @throws IllegalStateException
-	 *             if - The work order is not FINISHED, or - The work order is not
-	 *             linked with the invoice
+	 * @throws IllegalStateException if - The work order is not FINISHED, or - The
+	 *                               work order is not linked with the invoice
 	 */
 	public void markAsInvoiced() {
-
-		// TODO markAsInvoiced
+		StateCheck.isTrue(WorkOrderStatus.FINISHED.equals(status), "The work order is not in FINISHED state");
+		StateCheck.isTrue(this.invoice != null, "The work order has not a invoice");
+		status = WorkOrderStatus.INVOICED;
 	}
 
 	/**
@@ -157,19 +157,18 @@ public class WorkOrder extends BaseEntity {
 	 * amount
 	 * 
 	 * @see State diagrams on the problem statement document
-	 * @throws IllegalStateException
-	 *             if - The work order is not in ASSIGNED state, or - The work order
-	 *             is not linked with a mechanic
+	 * @throws IllegalStateException if - The work order is not in ASSIGNED state,
+	 *                               or - The work order is not linked with a
+	 *                               mechanic
 	 */
 	public void markAsFinished() {
 		StateCheck.isTrue(WorkOrderStatus.ASSIGNED.equals(status), "The work order is not in ASSIGNED state");
-		Associations.Assign.link(mechanic, this);
-		computeAmount();
+		StateCheck.isTrue(this.mechanic != null, "The work order has not a invoice");
 		status = WorkOrderStatus.FINISHED;
+		computeAmount();
 	}
 
 	private void computeAmount() {
-		System.out.println("TODO computeAmount");
 		// TODO computeAmount: calcular el total, calculando las sustituciones ...
 	}
 
@@ -178,13 +177,13 @@ public class WorkOrder extends BaseEntity {
 	 * called from Invoice.removeWorkOrder(...)
 	 * 
 	 * @see State diagrams on the problem statement document
-	 * @throws IllegalStateException
-	 *             if - The work order is not INVOICED, or - The work order is still
-	 *             linked with the invoice
+	 * @throws IllegalStateException if - The work order is not INVOICED, or - The
+	 *                               work order is still linked with the invoice
 	 */
 	public void markBackToFinished() {
-		// TODO markBackToFinished
-
+		StateCheck.isTrue(WorkOrderStatus.INVOICED.equals(status), "The work order is not in INVOICED state");
+		StateCheck.isTrue(this.invoice == null, "The work order has a invoice");
+		status = WorkOrderStatus.FINISHED;
 	}
 
 	/**
@@ -192,14 +191,15 @@ public class WorkOrder extends BaseEntity {
 	 * ASSIGNED
 	 * 
 	 * @see State diagrams on the problem statement document
-	 * @throws IllegalStateException
-	 *             if - The work order is not in OPEN status, or - The work order is
-	 *             already linked with another mechanic
+	 * @throws IllegalStateException if - The work order is not in OPEN status, or -
+	 *                               The work order is already linked with another
+	 *                               mechanic
 	 */
 	public void assignTo(Mechanic mechanic) {
-		// TODO assignTo
+		StateCheck.isTrue(WorkOrderStatus.OPEN.equals(status), "The work order is not in OPEN state");
+		StateCheck.isTrue(this.mechanic == null, "The work order has a mechanic already");
 		Associations.Assign.link(mechanic, this);
-
+		status = WorkOrderStatus.ASSIGNED;
 	}
 
 	/**
@@ -207,12 +207,12 @@ public class WorkOrder extends BaseEntity {
 	 * status back to OPEN
 	 * 
 	 * @see State diagrams on the problem statement document
-	 * @throws IllegalStateException
-	 *             if - The work order is not in ASSIGNED status
+	 * @throws IllegalStateException if - The work order is not in ASSIGNED status
 	 */
 	public void desassign() {
-		// TODO desassign
+		StateCheck.isTrue(WorkOrderStatus.ASSIGNED.equals(status), "The work order is not in ASSIGNED state");
 		Associations.Assign.unlink(mechanic, this);
+		status = WorkOrderStatus.OPEN;
 	}
 
 	/**
@@ -220,11 +220,12 @@ public class WorkOrder extends BaseEntity {
 	 * back to OPEN state and unlinked from the previous mechanic.
 	 * 
 	 * @see State diagrams on the problem statement document
-	 * @throws IllegalStateException
-	 *             if - The work order is not in FINISHED status
+	 * @throws IllegalStateException if - The work order is not in FINISHED status
 	 */
 	public void reopen() {
-		// TODO reopen
+		StateCheck.isTrue(WorkOrderStatus.FINISHED.equals(status), "The work order is not in FINISHED state");
+		status = WorkOrderStatus.OPEN;
+		Associations.Assign.unlink(mechanic, this);
 	}
 
 }
