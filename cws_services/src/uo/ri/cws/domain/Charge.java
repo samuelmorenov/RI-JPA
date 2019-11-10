@@ -20,12 +20,10 @@ public class Charge extends BaseEntity {
 	}
 
 	public Charge(Invoice invoice, PaymentMean paymentMean, double amount) {
-		if (paymentMean instanceof CreditCard) { // I'm not sure about this...
-			CreditCard cc = (CreditCard) paymentMean;
-			if (cc.getValidThru().getTime() < invoice.getDate().getTime())
+		// I'm not sure about this...
+		if (paymentMean instanceof CreditCard)
+			if (((CreditCard) paymentMean).getValidThru().getTime() < invoice.getDate().getTime())
 				throw new IllegalStateException("A credit card cannot be charged if its expiration date is over");
-		}
-
 		// store the amount
 		this.amount = amount;
 		// increment the paymentMean accumulated ( )
