@@ -12,6 +12,7 @@ import javax.persistence.Table;
 public class VehicleType extends BaseEntity{
 	private String name;
 	private double pricePerHour;
+	private int minTrainingHours; //TODO Anotaciones
 
 	@OneToMany(mappedBy = "vehicleType")
 	private Set<Vehicle> vehicles = new HashSet<>();

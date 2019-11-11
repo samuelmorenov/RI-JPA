@@ -1,13 +1,29 @@
 package uo.ri.cws.domain;
 
-public class Enrollment {
+//TODO Anotaciones
+public class Enrollment extends BaseEntity {
 	private int attendance;
 	private boolean passed;
-	private long version;
 	private Course course;
 	private Mechanic mechanic;
 
-	public Enrollment() {
+	Enrollment() {
 	}
-//TODO Anotaciones
+
+	public int getAttendance() {
+		return attendance;
+	}
+
+	public boolean isPassed() {
+		return passed;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public Mechanic getMechanic() {
+		return mechanic;
+	}
+
 }

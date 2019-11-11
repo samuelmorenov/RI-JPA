@@ -1,12 +1,24 @@
 package uo.ri.cws.domain;
 
-public class Dedication {
+//TODO Anotaciones
+public class Dedication extends BaseEntity {
 	private int percentage;
-	private long version;
 	private Course course;
 	private VehicleType vehicleType;
 
 	Dedication() {
 	}
-//TODO Anotaciones
+
+	public int getPercentage() {
+		return percentage;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public VehicleType getVehicleType() {
+		return vehicleType;
+	}
+
 }

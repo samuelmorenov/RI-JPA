@@ -2,13 +2,25 @@ package uo.ri.cws.domain;
 
 import java.util.Date;
 
-public class Certificate {
+//TODO Anotaciones
+public class Certificate extends BaseEntity {
 	private Date date;
-	private long version;
 	private Mechanic Mechanic;
 	private VehicleType VehicleType;
 
 	Certificate() {
 	}
-	// TODO Anotaciones
+
+	public Date getDate() {
+		return date;
+	}
+
+	public Mechanic getMechanic() {
+		return Mechanic;
+	}
+
+	public VehicleType getVehicleType() {
+		return VehicleType;
+	}
+
 }
