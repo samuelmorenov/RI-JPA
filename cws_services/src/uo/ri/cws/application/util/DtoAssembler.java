@@ -21,16 +21,16 @@ import uo.ri.cws.domain.Certificate;
 import uo.ri.cws.domain.Mechanic;
 import uo.ri.cws.domain.Vehicle;
 import uo.ri.cws.domain.VehicleType;
-import uo.ri.cws.domain.client.Client;
-import uo.ri.cws.domain.course.Course;
-import uo.ri.cws.domain.course.Dedication;
-import uo.ri.cws.domain.course.Enrollment;
-import uo.ri.cws.domain.invoice.Invoice;
-import uo.ri.cws.domain.paymentmeans.Cash;
-import uo.ri.cws.domain.paymentmeans.CreditCard;
-import uo.ri.cws.domain.paymentmeans.PaymentMean;
-import uo.ri.cws.domain.paymentmeans.Voucher;
-import uo.ri.cws.domain.workorder.WorkOrder;
+import uo.ri.cws.domain.Client;
+import uo.ri.cws.domain.Course;
+import uo.ri.cws.domain.Dedication;
+import uo.ri.cws.domain.Enrollment;
+import uo.ri.cws.domain.Invoice;
+import uo.ri.cws.domain.Cash;
+import uo.ri.cws.domain.CreditCard;
+import uo.ri.cws.domain.PaymentMean;
+import uo.ri.cws.domain.Voucher;
+import uo.ri.cws.domain.WorkOrder;
 
 public class DtoAssembler {
 
