@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TCLIENTS") // TODO hacer esto para todas las tablas
+@Table(name = "TCLIENTS") // DONE hacer esto para todas las tablas
 public class Client extends BaseEntity {
 	@Column(unique = true)
 	private String dni;

@@ -6,8 +6,12 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import alb.util.assertion.StateCheck;
 import alb.util.date.Dates;
@@ -22,9 +26,11 @@ public class Invoice extends BaseEntity {
 
 	private Long number;
 
+	@Temporal(TemporalType.DATE)
 	private Date date;
 	private double amount;
 	private double vat;
+	@Enumerated(EnumType.STRING)
 	private InvoiceStatus status = InvoiceStatus.NOT_YET_PAID;
 
 	@OneToMany(mappedBy = "invoice")
@@ -37,7 +43,7 @@ public class Invoice extends BaseEntity {
 	}
 
 	public Invoice(Long number, Date date) {
-		// TODO check arguments (always), through IllegalArgumentException
+		// TO-DO check arguments (always), through IllegalArgumentException
 		// store the number
 		this.number = number;
 		// store a copy of the date
@@ -190,7 +196,7 @@ public class Invoice extends BaseEntity {
 	 */
 //	public void settle() {
 //
-//		// TODO
+//		// TO-DO
 //	}
 
 }

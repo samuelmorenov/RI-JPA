@@ -23,12 +23,11 @@ public class WorkOrder extends BaseEntity {
 		OPEN, ASSIGNED, FINISHED, INVOICED
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date date; // TODO hacer esto para todas las fechas (mirar el modelo, puede ser DATE en vez
-						// de TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP) // DONE para todas las fechas (mirar el modelo, puede ser DATE o TIMESTAMP)
+	private Date date;
 	private String description;
 	private double amount = 0.0;
-	@Enumerated(EnumType.STRING) // TODO hacer esto para los tipos enumerados
+	@Enumerated(EnumType.STRING) // DONE hacer esto para los tipos enumerados
 	private WorkOrderStatus status = WorkOrderStatus.OPEN;
 
 	@ManyToOne

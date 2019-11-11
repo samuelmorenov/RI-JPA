@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 @Entity
@@ -18,6 +20,7 @@ public class Intervention extends BaseEntity {
 	@ManyToOne
 	private Mechanic mechanic;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 	private int minutes;
 	@OneToMany(mappedBy = "intervention")

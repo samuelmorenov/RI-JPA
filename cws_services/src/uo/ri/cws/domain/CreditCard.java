@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "TCREDITCARDS")
@@ -12,6 +14,7 @@ public class CreditCard extends PaymentMean {
 	@Column(unique = true)
 	private String number;
 	private String type;
+	@Temporal(TemporalType.DATE)
 	private Date validThru;
 
 	CreditCard() {
