@@ -5,8 +5,10 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "TVEHICLETYPES")
 public class VehicleType extends BaseEntity{
 	private String name;
 	private double pricePerHour;

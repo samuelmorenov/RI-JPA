@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "WORKORDER_ID", "MECHANIC_ID", "DATE" }) })
+@Table(name = "TINTERVENTIONS", uniqueConstraints = { @UniqueConstraint(columnNames = { "WORKORDER_ID", "MECHANIC_ID", "DATE" }) })
 public class Intervention extends BaseEntity {
 	@ManyToOne
 	private WorkOrder workOrder;

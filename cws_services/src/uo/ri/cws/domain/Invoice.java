@@ -7,12 +7,14 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import alb.util.assertion.StateCheck;
 import alb.util.date.Dates;
 import alb.util.math.Round;
 
 @Entity
+@Table(name = "TINVOICES")
 public class Invoice extends BaseEntity {
 	public enum InvoiceStatus {
 		NOT_YET_PAID, PAID

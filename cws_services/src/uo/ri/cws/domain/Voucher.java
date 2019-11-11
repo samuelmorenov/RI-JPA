@@ -2,8 +2,10 @@ package uo.ri.cws.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "TVOUCHERS")
 public class Voucher extends PaymentMean {
 	@Column(unique = true)
 	private String code;

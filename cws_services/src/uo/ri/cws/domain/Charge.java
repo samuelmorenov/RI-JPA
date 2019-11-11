@@ -8,7 +8,7 @@ import javax.persistence.UniqueConstraint;
 import uo.ri.cws.domain.Invoice.InvoiceStatus;
 
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "INVOICE_ID", "PAYMENTMEAN_ID" }) })
+@Table(name = "TCHARGES", uniqueConstraints = { @UniqueConstraint(columnNames = { "INVOICE_ID", "PAYMENTMEAN_ID" }) })
 public class Charge extends BaseEntity {
 	@ManyToOne
 	private Invoice invoice;

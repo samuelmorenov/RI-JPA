@@ -6,7 +6,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "SPAREPART_ID", "INTERVENTION_ID" }) })
+@Table(name = "TSUBSTITUTIONS", uniqueConstraints = { @UniqueConstraint(columnNames = { "SPAREPART_ID", "INTERVENTION_ID" }) })
 public class Substitution extends BaseEntity {
 	@ManyToOne
 	private SparePart sparePart;

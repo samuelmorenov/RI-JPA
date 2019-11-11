@@ -5,8 +5,10 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "TSPAREPARTS")
 public class SparePart extends BaseEntity {
 	private String code;
 	private String description;
