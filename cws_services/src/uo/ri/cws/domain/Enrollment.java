@@ -1,10 +1,18 @@
 package uo.ri.cws.domain;
 
-//TODO Anotaciones
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+@Entity
+@Table(name = "TENROLLMENTS", uniqueConstraints = { @UniqueConstraint(columnNames = { "COURSE_ID", "MECHANIC_ID"}) })
 public class Enrollment extends BaseEntity {
 	private int attendance;
 	private boolean passed;
+	@ManyToOne
 	private Course course;
+	@ManyToOne
 	private Mechanic mechanic;
 
 	Enrollment() {

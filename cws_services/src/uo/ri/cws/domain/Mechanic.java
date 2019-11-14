@@ -21,6 +21,12 @@ public class Mechanic extends BaseEntity {
 
 	@OneToMany(mappedBy = "mechanic")
 	private Set<Intervention> interventions = new HashSet<Intervention>();
+	
+	@OneToMany(mappedBy = "mechanic")
+	private Set<Certificate> certificates = new HashSet<Certificate>();
+	
+	@OneToMany(mappedBy = "mechanic")
+	private Set<Enrollment> enrollments = new HashSet<Enrollment>();
 
 	Mechanic() {
 	}

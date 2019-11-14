@@ -3,19 +3,25 @@ package uo.ri.cws.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "TVEHICLETYPES")
-public class VehicleType extends BaseEntity{
+public class VehicleType extends BaseEntity {
+	@Column(unique = true)
 	private String name;
 	private double pricePerHour;
-	private int minTrainingHours; //TODO Anotaciones
+	private int minTrainingHours;
 
 	@OneToMany(mappedBy = "vehicleType")
 	private Set<Vehicle> vehicles = new HashSet<>();
+	@OneToMany(mappedBy = "vehicleType")
+	private Set<Certificate> certificates = new HashSet<>();
+	@OneToMany(mappedBy = "vehicleType")
+	private Set<Dedication> dedications = new HashSet<Dedication>();
 
 	VehicleType() {
 	}
@@ -40,6 +46,10 @@ public class VehicleType extends BaseEntity{
 
 	public double getPricePerHour() {
 		return pricePerHour;
+	}
+
+	public int getMinTrainingHours() {
+		return minTrainingHours;
 	}
 
 	// El _ es solo de paquetes

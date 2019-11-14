@@ -2,11 +2,22 @@ package uo.ri.cws.domain;
 
 import java.util.Date;
 
-//TODO Anotaciones
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+
+@Entity
+@Table(name = "TCERTIFICATES", uniqueConstraints = { @UniqueConstraint(columnNames = { "VEHICLETYPE_ID", "MECHANIC_ID"}) })
 public class Certificate extends BaseEntity {
+	@Temporal(TemporalType.DATE)
 	private Date date;
-	private Mechanic Mechanic;
-	private VehicleType VehicleType;
+	@ManyToOne
+	private Mechanic mechanic;
+	@ManyToOne
+	private VehicleType vehicleType;
 
 	Certificate() {
 	}
@@ -16,11 +27,11 @@ public class Certificate extends BaseEntity {
 	}
 
 	public Mechanic getMechanic() {
-		return Mechanic;
+		return mechanic;
 	}
 
 	public VehicleType getVehicleType() {
-		return VehicleType;
+		return vehicleType;
 	}
 
 }

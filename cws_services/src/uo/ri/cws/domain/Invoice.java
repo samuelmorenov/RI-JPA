@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -24,18 +25,16 @@ public class Invoice extends BaseEntity {
 		NOT_YET_PAID, PAID
 	}
 
+	@Column(unique = true)
 	private Long number;
-
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	private double amount;
 	private double vat;
 	@Enumerated(EnumType.STRING)
 	private InvoiceStatus status = InvoiceStatus.NOT_YET_PAID;
-
 	@OneToMany(mappedBy = "invoice")
 	private Set<WorkOrder> workOrders = new HashSet<WorkOrder>();
-
 	@OneToMany(mappedBy = "invoice")
 	private Set<Charge> charges = new HashSet<Charge>();
 
