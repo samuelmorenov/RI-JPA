@@ -16,6 +16,12 @@ public class Dedication extends BaseEntity {
 
 	Dedication() {
 	}
+	
+	public 	Dedication(VehicleType vehicleType, Course course) {
+		super();
+		Associations.Dedicate.link(vehicleType, course);
+	}
+	
 
 	public int getPercentage() {
 		return percentage;

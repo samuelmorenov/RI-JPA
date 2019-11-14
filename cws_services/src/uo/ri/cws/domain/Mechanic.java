@@ -85,6 +85,14 @@ public class Mechanic extends BaseEntity {
 	public Set<Intervention> getInterventions() {
 		return new HashSet<Intervention>(interventions);
 	}
+	
+	 Set<Certificate> _getCertificates() {
+		
+		return this.certificates;
+	}
+	public Set<Certificate> getCertificates() {
+		return new HashSet<Certificate>(certificates);
+	}
 
 	@Override
 	public int hashCode() {
@@ -115,5 +123,17 @@ public class Mechanic extends BaseEntity {
 	public String toString() {
 		return "Mechanic [dni=" + dni + ", surname=" + surname + ", name=" + name + "]";
 	}
+
+	public Set<Enrollment> getEnrollmentsFor(VehicleType car) {
+		// TODO Metodo de servicio
+		return null;
+	}
+
+	public boolean isCertifiedFor(VehicleType car) {
+		// TODO Metodo de servicio
+		return false;
+	}
+
+
 
 }

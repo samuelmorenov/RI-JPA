@@ -170,4 +170,28 @@ public class Associations {
 
 	}
 
+	public static class Certify {
+
+		public static void link(Mechanic mechanic, VehicleType vehicleType) {
+			// TODO link-
+			
+		}
+	}
+
+	public static class Enroll {
+
+		public static void link(Course course, Mechanic mechanic) {
+			// TODO link-
+			
+		}
+	}
+
+	public static class Dedicate {
+
+		public static void link(VehicleType vehicleType, Course course) {
+			// TODO link-
+			
+		}
+	}
+
 }

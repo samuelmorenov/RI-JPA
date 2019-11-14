@@ -42,6 +42,7 @@ public class Invoice extends BaseEntity {
 	}
 
 	public Invoice(Long number, Date date) {
+		super();
 		// TO-DO check arguments (always), through IllegalArgumentException
 		// store the number
 		this.number = number;

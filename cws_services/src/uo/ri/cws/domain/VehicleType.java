@@ -62,6 +62,14 @@ public class VehicleType extends BaseEntity {
 		return new HashSet<Vehicle>(vehicles);
 	}
 
+	Set<Dedication> _getDedications() {
+		return dedications;
+	}
+
+	public Set<Dedication> getDedications() {
+		return new HashSet<Dedication>(dedications);
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

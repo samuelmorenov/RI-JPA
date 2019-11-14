@@ -12,6 +12,7 @@ public class Cash extends PaymentMean {
 	}
 
 	public Cash(Client client) {
+		super();
 		Associations.Pay.link(this, client);
 	}
 

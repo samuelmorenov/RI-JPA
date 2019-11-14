@@ -43,6 +43,7 @@ public class WorkOrder extends BaseEntity {
 	}
 
 	public WorkOrder(Vehicle vehicle) {
+		super();
 		this.date = new Date();
 		Associations.Order.link(vehicle, this);
 	}

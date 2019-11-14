@@ -10,7 +10,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "TCERTIFICATES", uniqueConstraints = { @UniqueConstraint(columnNames = { "VEHICLETYPE_ID", "MECHANIC_ID"}) })
+@Table(name = "TCERTIFICATES", uniqueConstraints = {
+		@UniqueConstraint(columnNames = { "VEHICLETYPE_ID", "MECHANIC_ID" }) })
 public class Certificate extends BaseEntity {
 	@Temporal(TemporalType.DATE)
 	private Date date;
@@ -20,6 +21,11 @@ public class Certificate extends BaseEntity {
 	private VehicleType vehicleType;
 
 	Certificate() {
+	}
+
+	public Certificate(Mechanic mechanic, VehicleType vehicleType) {
+		super();
+		Associations.Certify.link(mechanic, vehicleType);
 	}
 
 	public Date getDate() {

@@ -20,6 +20,7 @@ public class Charge extends BaseEntity {
 	}
 
 	public Charge(Invoice invoice, PaymentMean paymentMean, double amount) {
+		super();
 		// I'm not sure about this...
 		if (paymentMean instanceof CreditCard)
 			if (((CreditCard) paymentMean).getValidThru().getTime() < invoice.getDate().getTime())

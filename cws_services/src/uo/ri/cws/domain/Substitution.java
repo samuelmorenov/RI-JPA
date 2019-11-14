@@ -18,6 +18,7 @@ public class Substitution extends BaseEntity {
 	}
 
 	public Substitution(SparePart sparePart, Intervention intervention) {
+		super();
 		Associations.Sustitute.link(sparePart, this, intervention);
 	}
 

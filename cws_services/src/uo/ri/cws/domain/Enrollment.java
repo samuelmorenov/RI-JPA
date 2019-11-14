@@ -17,6 +17,17 @@ public class Enrollment extends BaseEntity {
 
 	Enrollment() {
 	}
+	
+	public Enrollment(Course course, Mechanic mechanic) {
+		super();
+		Associations.Enroll.link(course, mechanic);
+	}
+
+	public Enrollment(Mechanic mechanic2, Course course2, int attendance, boolean passed) {
+		this(course2, mechanic2);
+		this.passed = passed;
+		this.attendance = attendance;
+	}
 
 	public int getAttendance() {
 		return attendance;
@@ -32,6 +43,11 @@ public class Enrollment extends BaseEntity {
 
 	public Mechanic getMechanic() {
 		return mechanic;
+	}
+
+	public Object getAttendedHoursFor(VehicleType car) {
+		// TODO Metodo de servicio
+		return null;
 	}
 
 }
