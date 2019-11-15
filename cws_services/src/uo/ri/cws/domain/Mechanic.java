@@ -135,12 +135,22 @@ public class Mechanic extends BaseEntity {
 	}
 
 	public Set<Enrollment> getEnrollmentsFor(VehicleType car) {
-		// TODO Metodo de servicio
-		return null;
+		HashSet<Enrollment> result = new HashSet<Enrollment>();
+
+		for (Enrollment e : enrollments)
+			for (Dedication d : e.getCourse().getDedications())
+				if (d.getVehicleType().equals(car))
+					result.add(e);
+
+		return result;
 	}
 
 	public boolean isCertifiedFor(VehicleType car) {
-		// TODO Metodo de servicio
+
+		for (Certificate c : certificates)
+			if (c.getVehicleType().equals(car))
+				return true;
+
 		return false;
 	}
 

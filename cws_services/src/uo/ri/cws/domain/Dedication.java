@@ -15,13 +15,18 @@ public class Dedication extends BaseEntity {
 	@ManyToOne
 	private VehicleType vehicleType;
 
-	//DONE Clases de la extension - Dedication
+	// DONE Clases de la extension - Dedication
 	Dedication() {
 	}
 
-	public Dedication(VehicleType vehicleType, Course course) {
+	Dedication(VehicleType vehicleType, Course course) {
 		super();
 		Associations.Dedicate.link(vehicleType, this, course);
+	}
+
+	Dedication(VehicleType vehicleType, Course course, int percentage) {
+		this(vehicleType, course);
+		this.percentage = percentage;
 	}
 
 	public int getPercentage() {
@@ -74,12 +79,12 @@ public class Dedication extends BaseEntity {
 
 	void _setVehicleType(VehicleType vehicleType2) {
 		vehicleType = vehicleType2;
-		
+
 	}
 
 	void _setCourse(Course course2) {
 		course = course2;
-		
+
 	}
 
 }

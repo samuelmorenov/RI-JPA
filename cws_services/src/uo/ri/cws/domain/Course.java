@@ -3,6 +3,7 @@ package uo.ri.cws.domain;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,6 +12,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import alb.util.assertion.Argument;
+import alb.util.assertion.StateCheck;
 
 @Entity
 @Table(name = "TCURSES")
@@ -48,8 +52,8 @@ public class Course extends BaseEntity {
 	public Course(String code) {
 		super();
 		this.code = code;
-		if (code.isEmpty())
-			throw new IllegalArgumentException("Code can not be empty");
+
+		Argument.isTrue(!code.isEmpty(), "Code can not be empty");
 	}
 
 	public Course(String code, String name, String description, Date startDate, Date endDate, int duration) {
@@ -59,18 +63,13 @@ public class Course extends BaseEntity {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.hours = duration;
-		if (name.isEmpty())
-			throw new IllegalArgumentException("Name can not be empty");
-		if (description.isEmpty())
-			throw new IllegalArgumentException("Description can not be empty");
-		if (startDate == null)
-			throw new IllegalArgumentException("Start date can not be empty");
-		if (endDate == null)
-			throw new IllegalArgumentException("End date can not be empty");
-		if (startDate.after(endDate))
-			throw new IllegalArgumentException("Start date can not be after end date");
-		if (duration <= 0)
-			throw new IllegalArgumentException("Duration must be positive");
+
+		Argument.isTrue(!name.isEmpty(), "Name can not be empty");
+		Argument.isTrue(!description.isEmpty(), "Description can not be empty");
+		Argument.isTrue(startDate != null, "Start date can not be empty");
+		Argument.isTrue(endDate != null, "End date can not be empty");
+		Argument.isTrue(startDate.before(endDate), "Start date can not be after end date");
+		Argument.isTrue(duration > 0, "Duration must be positive");
 
 	}
 
@@ -139,12 +138,23 @@ public class Course extends BaseEntity {
 	}
 
 	public void addDedications(Map<VehicleType, Integer> percentages) {
-		// TODO Metodo de servicio
+
+		StateCheck.isTrue(this.dedications.isEmpty(), "Cannot add dedications if course already has dedications");
+
+		int total = 0;
+		for (Entry<VehicleType, Integer> e : percentages.entrySet())
+			total += e.getValue();
+		Argument.isTrue(total == 100, "Percentages must be 100%");
+
+		for (Entry<VehicleType, Integer> e : percentages.entrySet())
+			dedications.add(new Dedication(e.getKey(), this, e.getValue()));
 
 	}
 
 	public void clearDedications() {
-		// TODO Metodo de servicio
+
+		while (!dedications.isEmpty())
+			Associations.Dedicate.unlink(dedications.iterator().next());
 
 	}
 

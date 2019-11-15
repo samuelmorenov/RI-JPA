@@ -5,6 +5,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import alb.util.assertion.Argument;
+
 @Entity
 @Table(name = "TENROLLMENTS", uniqueConstraints = { @UniqueConstraint(columnNames = { "COURSE_ID", "MECHANIC_ID" }) })
 public class Enrollment extends BaseEntity {
@@ -28,6 +30,8 @@ public class Enrollment extends BaseEntity {
 		this(course2, mechanic2);
 		this.passed = passed;
 		this.attendance = attendance;
+
+		Argument.isTrue(!(attendance < 85 && passed), "If attendance < 85% can not be passed");
 	}
 
 	public int getAttendance() {
@@ -91,9 +95,11 @@ public class Enrollment extends BaseEntity {
 				+ mechanic + "]";
 	}
 
-	public Object getAttendedHoursFor(VehicleType car) {
-		// TODO Metodo de servicio
-		return null;
+	public int getAttendedHoursFor(VehicleType car) {
+		for (Dedication e : this.course.getDedications())
+			if (e.getVehicleType().equals(car))
+				return (int) (e.getPercentage() * attendance / 100);
+		return 0;
 	}
 
 }
