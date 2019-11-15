@@ -172,26 +172,75 @@ public class Associations {
 
 	public static class Certify {
 
-		public static void link(Mechanic mechanic, VehicleType vehicleType) {
-			// TODO link-
-			
+		public static void link(Mechanic mechanic, Certificate certificate, VehicleType vehicleType) {
+			certificate._setMechanic(mechanic);
+			certificate._setVehicleType(vehicleType);
+
+			vehicleType._getCertificates().add(certificate);
+			mechanic._getCertificates().add(certificate);
 		}
+
+		public static void unlink(Certificate certificate) {
+
+			Mechanic mechanic = certificate.getMechanic();
+			VehicleType vehicleType = certificate.getVehicleType();
+
+			vehicleType._getCertificates().remove(certificate);
+			mechanic._getCertificates().remove(certificate);
+
+			certificate._setMechanic(null);
+			certificate._setVehicleType(null);
+
+		}
+
 	}
 
 	public static class Enroll {
 
-		public static void link(Course course, Mechanic mechanic) {
-			// TODO link-
-			
+		public static void link(Course course, Enrollment enrollment, Mechanic mechanic) {
+			enrollment._setCourse(course);
+			enrollment._setMechanic(mechanic);
+
+			course._getEnrollments().add(enrollment);
+			mechanic._getEnrollments().add(enrollment);
+
 		}
+
+		public static void unlink(Enrollment enrollment) {
+			Course course = enrollment.getCourse();
+			Mechanic mechanic = enrollment.getMechanic();
+
+			course._getEnrollments().remove(enrollment);
+			mechanic._getEnrollments().remove(enrollment);
+
+			enrollment._setCourse(null);
+			enrollment._setMechanic(null);
+		}
+
 	}
 
 	public static class Dedicate {
 
-		public static void link(VehicleType vehicleType, Course course) {
-			// TODO link-
-			
+		public static void link(VehicleType vehicleType, Dedication dedication, Course course) {
+			dedication._setVehicleType(vehicleType);
+			dedication._setCourse(course);
+
+			vehicleType._getDedications().add(dedication);
+			course._getDedications().add(dedication);
+
 		}
+
+		public static void unlink(Dedication dedication) {
+			VehicleType vehicleType = dedication.getVehicleType();
+			Course course = dedication.getCourse();
+
+			vehicleType._getDedications().remove(dedication);
+			course._getDedications().remove(dedication);
+
+			dedication._setVehicleType(null);
+			dedication._setCourse(null);
+		}
+
 	}
 
 }

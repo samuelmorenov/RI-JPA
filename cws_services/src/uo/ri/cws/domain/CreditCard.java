@@ -43,7 +43,7 @@ public class CreditCard extends PaymentMean {
 	}
 
 	public Date getValidThru() {
-		return validThru;
+		return new Date(validThru.getTime());
 	}
 
 	@Override

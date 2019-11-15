@@ -6,7 +6,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "TENROLLMENTS", uniqueConstraints = { @UniqueConstraint(columnNames = { "COURSE_ID", "MECHANIC_ID"}) })
+@Table(name = "TENROLLMENTS", uniqueConstraints = { @UniqueConstraint(columnNames = { "COURSE_ID", "MECHANIC_ID" }) })
 public class Enrollment extends BaseEntity {
 	private int attendance;
 	private boolean passed;
@@ -15,12 +15,13 @@ public class Enrollment extends BaseEntity {
 	@ManyToOne
 	private Mechanic mechanic;
 
+	// DONE Clases de la extension - Enrollment
 	Enrollment() {
 	}
-	
+
 	public Enrollment(Course course, Mechanic mechanic) {
 		super();
-		Associations.Enroll.link(course, mechanic);
+		Associations.Enroll.link(course, this, mechanic);
 	}
 
 	public Enrollment(Mechanic mechanic2, Course course2, int attendance, boolean passed) {
@@ -43,6 +44,51 @@ public class Enrollment extends BaseEntity {
 
 	public Mechanic getMechanic() {
 		return mechanic;
+	}
+
+	void _setCourse(Course course) {
+		this.course = course;
+	}
+
+	void _setMechanic(Mechanic mechanic) {
+		this.mechanic = mechanic;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((course == null) ? 0 : course.hashCode());
+		result = prime * result + ((mechanic == null) ? 0 : mechanic.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Enrollment other = (Enrollment) obj;
+		if (course == null) {
+			if (other.course != null)
+				return false;
+		} else if (!course.equals(other.course))
+			return false;
+		if (mechanic == null) {
+			if (other.mechanic != null)
+				return false;
+		} else if (!mechanic.equals(other.mechanic))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Enrollment [attendance=" + attendance + ", passed=" + passed + ", course=" + course + ", mechanic="
+				+ mechanic + "]";
 	}
 
 	public Object getAttendedHoursFor(VehicleType car) {

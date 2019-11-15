@@ -23,6 +23,7 @@ public class VehicleType extends BaseEntity {
 	@OneToMany(mappedBy = "vehicleType")
 	private Set<Dedication> dedications = new HashSet<Dedication>();
 
+	// DONE Clases de la extension - VehicleType
 	VehicleType() {
 	}
 
@@ -68,6 +69,14 @@ public class VehicleType extends BaseEntity {
 
 	public Set<Dedication> getDedications() {
 		return new HashSet<Dedication>(dedications);
+	}
+
+	Set<Certificate> _getCertificates() {
+		return certificates;
+	}
+
+	public Set<Certificate> getCertificates() {
+		return new HashSet<Certificate>(certificates);
 	}
 
 	@Override

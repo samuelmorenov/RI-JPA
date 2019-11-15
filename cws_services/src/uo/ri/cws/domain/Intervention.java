@@ -57,7 +57,7 @@ public class Intervention extends BaseEntity {
 	}
 
 	public Date getDate() {
-		return date;
+		return new Date(date.getTime());
 	}
 
 	public int getMinutes() {

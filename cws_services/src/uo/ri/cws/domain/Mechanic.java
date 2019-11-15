@@ -21,13 +21,14 @@ public class Mechanic extends BaseEntity {
 
 	@OneToMany(mappedBy = "mechanic")
 	private Set<Intervention> interventions = new HashSet<Intervention>();
-	
+
 	@OneToMany(mappedBy = "mechanic")
 	private Set<Certificate> certificates = new HashSet<Certificate>();
-	
+
 	@OneToMany(mappedBy = "mechanic")
 	private Set<Enrollment> enrollments = new HashSet<Enrollment>();
 
+	// DONE Clases de la extension - Mechanic
 	Mechanic() {
 	}
 
@@ -85,13 +86,22 @@ public class Mechanic extends BaseEntity {
 	public Set<Intervention> getInterventions() {
 		return new HashSet<Intervention>(interventions);
 	}
-	
-	 Set<Certificate> _getCertificates() {
-		
+
+	Set<Certificate> _getCertificates() {
+
 		return this.certificates;
 	}
+
 	public Set<Certificate> getCertificates() {
 		return new HashSet<Certificate>(certificates);
+	}
+
+	Set<Enrollment> _getEnrollments() {
+		return enrollments;
+	}
+
+	public Set<Enrollment> getEnrollments() {
+		return new HashSet<Enrollment>(enrollments);
 	}
 
 	@Override
@@ -133,7 +143,5 @@ public class Mechanic extends BaseEntity {
 		// TODO Metodo de servicio
 		return false;
 	}
-
-
 
 }

@@ -20,16 +20,18 @@ public class Certificate extends BaseEntity {
 	@ManyToOne
 	private VehicleType vehicleType;
 
+	// DONE Clases de la extension - Certificate
 	Certificate() {
 	}
 
 	public Certificate(Mechanic mechanic, VehicleType vehicleType) {
 		super();
-		Associations.Certify.link(mechanic, vehicleType);
+		this.date = new Date();
+		Associations.Certify.link(mechanic, this, vehicleType);
 	}
 
 	public Date getDate() {
-		return date;
+		return new Date(date.getTime());
 	}
 
 	public Mechanic getMechanic() {
@@ -38,6 +40,52 @@ public class Certificate extends BaseEntity {
 
 	public VehicleType getVehicleType() {
 		return vehicleType;
+	}
+
+	void _setMechanic(Mechanic mechanic) {
+		this.mechanic = mechanic;
+
+	}
+
+	void _setVehicleType(VehicleType vehicleType2) {
+		vehicleType = vehicleType2;
+
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((mechanic == null) ? 0 : mechanic.hashCode());
+		result = prime * result + ((vehicleType == null) ? 0 : vehicleType.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Certificate other = (Certificate) obj;
+		if (mechanic == null) {
+			if (other.mechanic != null)
+				return false;
+		} else if (!mechanic.equals(other.mechanic))
+			return false;
+		if (vehicleType == null) {
+			if (other.vehicleType != null)
+				return false;
+		} else if (!vehicleType.equals(other.vehicleType))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Certificate [date=" + date + ", mechanic=" + mechanic + ", vehicleType=" + vehicleType + "]";
 	}
 
 }
