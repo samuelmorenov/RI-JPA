@@ -3,7 +3,7 @@ package uo.ri.cws.extended.course;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.Map;
+import java.util.HashMap;
 import java.util.Set;
 
 import org.junit.Before;
@@ -27,35 +27,41 @@ public class AddDedicationsTests {
 	}
 
 	/**
-	 * When percentages sums 100% dedications are created and linked 
+	 * When percentages sums 100% dedications are created and linked
 	 */
 	@Test
 	public void testDedicationsAmount100() {
-		Map<VehicleType, Integer> percentages = Map.of(
-				car,   25, 
-				truck, 75
-			);
-		
+
+		// Para version 9 de java:
+		// Map<VehicleType, Integer> percentages = Map.of( car, 25, truck, 75 );
+
+		HashMap<VehicleType, Integer> percentages = new HashMap<VehicleType, Integer>();
+		percentages.put(car, 25);
+		percentages.put(truck, 75);
+
 		course.addDedications(percentages);
-		
-		assertTrue( course.getDedications().size() == 2 );
+
+		assertTrue(course.getDedications().size() == 2);
 		Set<Dedication> dedications = course.getDedications();
-		for(Dedication d: dedications) {
-			assertTrue( d.getCourse().equals( course ) );
-			assertTrue( course.getDedications().contains( d ));
+		for (Dedication d : dedications) {
+			assertTrue(d.getCourse().equals(course));
+			assertTrue(course.getDedications().contains(d));
 		}
 	}
-	
+
 	/**
 	 * If percentages are less than 100% throws exception
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testDedicationsLessThan100() {
-		Map<VehicleType, Integer> percentages = Map.of(
-				car,   25,
-				truck, 25
-			);
-		
+
+		// Para version 9 de java:
+		// Map<VehicleType, Integer> percentages = Map.of(car, 25, truck, 25);
+
+		HashMap<VehicleType, Integer> percentages = new HashMap<VehicleType, Integer>();
+		percentages.put(car, 25);
+		percentages.put(truck, 25);
+
 		course.addDedications(percentages);
 	}
 
@@ -64,11 +70,12 @@ public class AddDedicationsTests {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testDedicationsGreaterThan100() {
-		Map<VehicleType, Integer> percentages = Map.of(
-				car,   25,
-				truck, 85
-			);
-		
+		// Para version 9 de java:
+		// Map<VehicleType, Integer> percentages = Map.of(car, 25, truck, 85);
+		HashMap<VehicleType, Integer> percentages = new HashMap<VehicleType, Integer>();
+		percentages.put(car, 25);
+		percentages.put(truck, 85);
+
 		course.addDedications(percentages);
 	}
 
@@ -77,21 +84,29 @@ public class AddDedicationsTests {
 	 */
 	@Test
 	public void testAddMoreDedicationsThrowsException() {
-		Map<VehicleType, Integer> percentages = Map.of(car, 100);
+		// Para version 9 de java:
+		// Map<VehicleType, Integer> percentages = Map.of(car, 100);
+		HashMap<VehicleType, Integer> percentages = new HashMap<VehicleType, Integer>();
+		percentages.put(car, 100);
+
 		course.addDedications(percentages);
-		
-		percentages = Map.of(car, 25, truck, 85);
+
+		// Para version 9 de java:
+		// percentages = Map.of(car, 25, truck, 85);
+		percentages = new HashMap<VehicleType, Integer>();
+		percentages.put(car, 25);
+		percentages.put(truck, 85);
 
 		try {
 			course.addDedications(percentages);
 			fail("An IllegalStateException must be thrown");
-			
+
 		} catch (IllegalStateException expected) {
 			// expected exception, all is well
-			
+
 		} catch (Exception notExpected) {
 			fail("An IllegalStateException must be thrown");
 		}
 	}
-	
+
 }
