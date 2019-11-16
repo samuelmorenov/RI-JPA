@@ -45,6 +45,16 @@
 		<query>select max(f.number) + 1 from Invoice f</query>
 	</named-query>
 	
+	<!-- Certificate queries -->
+		<named-query name="Certificate.findByVehicleTypeId">
+		<query>
+			select c 
+			from Certificate c 
+			where c.vehicleType.id = ?1
+			<!-- DONE -->
+		</query>
+	</named-query>
+	
 <!-- 
 	Use this format if your query has 
 	numeric comparisons as the one in this example

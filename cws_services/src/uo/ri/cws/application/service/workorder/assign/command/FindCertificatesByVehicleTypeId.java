@@ -1,22 +1,30 @@
 package uo.ri.cws.application.service.workorder.assign.command;
 
 import java.util.List;
-
+import uo.ri.conf.Factory;
+import uo.ri.cws.application.repository.CertificateRepository;
 import uo.ri.cws.application.service.BusinessException;
 import uo.ri.cws.application.service.training.CertificateDto;
+import uo.ri.cws.application.util.DtoAssembler;
 import uo.ri.cws.application.util.command.Command;
+import uo.ri.cws.domain.Certificate;
 
-//TODO 3.4.1 - Asignar una orden de trabajo a un mecánico.
+/** Usado para asignar una orden de trabajo a un mecánico. */
 public class FindCertificatesByVehicleTypeId implements Command<List<CertificateDto>> {
 
+	private String id;
+	private CertificateRepository cr = Factory.repository.forCertificate();
+
 	public FindCertificatesByVehicleTypeId(String id) {
-		throw new RuntimeException("Not yet implemented.");
+		this.id = id;
 	}
 
 	@Override
 	public List<CertificateDto> execute() throws BusinessException {
 
-		throw new RuntimeException("Not yet implemented.");
+		List<Certificate> lc = cr.findCertificatesByVehicleTypeId(id);
+		return DtoAssembler.toCertificateDtoList(lc);
+
 	}
 
 }
