@@ -3,4 +3,9 @@
 .DS_Store
 .DS_Store?
 /cws_services/bin/
+/cws_services/data/
+/cws_client_cashier/
+/cws_client_foreman/
+/cws_client_manager/
+/cws_client_mechanic/
 /AlbUtil
