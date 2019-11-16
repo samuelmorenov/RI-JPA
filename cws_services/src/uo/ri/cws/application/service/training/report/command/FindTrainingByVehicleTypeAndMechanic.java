@@ -1,10 +1,17 @@
 package uo.ri.cws.application.service.training.report.command;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import uo.ri.conf.Factory;
+import uo.ri.cws.application.repository.MechanicRepository;
+import uo.ri.cws.application.repository.VehicleTypeRepository;
 import uo.ri.cws.application.service.BusinessException;
+import uo.ri.cws.application.service.training.TrainingHours;
 import uo.ri.cws.application.service.training.TrainingHoursRow;
 import uo.ri.cws.application.util.command.Command;
+import uo.ri.cws.domain.Mechanic;
+import uo.ri.cws.domain.VehicleType;
 
 /**
  * TODO 2 - Listado de mecánicos que han asistido a formación por tipo de
@@ -28,9 +35,30 @@ import uo.ri.cws.application.util.command.Command;
  */
 public class FindTrainingByVehicleTypeAndMechanic implements Command<List<TrainingHoursRow>> {
 
+	private MechanicRepository mechanicRepository = Factory.repository.forMechanic();
+	private VehicleTypeRepository vehicleRepository = Factory.repository.forVehicleType();
+
 	@Override
 	public List<TrainingHoursRow> execute() throws BusinessException {
-		throw new RuntimeException("Not yet implemented.");
+		List<TrainingHoursRow> list = new ArrayList<TrainingHoursRow>();
+
+		for (VehicleType vehicleType : vehicleRepository.findAll()) {
+			for (Mechanic mechanic : mechanicRepository.findAll()) {
+				TrainingHoursRow tfr = new TrainingHoursRow();
+				tfr.mechanicFullName = mechanic.getName() + " " + mechanic.getSurname();
+				tfr.vehicleTypeName = vehicleType.getName();
+				tfr.enrolledHours = TrainingHours.Calculate(mechanic, vehicleType);
+
+				// Aclaracion: no se especifica si se tienen que mostrar en caso de que sean 0
+				// de ser asi comentar la siguiente linea
+				if (tfr.enrolledHours > 0)
+					list.add(tfr);
+
+			}
+		}
+
+		return list;
+
 	}
 
 }

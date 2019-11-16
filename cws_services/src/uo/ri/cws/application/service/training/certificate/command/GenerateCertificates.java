@@ -5,11 +5,9 @@ import uo.ri.cws.application.repository.CertificateRepository;
 import uo.ri.cws.application.repository.MechanicRepository;
 import uo.ri.cws.application.repository.VehicleTypeRepository;
 import uo.ri.cws.application.service.BusinessException;
+import uo.ri.cws.application.service.training.TrainingHours;
 import uo.ri.cws.application.util.command.Command;
 import uo.ri.cws.domain.Certificate;
-import uo.ri.cws.domain.Course;
-import uo.ri.cws.domain.Dedication;
-import uo.ri.cws.domain.Enrollment;
 import uo.ri.cws.domain.Mechanic;
 import uo.ri.cws.domain.VehicleType;
 
@@ -37,15 +35,16 @@ public class GenerateCertificates implements Command<Integer> {
 		for (VehicleType vehicleType : vehicleRepository.findAll()) {
 			for (Mechanic mechanic : mechanicRepository.findAll()) {
 
-				//Si el certificado no existe
-				if (!certificateAlreadyExist(mechanic, vehicleType)) {
+				// Si el certificado no existe
+				if (!certificateRepository.findByMechanicAndVehicleType(mechanic.getId(), vehicleType.getId())
+						.isPresent()) {
 
-					int hoursPerVehicleType = CalculateHours(mechanic, vehicleType);
+					int trainingHours = TrainingHours.Calculate(mechanic, vehicleType);
 
 					// Y si el numero de horas es suficiente
-					if (hoursPerVehicleType >= vehicleType.getMinTrainingHours()) {
+					if (trainingHours >= vehicleType.getMinTrainingHours()) {
 
-						//Se genera el certificado
+						// Se genera el certificado
 						Certificate certificate = new Certificate(mechanic, vehicleType);
 						certificateRepository.add(certificate);
 						generated++;
@@ -54,27 +53,5 @@ public class GenerateCertificates implements Command<Integer> {
 			}
 		}
 		return generated;
-	}
-
-	private int CalculateHours(Mechanic mechanic, VehicleType vehicleType) {
-		// Calculamos las horas que ha recibido el mecanico de ese tipo de vehiclo
-		int hoursPerVehicleType = 0;
-		for (Enrollment enrollment : mechanic.getEnrollments()) {
-
-			// Solo si se ha pasado
-			if (enrollment.isPassed()) {
-				Course curse = enrollment.getCourse();
-				for (Dedication dedicarion : curse.getDedications()) {
-					if (vehicleType.equals(dedicarion.getVehicleType())) {
-						hoursPerVehicleType += curse.getHours() * dedicarion.getPercentage();
-					}
-				}
-			}
-		}
-		return hoursPerVehicleType;
-	}
-
-	private boolean certificateAlreadyExist(Mechanic mechanic, VehicleType vehicleType) {
-		return certificateRepository.findByMechanicAndVehicleType(mechanic.getId(), vehicleType.getId()).isPresent();
 	}
 }
