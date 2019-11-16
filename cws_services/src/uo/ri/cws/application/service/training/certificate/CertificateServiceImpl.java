@@ -7,7 +7,7 @@ public class CertificateServiceImpl implements CertificateService {
 
 	@Override
 	public int generateCertificates() throws BusinessException {
-		// TODO 1.1.1 - Generar certificados
+		// TODO 1 - Generar certificados
 		/*
 		 * Manager Main: 4 - 4 Periódicamente se ejecutará el proceso que se encarga de
 		 * generar los nuevos certificados para los mecánicos que cumplan los requisitos

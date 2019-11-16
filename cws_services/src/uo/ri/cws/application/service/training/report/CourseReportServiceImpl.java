@@ -17,7 +17,7 @@ public class CourseReportServiceImpl implements CourseReportService {
 
 	@Override
 	public List<TrainingHoursRow> findTrainingByVehicleTypeAndMechanic() throws BusinessException {
-		// TODO 2.1.1 - Listado de mecánicos que han asistido a formación por tipo de
+		// TODO 2 - Listado de mecánicos que han asistido a formación por tipo de
 		// vehículo
 		/*
 		 * Listado de mecánicos que han asistido a formación por tipo de vehículo. Para
