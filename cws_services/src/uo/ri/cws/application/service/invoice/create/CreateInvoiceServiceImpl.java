@@ -24,8 +24,7 @@ public class CreateInvoiceServiceImpl implements CreateInvoiceService {
 	@Override
 	public List<WorkOrderDto> findWorkOrdersByClientDni(String dni)
 			throws BusinessException {
-		// TO-DO Auto-generated method stub
-		return null;
+		throw new RuntimeException("Not yet implemented.");
 	}
 
 }

@@ -12,8 +12,7 @@ public class PaymentMeanJpaRepository
 
 	@Override
 	public List<PaymentMean> findPaymentMeansByClientId(Long id) {
-		// TO-DO Auto-generated method stub
-		return null;
+		throw new RuntimeException("Not yet implemented.");
 	}
 
 }

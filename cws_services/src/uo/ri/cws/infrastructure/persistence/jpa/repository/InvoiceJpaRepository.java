@@ -12,14 +12,12 @@ public class InvoiceJpaRepository
 
 	@Override
 	public Optional<Invoice> findByNumber(Long numero) {
-		// TO-DO Auto-generated method stub
-		return null;
+		throw new RuntimeException("Not yet implemented.");
 	}
 
 	@Override
 	public Long getNextInvoiceNumber() {
-		// TO-DO Auto-generated method stub
-		return null;
+		throw new RuntimeException("Not yet implemented.");
 	}
 
 }

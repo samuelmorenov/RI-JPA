@@ -20,8 +20,7 @@ public class CreateInvoiceFor implements Command<InvoiceDto> {
 
 	@Override
 	public InvoiceDto execute() throws BusinessException {
-		// TO-DO Auto-generated method stub
-		return null;
+		throw new RuntimeException("Not yet implemented.");
 	}
 
 }

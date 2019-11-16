@@ -16,7 +16,8 @@ public class Vehicle extends BaseEntity {
 	@Column(unique = true)
 	private String plateNumber;
 	@Basic(optional = false)
-	//@Column(name = "brand") TO-DO no se porque puse brand pero en la bd pone make
+	// @Column(name = "brand")
+	// Se puso brand para que funcionara con la bd, pero ya no es necesario
 	private String make;
 	private String model;
 

@@ -13,10 +13,10 @@ import uo.ri.cws.application.service.training.CertificateService;
 import uo.ri.cws.application.service.training.CourseAttendanceService;
 import uo.ri.cws.application.service.training.CourseCrudService;
 import uo.ri.cws.application.service.training.CourseReportService;
-//TODO import uo.ri.cws.application.service.training.attendance.CourseAttendanceServiceImpl;
-//TODO import uo.ri.cws.application.service.training.certificate.CertificateServiceImpl;
-//TODO import uo.ri.cws.application.service.training.course.CourseCrudServiceImpl;
-//TODO import uo.ri.cws.application.service.training.report.CourseReportServiceImpl;
+import uo.ri.cws.application.service.training.attendance.CourseAttendanceServiceImpl;
+import uo.ri.cws.application.service.training.certificate.CertificateServiceImpl;
+import uo.ri.cws.application.service.training.course.CourseCrudServiceImpl;
+import uo.ri.cws.application.service.training.report.CourseReportServiceImpl;
 import uo.ri.cws.application.service.vehicle.VehicleCrudService;
 import uo.ri.cws.application.service.vehicle.crud.VehicleCrudServiceImpl;
 import uo.ri.cws.application.service.vehicletype.VehicleTypeCrudService;
@@ -24,8 +24,8 @@ import uo.ri.cws.application.service.workorder.AssignWorkOrderService;
 import uo.ri.cws.application.service.workorder.CloseWorkOrderService;
 import uo.ri.cws.application.service.workorder.ViewAssignedWorkOrdersService;
 import uo.ri.cws.application.service.workorder.WorkOrderCrudService;
-//TODO import uo.ri.cws.application.service.workorder.assign.AssignWorkOrderServiceImpl;
-//TODO import uo.ri.cws.application.service.workorder.crud.WorkOrderCrudServiceImpl;
+import uo.ri.cws.application.service.workorder.assign.AssignWorkOrderServiceImpl;
+import uo.ri.cws.application.service.workorder.crud.WorkOrderCrudServiceImpl;
 
 public class BusinessFactory implements ServiceFactory {
 
@@ -41,7 +41,7 @@ public class BusinessFactory implements ServiceFactory {
 
 	@Override
 	public WorkOrderCrudService forWorkOrderService() {
-		throw new RuntimeException("Not yet implemented"); // TODO return new WorkOrderCrudServiceImpl();
+		return new WorkOrderCrudServiceImpl();
 	}
 
 	@Override
@@ -56,22 +56,22 @@ public class BusinessFactory implements ServiceFactory {
 
 	@Override
 	public CourseCrudService forCourseCrudService() {
-		throw new RuntimeException("Not yet implemented"); // TODO return new CourseCrudServiceImpl();
+		return new CourseCrudServiceImpl();
 	}
 
 	@Override
 	public CourseAttendanceService forCourseAttendanceService() {
-		throw new RuntimeException("Not yet implemented"); // TODO return new CourseAttendanceServiceImpl();
+		return new CourseAttendanceServiceImpl();
 	}
 
 	@Override
 	public CourseReportService forCourseReportService() {
-		throw new RuntimeException("Not yet implemented"); // TODO return new CourseReportServiceImpl();
+		return new CourseReportServiceImpl();
 	}
 
 	@Override
 	public CertificateService forCertificateService() {
-		throw new RuntimeException("Not yet implemented"); // TODO return new CertificateServiceImpl();
+		return new CertificateServiceImpl();
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class BusinessFactory implements ServiceFactory {
 
 	@Override
 	public AssignWorkOrderService forAssignWorkOrderService() {
-		throw new RuntimeException("Not yet implemented"); // TODO return new AssignWorkOrderServiceImpl();
+		return new AssignWorkOrderServiceImpl();
 	}
 
 	@Override

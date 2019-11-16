@@ -43,7 +43,7 @@ public class Invoice extends BaseEntity {
 
 	public Invoice(Long number, Date date) {
 		super();
-		// TO-DO check arguments (always), through IllegalArgumentException
+		// DONE check arguments (always), through IllegalArgumentException
 		// store the number
 		this.number = number;
 		// store a copy of the date
@@ -194,9 +194,9 @@ public class Invoice extends BaseEntity {
 	 *                               with charges to payment means do not cover the
 	 *                               total of the invoice
 	 */
-//	public void settle() {
-//
-//		// TO-DO
-//	}
+	public void settle() {
+		//DONE Este metodo no se llama desde ningun sitio, no es necesaria su implementacion
+		throw new RuntimeException("Not yet implemented.");
+	}
 
 }

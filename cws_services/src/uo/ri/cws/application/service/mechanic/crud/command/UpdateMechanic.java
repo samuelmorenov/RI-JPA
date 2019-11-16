@@ -25,7 +25,8 @@ public class UpdateMechanic implements Command<Void> {
 		BusinessCheck.exists(om, "There is no such mechanic");
 
 		Mechanic m = om.get();
-		BusinessCheck.hasVersion(m, dto.version); //TO-DO ha comentado esto de la version en clase, hay que hacerlo en todos los updates
+		BusinessCheck.hasVersion(m, dto.version);
+		//TO-DO Hacer en todos los updates
 
 		m.setName(dto.name);
 		m.setSurname(dto.surname);

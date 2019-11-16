@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED) // TO-DO ver que pasa con las otras InheritanceType
+@Inheritance(strategy = InheritanceType.JOINED) // TO-DO Ver que pasa con las otras InheritanceType
 @Table(name = "TPAYMENTMEANS")
 public abstract class PaymentMean extends BaseEntity {
 	private double accumulated = 0.0;
