@@ -4,7 +4,7 @@ import java.util.List;
 
 import uo.ri.cws.domain.Certificate;
 
-//TODO DONE
+//DONE
 public interface CertificateRepository extends Repository<Certificate> {
 
 	List<Certificate> findCertificatesByVehicleTypeId(String id);

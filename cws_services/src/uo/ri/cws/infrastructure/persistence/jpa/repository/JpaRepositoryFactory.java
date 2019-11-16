@@ -61,7 +61,7 @@ public class JpaRepositoryFactory implements RepositoryFactory {
 
 	@Override
 	public CertificateRepository forCertificate() {
-		return new CertificateJpaRepository(); //TODO DONE
+		return new CertificateJpaRepository(); //DONE
 	}
 
 }
