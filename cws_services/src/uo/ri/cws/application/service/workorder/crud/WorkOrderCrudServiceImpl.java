@@ -15,9 +15,6 @@ public class WorkOrderCrudServiceImpl implements WorkOrderCrudService {
 	private CommandExecutor executor = Factory.executor.forExecutor();
 
 	@Override
-	/**
-	 * 
-	 */
 	public WorkOrderDto registerNew(WorkOrderDto dto) throws BusinessException {
 
 		/*
