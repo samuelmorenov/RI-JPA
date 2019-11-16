@@ -3,24 +3,33 @@ package uo.ri.cws.application.service.workorder.crud;
 import java.util.List;
 import java.util.Optional;
 
+import uo.ri.conf.Factory;
 import uo.ri.cws.application.service.BusinessException;
 import uo.ri.cws.application.service.workorder.WorkOrderCrudService;
 import uo.ri.cws.application.service.workorder.WorkOrderDto;
+import uo.ri.cws.application.service.workorder.crud.command.AddWorkOrder;
+import uo.ri.cws.application.util.command.CommandExecutor;
 
 public class WorkOrderCrudServiceImpl implements WorkOrderCrudService {
 
+	private CommandExecutor executor = Factory.executor.forExecutor();
+
 	@Override
+	/**
+	 * 
+	 */
 	public WorkOrderDto registerNew(WorkOrderDto dto) throws BusinessException {
 
-		// TODO 3.1.1 - Registrar una orden de trabajo.
 		/*
+		 * Registrar una orden de trabajo.
+		 *
 		 * Podemos asumir que el vehículo ya existe en la aplicación. Se pedirá además
 		 * del vehículo al que se refiere, una descripción del trabajo a hacer. Se
 		 * asignará la fecha del sistema en la que se registra la orden. Inicialmente la
 		 * orden de trabajo estará en estado ABIERTA.
 		 */
 
-		throw new RuntimeException("Not yet implemented.");
+		return executor.execute(new AddWorkOrder(dto));
 	}
 
 	@Override

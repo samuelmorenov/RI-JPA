@@ -20,7 +20,6 @@ public class MechanicCrudServiceImpl implements MechanicCrudService {
 
 	@Override
 	public MechanicDto addMechanic(MechanicDto mecanico) throws BusinessException {
-
 		return executor.execute(new AddMechanic(mecanico));
 	}
 
