@@ -9,16 +9,16 @@ import uo.ri.cws.application.util.BusinessCheck;
 import uo.ri.cws.application.util.command.Command;
 import uo.ri.cws.domain.WorkOrder;
 
+/**
+ * DONE Eliminar una orden de trabajo.<br/>
+ * <br/>
+ * Solo si no tiene intervenciones.
+ */
 public class DeleteWorkOrder implements Command<Void> {
 
 	private String id;
 	private WorkOrderRepository wor = Factory.repository.forWorkOrder();
 
-	/**
-	 * Eliminar una orden de trabajo.
-	 * 
-	 * Solo si no tiene intervenciones.
-	 */
 	public DeleteWorkOrder(String id) {
 		this.id = id;
 	}

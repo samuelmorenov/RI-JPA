@@ -11,17 +11,17 @@ import uo.ri.cws.application.util.command.Command;
 import uo.ri.cws.domain.WorkOrder;
 import uo.ri.cws.domain.WorkOrder.WorkOrderStatus;
 
+/**
+ * DONE Modificar datos de una orden de trabajo.<br/>
+ * <br/>
+ * Solo la descripción puede ser cambiada y la orden de trabajo debe estar en
+ * estado ABIERTA o ASIGNADA.
+ */
 public class UpdateWorkOrder implements Command<Void> {
 
 	private WorkOrderDto dto;
 	private WorkOrderRepository wor = Factory.repository.forWorkOrder();
 
-	/**
-	 * Modificar datos de una orden de trabajo.
-	 *
-	 * Solo la descripción puede ser cambiada y la orden de trabajo debe estar en
-	 * estado ABIERTA o ASIGNADA.
-	 */
 	public UpdateWorkOrder(WorkOrderDto dto) {
 		this.dto = dto;
 	}

@@ -1,13 +1,10 @@
 package uo.ri.cws.application.service.workorder.crud.command;
 
-import uo.ri.cws.application.service.BusinessException;
 import uo.ri.cws.application.service.workorder.WorkOrderDto;
-import uo.ri.cws.application.util.command.Command;
 
-public class FindAllWorkOrders  implements Command<WorkOrderDto>{
+public class FindAllWorkOrders {
 
-	@Override
-	public WorkOrderDto execute() throws BusinessException {
+	public WorkOrderDto execute() {
 		throw new RuntimeException("Not yet implemented.");
 	}
 

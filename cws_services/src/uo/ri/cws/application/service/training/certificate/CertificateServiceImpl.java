@@ -1,22 +1,19 @@
 package uo.ri.cws.application.service.training.certificate;
 
+import uo.ri.conf.Factory;
 import uo.ri.cws.application.service.BusinessException;
 import uo.ri.cws.application.service.training.CertificateService;
+import uo.ri.cws.application.service.training.certificate.command.GenerateCertificates;
+import uo.ri.cws.application.util.command.CommandExecutor;
 
 public class CertificateServiceImpl implements CertificateService {
 
+	private CommandExecutor executor = Factory.executor.forExecutor();
+
 	@Override
 	public int generateCertificates() throws BusinessException {
-		// TODO 1 - Generar certificados
-		/*
-		 * Manager Main: 4 - 4 Periódicamente se ejecutará el proceso que se encarga de
-		 * generar los nuevos certificados para los mecánicos que cumplan los requisitos
-		 * especificados en Generación de certificados. No requiere interacción del
-		 * usuario. En un despliegue real este proceso sería lanzado como una tarea
-		 * programada del sistema (cron, Windows task scheduler, etc.). Por simplicidad
-		 * se deja como una opción del menú del administrador.
-		 */
-		throw new RuntimeException("Not yet implemented.");
+
+		return executor.execute(new GenerateCertificates()); // DONE
 	}
 
 }

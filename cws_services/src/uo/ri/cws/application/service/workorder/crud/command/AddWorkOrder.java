@@ -12,17 +12,17 @@ import uo.ri.cws.application.util.command.Command;
 import uo.ri.cws.domain.Vehicle;
 import uo.ri.cws.domain.WorkOrder;
 
+/**
+ * DONE Registrar una orden de trabajo. <br/>
+ * <br/>
+ * Podemos asumir que el vehículo ya existe en la aplicación. Se pedirá además
+ * del vehículo al que se refiere, una descripción del trabajo a hacer. Se
+ * asignará la fecha del sistema en la que se registra la orden. Inicialmente la
+ * orden de trabajo estará en estado ABIERTA.
+ */
 public class AddWorkOrder implements Command<WorkOrderDto> {
 	private WorkOrderDto dto;
 
-	/**
-	 * Registrar una orden de trabajo. <br/>
-	 * <br/>
-	 * Podemos asumir que el vehículo ya existe en la aplicación. Se pedirá además
-	 * del vehículo al que se refiere, una descripción del trabajo a hacer. Se
-	 * asignará la fecha del sistema en la que se registra la orden. Inicialmente la
-	 * orden de trabajo estará en estado ABIERTA.
-	 */
 	public AddWorkOrder(WorkOrderDto dto) {
 		this.dto = dto;
 	}
@@ -40,7 +40,6 @@ public class AddWorkOrder implements Command<WorkOrderDto> {
 
 		// Al crear una work order se establece como abierta y se pone la fecha actual
 		WorkOrder wo = new WorkOrder(v, dto.description);
-		
 
 		wor.add(wo);
 

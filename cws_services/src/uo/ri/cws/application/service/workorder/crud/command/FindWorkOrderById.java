@@ -10,8 +10,11 @@ import uo.ri.cws.application.util.DtoAssembler;
 import uo.ri.cws.application.util.command.Command;
 import uo.ri.cws.domain.WorkOrder;
 
-public class FindWorkOrderById  implements Command<Optional<WorkOrderDto>>{
-	
+/**
+ * DONE Metodo usado para modificar datos de una orden de trabajo
+ */
+public class FindWorkOrderById implements Command<Optional<WorkOrderDto>> {
+
 	private String id;
 	private WorkOrderRepository wor = Factory.repository.forWorkOrder();
 
