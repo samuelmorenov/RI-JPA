@@ -54,6 +54,16 @@
 			<!-- DONE -->
 		</query>
 	</named-query>
+			<named-query name="Certificate.findByMechanicIdAndVehicleTypeId">
+		<query>
+			select c 
+			from Certificate c 
+			where c.vehicleType.id = ?2
+			and
+			c.mechanic.id = ?1
+			<!-- DONE -->
+		</query>
+	</named-query>
 	
 <!-- 
 	Use this format if your query has 

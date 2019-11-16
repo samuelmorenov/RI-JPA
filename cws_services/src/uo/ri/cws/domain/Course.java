@@ -17,7 +17,7 @@ import alb.util.assertion.Argument;
 import alb.util.assertion.StateCheck;
 
 @Entity
-@Table(name = "TCURSES")
+@Table(name = "TCOURSES")
 public class Course extends BaseEntity {
 	@Column(unique = true, nullable = false)
 	private String code;
