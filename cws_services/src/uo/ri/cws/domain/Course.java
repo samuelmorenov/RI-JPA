@@ -53,7 +53,7 @@ public class Course extends BaseEntity {
 		super();
 		this.code = code;
 
-		Argument.isTrue(!code.isEmpty(), "Code can not be empty");
+		Argument.isTrue(code!= null && ! code.trim().isEmpty(), "Code can not be empty");
 	}
 
 	public Course(String code, String name, String description, Date startDate, Date endDate, int duration) {
@@ -63,11 +63,11 @@ public class Course extends BaseEntity {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.hours = duration;
-
-		Argument.isTrue(!name.isEmpty(), "Name can not be empty");
-		Argument.isTrue(!description.isEmpty(), "Description can not be empty");
-		Argument.isTrue(startDate != null, "Start date can not be empty");
-		Argument.isTrue(endDate != null, "End date can not be empty");
+		
+		Argument.isTrue(name != null && ! name.trim().isEmpty(), "Name can not be empty");
+		Argument.isTrue(description!= null && ! description.trim().isEmpty(), "Description can not be empty");
+		Argument.isNotNull(startDate, "Start date can not be empty");
+		Argument.isNotNull(endDate, "End date can not be empty");
 		Argument.isTrue(startDate.before(endDate), "Start date can not be after end date");
 		Argument.isTrue(duration > 0, "Duration must be positive");
 
