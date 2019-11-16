@@ -4,6 +4,9 @@
 .DS_Store?
 /cws_services/bin/
 /cws_services/data/
+/cws_services/target/
+/cws_services/eclipselink.log
+/cws_services/eclipse.log
 /cws_client_cashier/
 /cws_client_foreman/
 /cws_client_manager/
