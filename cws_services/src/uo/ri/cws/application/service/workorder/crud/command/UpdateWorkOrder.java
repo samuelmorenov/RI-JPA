@@ -12,7 +12,7 @@ import uo.ri.cws.domain.WorkOrder;
 import uo.ri.cws.domain.WorkOrder.WorkOrderStatus;
 
 /**
- * DONE Modificar datos de una orden de trabajo.<br/>
+ * Added in the extension Modificar datos de una orden de trabajo.<br/>
  * <br/>
  * Solo la descripción puede ser cambiada y la orden de trabajo debe estar en
  * estado ABIERTA o ASIGNADA.
@@ -36,7 +36,6 @@ public class UpdateWorkOrder implements Command<Void> {
 				wo.getStatus().equals(WorkOrderStatus.OPEN) || wo.getStatus().equals(WorkOrderStatus.ASSIGNED),
 				"The work order must be in status open or assigned");
 		BusinessCheck.hasVersion(wo, dto.version);
-		// TO-DO Hacer en todos los updates
 
 		wo.setDescription(dto.description);
 

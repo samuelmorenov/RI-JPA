@@ -23,7 +23,7 @@ public class VehicleType extends BaseEntity {
 	@OneToMany(mappedBy = "vehicleType")
 	private Set<Dedication> dedications = new HashSet<Dedication>();
 
-	// DONE Clases de la extension - VehicleType
+	// Added in the extension VehicleType
 	VehicleType() {
 	}
 

@@ -19,22 +19,22 @@ public class WorkOrderCrudServiceImpl implements WorkOrderCrudService {
 
 	@Override
 	public WorkOrderDto registerNew(WorkOrderDto dto) throws BusinessException {
-		return executor.execute(new AddWorkOrder(dto)); //DONE
+		return executor.execute(new AddWorkOrder(dto)); //Added in the extension
 	}
 
 	@Override
 	public void updateWorkOrder(WorkOrderDto dto) throws BusinessException {
-		executor.execute(new UpdateWorkOrder(dto)); //DONE
+		executor.execute(new UpdateWorkOrder(dto)); //Added in the extension
 	}
 
 	@Override
 	public void deleteWorkOrder(String id) throws BusinessException {
-		executor.execute(new DeleteWorkOrder(id)); //DONE
+		executor.execute(new DeleteWorkOrder(id)); //Added in the extension
 	}
 
 	@Override
 	public Optional<WorkOrderDto> findWorkOrderById(String woId) throws BusinessException {
-		return executor.execute(new FindWorkOrderById(woId)); //DONE
+		return executor.execute(new FindWorkOrderById(woId)); //Added in the extension
 	}
 
 	@Override

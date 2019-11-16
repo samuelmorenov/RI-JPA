@@ -13,7 +13,7 @@ import uo.ri.cws.domain.Vehicle;
 import uo.ri.cws.domain.WorkOrder;
 
 /**
- * DONE Registrar una orden de trabajo. <br/>
+ * Added in the extension Registrar una orden de trabajo. <br/>
  * <br/>
  * Podemos asumir que el vehículo ya existe en la aplicación. Se pedirá además
  * del vehículo al que se refiere, una descripción del trabajo a hacer. Se

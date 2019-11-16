@@ -11,6 +11,6 @@ public interface RepositoryFactory {
 	InterventionRepository forIntervention();
 	VehicleRepository forVehicle();
 	VehicleTypeRepository forVehicleType();
-	CertificateRepository forCertificate(); //DONE
+	CertificateRepository forCertificate(); //Added in the extension
 
 }

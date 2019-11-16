@@ -17,7 +17,6 @@ public class CertificateJpaRepository extends BaseJpaRepository<Certificate> imp
 				.createNamedQuery("Certificate.findByVehicleTypeId", Certificate.class)
 				.setParameter(1, id)
 				.getResultList();
-		//TO-DO Asegurarse de que el sangrado es correcto
 	}
 
 	@Override

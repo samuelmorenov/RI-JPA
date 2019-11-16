@@ -15,7 +15,7 @@ public class Dedication extends BaseEntity {
 	@ManyToOne
 	private VehicleType vehicleType;
 
-	// DONE Clases de la extension - Dedication
+	// Added in the extension - Dedication
 	Dedication() {
 	}
 

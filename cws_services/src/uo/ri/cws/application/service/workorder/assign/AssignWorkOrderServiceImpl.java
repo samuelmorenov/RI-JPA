@@ -18,14 +18,14 @@ public class AssignWorkOrderServiceImpl implements AssignWorkOrderService {
 	@Override
 	public void assignWorkOrderToMechanic(String woId, String mechanicId) throws BusinessException {
 
-		executor.execute(new AssignWorkOrderToMechanic(woId, mechanicId)); //DONE
+		executor.execute(new AssignWorkOrderToMechanic(woId, mechanicId)); //Added in the extension
 
 	}
 
 	@Override
 	public List<CertificateDto> findCertificatesByVehicleTypeId(String id) throws BusinessException {
 
-		return executor.execute(new FindCertificatesByVehicleTypeId(id)); //DONE
+		return executor.execute(new FindCertificatesByVehicleTypeId(id)); //Added in the extension
 
 	}
 

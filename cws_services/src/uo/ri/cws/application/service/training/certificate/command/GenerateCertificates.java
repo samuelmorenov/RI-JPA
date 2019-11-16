@@ -12,9 +12,9 @@ import uo.ri.cws.domain.Mechanic;
 import uo.ri.cws.domain.VehicleType;
 
 /**
- * DONE - Generar certificados
+ * Added in the extension - Generar certificados
  *
- * Manager Main: 4 - 4 Periódicamente se ejecutará el proceso que se encarga de
+ * Periódicamente se ejecutará el proceso que se encarga de
  * generar los nuevos certificados para los mecánicos que cumplan los requisitos
  * especificados en Generación de certificados. No requiere interacción del
  * usuario. En un despliegue real este proceso sería lanzado como una tarea

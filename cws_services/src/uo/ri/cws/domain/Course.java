@@ -45,7 +45,7 @@ public class Course extends BaseEntity {
 	@OneToMany(mappedBy = "course")
 	private Set<Dedication> dedications = new HashSet<Dedication>();
 
-	// DONE Clases de la extension - Course
+	// Added in the extension - Course
 	Course() {
 	}
 

@@ -51,7 +51,7 @@
 			select c 
 			from Certificate c 
 			where c.vehicleType.id = ?1
-			<!-- DONE -->
+			<!-- Added in the extension -->
 		</query>
 	</named-query>
 			<named-query name="Certificate.findByMechanicIdAndVehicleTypeId">
@@ -61,7 +61,7 @@
 			where c.vehicleType.id = ?2
 			and
 			c.mechanic.id = ?1
-			<!-- DONE -->
+			<!-- Added in the extension -->
 		</query>
 	</named-query>
 	

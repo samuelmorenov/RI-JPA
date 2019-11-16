@@ -17,7 +17,7 @@ public class Enrollment extends BaseEntity {
 	@ManyToOne
 	private Mechanic mechanic;
 
-	// DONE Clases de la extension - Enrollment
+	// Added in the extension - Enrollment
 	Enrollment() {
 	}
 

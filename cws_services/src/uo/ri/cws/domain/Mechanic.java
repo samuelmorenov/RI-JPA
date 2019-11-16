@@ -28,7 +28,7 @@ public class Mechanic extends BaseEntity {
 	@OneToMany(mappedBy = "mechanic")
 	private Set<Enrollment> enrollments = new HashSet<Enrollment>();
 
-	// DONE Clases de la extension - Mechanic
+	// Added in the extension - Mechanic
 	Mechanic() {
 	}
 

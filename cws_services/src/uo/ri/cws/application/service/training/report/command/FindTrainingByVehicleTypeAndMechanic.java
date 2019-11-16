@@ -14,8 +14,7 @@ import uo.ri.cws.domain.Mechanic;
 import uo.ri.cws.domain.VehicleType;
 
 /**
- * TODO 2 - Listado de mecánicos que han asistido a formación por tipo de
- * vehículo
+ * Listado de mecánicos que han asistido a formación por tipo de vehículo
  *
  * Listado de mecánicos que han asistido a formación por tipo de vehículo. Para
  * cada tipo de vehículo se mostrará la información de cada mecánico que han

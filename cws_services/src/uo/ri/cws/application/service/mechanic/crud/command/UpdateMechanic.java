@@ -26,7 +26,7 @@ public class UpdateMechanic implements Command<Void> {
 
 		Mechanic m = om.get();
 		BusinessCheck.hasVersion(m, dto.version);
-		//TO-DO Hacer en todos los updates
+		//DONE Hacer en todos los updates
 
 		m.setName(dto.name);
 		m.setSurname(dto.surname);

@@ -23,7 +23,7 @@ public class CourseReportServiceImpl implements CourseReportService {
 	@Override
 	public List<TrainingHoursRow> findTrainingByVehicleTypeAndMechanic() throws BusinessException {
 
-		return executor.execute(new FindTrainingByVehicleTypeAndMechanic()); // DONE
+		return executor.execute(new FindTrainingByVehicleTypeAndMechanic()); // Added in the extension
 
 	}
 

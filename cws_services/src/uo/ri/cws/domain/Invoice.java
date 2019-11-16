@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import alb.util.assertion.Argument;
 import alb.util.assertion.StateCheck;
 import alb.util.date.Dates;
 import alb.util.math.Round;
@@ -43,7 +44,8 @@ public class Invoice extends BaseEntity {
 
 	public Invoice(Long number, Date date) {
 		super();
-		// DONE check arguments (always), through IllegalArgumentException
+		//check arguments (always), through IllegalArgumentException
+		Argument.isTrue(date.after(new Date()), "The date is after today");
 		// store the number
 		this.number = number;
 		// store a copy of the date
@@ -195,7 +197,7 @@ public class Invoice extends BaseEntity {
 	 *                               total of the invoice
 	 */
 	public void settle() {
-		//DONE Este metodo no se llama desde ningun sitio, no es necesaria su implementacion
+		//Este metodo no se llama desde ningun sitio, no es necesaria su implementacion
 		throw new RuntimeException("Not yet implemented.");
 	}
 

@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import uo.ri.cws.domain.Certificate;
 
-//DONE
+//Added in the extension
 public interface CertificateRepository extends Repository<Certificate> {
 
 	List<Certificate> findCertificatesByVehicleTypeId(String id);

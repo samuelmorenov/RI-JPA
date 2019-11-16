@@ -13,7 +13,7 @@ public class CertificateServiceImpl implements CertificateService {
 	@Override
 	public int generateCertificates() throws BusinessException {
 
-		return executor.execute(new GenerateCertificates()); // DONE
+		return executor.execute(new GenerateCertificates()); // Added in the extension
 	}
 
 }

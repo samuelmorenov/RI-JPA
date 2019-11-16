@@ -10,7 +10,7 @@ import uo.ri.cws.application.util.command.Command;
 import uo.ri.cws.domain.WorkOrder;
 
 /**
- * DONE Eliminar una orden de trabajo.<br/>
+ * Added in the extension Eliminar una orden de trabajo.<br/>
  * <br/>
  * Solo si no tiene intervenciones.
  */
