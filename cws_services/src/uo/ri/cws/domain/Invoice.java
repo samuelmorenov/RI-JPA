@@ -14,7 +14,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import alb.util.assertion.Argument;
 import alb.util.assertion.StateCheck;
 import alb.util.date.Dates;
 import alb.util.math.Round;
@@ -44,11 +43,7 @@ public class Invoice extends BaseEntity {
 
 	public Invoice(Long number, Date date) {
 		super();
-		//check arguments (always), through IllegalArgumentException
-		Argument.isTrue(date.after(new Date()), "The date is after today");
-		// store the number
 		this.number = number;
-		// store a copy of the date
 		this.date = new Date(date.getTime());
 	}
 
