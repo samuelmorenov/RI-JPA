@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.Before;
@@ -35,7 +36,7 @@ public class AddDedicationsTests {
 		// Para version 9 de java:
 		// Map<VehicleType, Integer> percentages = Map.of( car, 25, truck, 75 );
 
-		HashMap<VehicleType, Integer> percentages = new HashMap<VehicleType, Integer>();
+		Map<VehicleType, Integer> percentages = new HashMap<VehicleType, Integer>();
 		percentages.put(car, 25);
 		percentages.put(truck, 75);
 
@@ -58,7 +59,7 @@ public class AddDedicationsTests {
 		// Para version 9 de java:
 		// Map<VehicleType, Integer> percentages = Map.of(car, 25, truck, 25);
 
-		HashMap<VehicleType, Integer> percentages = new HashMap<VehicleType, Integer>();
+		Map<VehicleType, Integer> percentages = new HashMap<VehicleType, Integer>();
 		percentages.put(car, 25);
 		percentages.put(truck, 25);
 
@@ -72,7 +73,7 @@ public class AddDedicationsTests {
 	public void testDedicationsGreaterThan100() {
 		// Para version 9 de java:
 		// Map<VehicleType, Integer> percentages = Map.of(car, 25, truck, 85);
-		HashMap<VehicleType, Integer> percentages = new HashMap<VehicleType, Integer>();
+		Map<VehicleType, Integer> percentages = new HashMap<VehicleType, Integer>();
 		percentages.put(car, 25);
 		percentages.put(truck, 85);
 
@@ -86,7 +87,7 @@ public class AddDedicationsTests {
 	public void testAddMoreDedicationsThrowsException() {
 		// Para version 9 de java:
 		// Map<VehicleType, Integer> percentages = Map.of(car, 100);
-		HashMap<VehicleType, Integer> percentages = new HashMap<VehicleType, Integer>();
+		Map<VehicleType, Integer> percentages = new HashMap<VehicleType, Integer>();
 		percentages.put(car, 100);
 
 		course.addDedications(percentages);

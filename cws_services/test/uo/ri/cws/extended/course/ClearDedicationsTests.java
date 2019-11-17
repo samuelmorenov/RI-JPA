@@ -3,6 +3,7 @@ package uo.ri.cws.extended.course;
 import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.Before;
@@ -27,7 +28,7 @@ public class ClearDedicationsTests {
 		// Para version 9 de java:
 		// Map<VehicleType, Integer> percentages = Map.of(car, 25, truck, 75);
 
-		HashMap<VehicleType, Integer> percentages = new HashMap<VehicleType, Integer>();
+		Map<VehicleType, Integer> percentages = new HashMap<VehicleType, Integer>();
 		percentages.put(car, 25);
 		percentages.put(truck, 75);
 
@@ -61,7 +62,7 @@ public class ClearDedicationsTests {
 		// Para version 9 de java:
 		// Map<VehicleType, Integer> percentages = Map.of(car, 100);
 
-		HashMap<VehicleType, Integer> percentages = new HashMap<VehicleType, Integer>();
+		Map<VehicleType, Integer> percentages = new HashMap<VehicleType, Integer>();
 		percentages.put(car, 100);
 
 		course.clearDedications();
