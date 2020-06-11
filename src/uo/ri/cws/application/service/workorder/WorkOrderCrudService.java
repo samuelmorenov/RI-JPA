@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import uo.ri.cws.application.service.BusinessException;
 
+// TODO: Gestión de workOrders (fallos): Faltan comprobaciones: existe la
+// workorder, existe mecánico, existe tipo vehículo, existe id, …
+
 /**
  * This service is intended to be used by the Foreman It follows the ISP
  * principle (@see SOLID principles from RC Martin)

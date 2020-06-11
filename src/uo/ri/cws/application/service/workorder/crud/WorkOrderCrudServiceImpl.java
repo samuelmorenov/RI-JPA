@@ -17,9 +17,6 @@ public class WorkOrderCrudServiceImpl implements WorkOrderCrudService {
 
     private CommandExecutor executor = Factory.executor.forExecutor();
 
-    // TODO: Gestión de workOrders (fallos): Faltan comprobaciones: existe la
-    // workorder, existe mecánico, existe tipo vehículo, existe id, …
-
     @Override
     public WorkOrderDto registerNew(WorkOrderDto dto)
 	    throws BusinessException {

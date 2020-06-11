@@ -16,8 +16,6 @@ import uo.ri.cws.domain.VehicleType;
  */
 public class TrainingHours {
 
-    // TODO Generación de certificado: TrainingHours::calculate debe dividir por
-    // 10000
     public static int Calculate(Mechanic mechanic, VehicleType vehicleType) {
 	// Calculamos las horas que ha recibido el mecanico de ese tipo de vehiclo
 	int hoursPerVehicleType = 0;

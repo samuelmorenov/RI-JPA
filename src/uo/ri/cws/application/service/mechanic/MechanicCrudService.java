@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import uo.ri.cws.application.service.BusinessException;
 
+//TODO: No hay validación de argumentos en clases del modelo
+
 /**
  * This service is intended to be used by the Manager It follows the ISP
  * principle (@see SOLID principles from RC Martin)

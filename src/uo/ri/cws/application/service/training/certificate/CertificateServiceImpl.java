@@ -11,7 +11,7 @@ public class CertificateServiceImpl implements CertificateService {
     private CommandExecutor executor = Factory.executor.forExecutor();
 
     @Override
-    public int generateCertificates() throws BusinessException {
+    public int generateCertificates() throws BusinessException{
 
 	return executor.execute(new GenerateCertificates());
 	// Added in the extension

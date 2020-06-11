@@ -4,7 +4,6 @@ import uo.ri.conf.Factory;
 import uo.ri.cws.application.repository.CertificateRepository;
 import uo.ri.cws.application.repository.MechanicRepository;
 import uo.ri.cws.application.repository.VehicleTypeRepository;
-import uo.ri.cws.application.service.BusinessException;
 import uo.ri.cws.application.service.training.TrainingHours;
 import uo.ri.cws.application.util.command.Command;
 import uo.ri.cws.domain.Certificate;
@@ -31,7 +30,7 @@ public class GenerateCertificates implements Command<Integer> {
 	    Factory.repository.forCertificate();
 
     @Override
-    public Integer execute() throws BusinessException {
+    public Integer execute() {
 	int generated = 0;
 
 	// Se recorren todos los mecanicos para cada tipo de vehiculo
