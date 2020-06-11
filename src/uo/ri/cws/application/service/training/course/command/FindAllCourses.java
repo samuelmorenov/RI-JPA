@@ -12,19 +12,19 @@ import uo.ri.cws.domain.Course;
 
 public class FindAllCourses implements Command<List<CourseDto>> {
 
-	private CourseRepository cr = Factory.repository.forCourse();
+    private CourseRepository cr = Factory.repository.forCourse();
 
-	/**
-	 * 
-	 * @return a list of CourseDto. Each one represents a course.
-	 * @see CourseDto class for details.
-	 * 
-	 *      DOES NOT @throws BusinessException
-	 */
-	@Override
-	public List<CourseDto> execute() throws BusinessException {
-		List<Course> ms = cr.findAll();
-		return DtoAssembler.toCourseDtoList(ms);
-	}
+    /**
+     * 
+     * @return a list of CourseDto. Each one represents a course.
+     * @see CourseDto class for details.
+     * 
+     *      DOES NOT @throws BusinessException
+     */
+    @Override
+    public List<CourseDto> execute() throws BusinessException {
+	List<Course> ms = cr.findAll();
+	return DtoAssembler.toCourseDtoList(ms);
+    }
 
 }

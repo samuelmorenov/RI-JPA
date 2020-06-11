@@ -13,26 +13,31 @@ import uo.ri.cws.application.util.command.CommandExecutor;
 
 public class AssignWorkOrderServiceImpl implements AssignWorkOrderService {
 
-	private CommandExecutor executor = Factory.executor.forExecutor();
+    private CommandExecutor executor = Factory.executor.forExecutor();
 
-	@Override
-	public void assignWorkOrderToMechanic(String woId, String mechanicId) throws BusinessException {
+    @Override
+    public void assignWorkOrderToMechanic(String woId, String mechanicId)
+	    throws BusinessException {
 
-		executor.execute(new AssignWorkOrderToMechanic(woId, mechanicId)); //Added in the extension
+	executor.execute(new AssignWorkOrderToMechanic(woId, mechanicId));
+	// Added in the extension
 
-	}
+    }
 
-	@Override
-	public List<CertificateDto> findCertificatesByVehicleTypeId(String id) throws BusinessException {
+    @Override
+    public List<CertificateDto> findCertificatesByVehicleTypeId(String id)
+	    throws BusinessException {
 
-		return executor.execute(new FindCertificatesByVehicleTypeId(id)); //Added in the extension
+	return executor.execute(new FindCertificatesByVehicleTypeId(id));
+	// Added in the extension
 
-	}
+    }
 
-	@Override
-	public List<WorkOrderDto> findUnfinishedWorkOrders() throws BusinessException {
-		//TODO find unfinished no está implementado
-		throw new RuntimeException("Not yet implemented.");
-	}
+    @Override
+    public List<WorkOrderDto> findUnfinishedWorkOrders()
+	    throws BusinessException {
+	// TODO find unfinished no está implementado
+	throw new RuntimeException("Not yet implemented.");
+    }
 
 }

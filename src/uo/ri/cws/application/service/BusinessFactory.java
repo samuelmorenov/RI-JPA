@@ -29,84 +29,84 @@ import uo.ri.cws.application.service.workorder.crud.WorkOrderCrudServiceImpl;
 
 public class BusinessFactory implements ServiceFactory {
 
-	@Override
-	public MechanicCrudService forMechanicCrudService() {
-		return new MechanicCrudServiceImpl();
-	}
+    @Override
+    public MechanicCrudService forMechanicCrudService() {
+	return new MechanicCrudServiceImpl();
+    }
 
-	@Override
-	public CreateInvoiceService forCreateInvoiceService() {
-		return new CreateInvoiceServiceImpl();
-	}
+    @Override
+    public CreateInvoiceService forCreateInvoiceService() {
+	return new CreateInvoiceServiceImpl();
+    }
 
-	@Override
-	public WorkOrderCrudService forWorkOrderService() {
-		return new WorkOrderCrudServiceImpl();
-	}
+    @Override
+    public WorkOrderCrudService forWorkOrderService() {
+	return new WorkOrderCrudServiceImpl();
+    }
 
-	@Override
-	public CloseWorkOrderService forClosingBreakdown() {
-		throw new RuntimeException("Not yet implemented");
-	}
+    @Override
+    public CloseWorkOrderService forClosingBreakdown() {
+	throw new RuntimeException("Not yet implemented");
+    }
 
-	@Override
-	public VehicleCrudService forVehicleCrudService() {
-		return new VehicleCrudServiceImpl();
-	}
+    @Override
+    public VehicleCrudService forVehicleCrudService() {
+	return new VehicleCrudServiceImpl();
+    }
 
-	@Override
-	public CourseCrudService forCourseCrudService() {
-		return new CourseCrudServiceImpl();
-	}
+    @Override
+    public CourseCrudService forCourseCrudService() {
+	return new CourseCrudServiceImpl();
+    }
 
-	@Override
-	public CourseAttendanceService forCourseAttendanceService() {
-		return new CourseAttendanceServiceImpl();
-	}
+    @Override
+    public CourseAttendanceService forCourseAttendanceService() {
+	return new CourseAttendanceServiceImpl();
+    }
 
-	@Override
-	public CourseReportService forCourseReportService() {
-		return new CourseReportServiceImpl();
-	}
+    @Override
+    public CourseReportService forCourseReportService() {
+	return new CourseReportServiceImpl();
+    }
 
-	@Override
-	public CertificateService forCertificateService() {
-		return new CertificateServiceImpl();
-	}
+    @Override
+    public CertificateService forCertificateService() {
+	return new CertificateServiceImpl();
+    }
 
-	@Override
-	public VehicleTypeCrudService forVehicleTypeCrudService() {
-		throw new RuntimeException("Not yet implemented");
-	}
+    @Override
+    public VehicleTypeCrudService forVehicleTypeCrudService() {
+	throw new RuntimeException("Not yet implemented");
+    }
 
-	@Override
-	public AssignWorkOrderService forAssignWorkOrderService() {
-		return new AssignWorkOrderServiceImpl();
-	}
+    @Override
+    public AssignWorkOrderService forAssignWorkOrderService() {
+	return new AssignWorkOrderServiceImpl();
+    }
 
-	@Override
-	public ClientCrudService forClientCrudService() {
-		throw new RuntimeException("Not yet implemented");
-	}
+    @Override
+    public ClientCrudService forClientCrudService() {
+	throw new RuntimeException("Not yet implemented");
+    }
 
-	@Override
-	public SparePartCrudService forSparePartCrudService() {
-		throw new RuntimeException("Not yet implemented");
-	}
+    @Override
+    public SparePartCrudService forSparePartCrudService() {
+	throw new RuntimeException("Not yet implemented");
+    }
 
-	@Override
-	public SettleInvoiceService forSettleInvoiceService() {
-		throw new RuntimeException("Not yet implemented");
-	}
+    @Override
+    public SettleInvoiceService forSettleInvoiceService() {
+	throw new RuntimeException("Not yet implemented");
+    }
 
-	@Override
-	public ClientHistoryService forClientHistoryService() {
-		throw new RuntimeException("Not yet implemented");
-	}
+    @Override
+    public ClientHistoryService forClientHistoryService() {
+	throw new RuntimeException("Not yet implemented");
+    }
 
-	@Override
-	public ViewAssignedWorkOrdersService forViewAssignedWorkOrdersService() {
-		throw new RuntimeException("Not yet implemented");
-	}
+    @Override
+    public ViewAssignedWorkOrdersService forViewAssignedWorkOrdersService() {
+	throw new RuntimeException("Not yet implemented");
+    }
 
 }

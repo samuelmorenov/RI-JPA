@@ -6,10 +6,10 @@ import java.util.Optional;
 import uo.ri.cws.domain.Course;
 
 //Added in the second extension
-public interface CourseRepository extends Repository<Course>{
+public interface CourseRepository extends Repository<Course> {
 
-	List<Course> findAll();
+    List<Course> findAll();
 
-	Optional<Course> findByName(String name);
-	
+    Optional<Course> findByName(String name);
+
 }

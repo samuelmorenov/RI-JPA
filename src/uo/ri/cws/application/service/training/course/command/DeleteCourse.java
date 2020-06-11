@@ -9,38 +9,38 @@ import uo.ri.cws.application.util.BusinessCheck;
 import uo.ri.cws.application.util.command.Command;
 import uo.ri.cws.domain.Course;
 
-public class DeleteCourse implements Command<Void>{
-	
-	private String courseId;
-	private CourseRepository cr = Factory.repository.forCourse();
+public class DeleteCourse implements Command<Void> {
 
-	public DeleteCourse(String id) {
-		this.courseId = id;
-	}
+    private String courseId;
+    private CourseRepository cr = Factory.repository.forCourse();
 
-	/**
-	 * A course can only be deleted if it still has no attendance registered.
-	 * Delete a course also implies remove all its dedications in cascade.
-	 * 
-	 * Note: A course and its dedications form an aggregate.
-	 *  
-	 * @param id
-	 * @throws BusinessException if:
-	 * 	- there is no course with the specified id, or
-	 * 	- the course already has enrollments registered.
-	 */
-	@Override
-	public Void execute() throws BusinessException {
-		Optional<Course> om = cr.findById(courseId);
+    public DeleteCourse(String id) {
+	this.courseId = id;
+    }
 
-		BusinessCheck.isTrue(om.isPresent(), "This course does not exist");
+    /**
+     * A course can only be deleted if it still has no attendance registered. Delete
+     * a course also implies remove all its dedications in cascade.
+     * 
+     * Note: A course and its dedications form an aggregate.
+     * 
+     * @param id
+     * @throws BusinessException if: - there is no course with the specified id, or
+     *                           - the course already has enrollments registered.
+     */
+    @Override
+    public Void execute() throws BusinessException {
+	Optional<Course> om = cr.findById(courseId);
 
-		Course c = om.get();
-		BusinessCheck.isTrue(c.getEnrollments().size() == 0, "The course already has enrollments registered");
-		
-		cr.remove(c);
-		
-		return null;
-	}
+	BusinessCheck.isTrue(om.isPresent(), "This course does not exist");
+
+	Course c = om.get();
+	BusinessCheck.isTrue(c.getEnrollments().size() == 0,
+		"The course already has enrollments registered");
+
+	cr.remove(c);
+
+	return null;
+    }
 
 }

@@ -7,11 +7,11 @@ import uo.ri.cws.application.service.vehicletype.VehicleTypeDto;
 
 public class CertificateDto {
 
-	public String id;
-	public Long version;
-	
-	public MechanicDto mechanic;
-	public VehicleTypeDto vehicleType;
-	public Date obtainedAt;
-	
+    public String id;
+    public Long version;
+
+    public MechanicDto mechanic;
+    public VehicleTypeDto vehicleType;
+    public Date obtainedAt;
+
 }

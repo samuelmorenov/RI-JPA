@@ -13,23 +13,27 @@ import uo.ri.cws.application.util.command.CommandExecutor;
 
 public class CourseReportServiceImpl implements CourseReportService {
 
-	private CommandExecutor executor = Factory.executor.forExecutor();
+    private CommandExecutor executor = Factory.executor.forExecutor();
 
-	@Override
-	public List<TrainingForMechanicRow> findTrainigByMechanicId(String id) throws BusinessException {
-		throw new RuntimeException("Not yet implemented.");
-	}
+    @Override
+    public List<TrainingForMechanicRow> findTrainigByMechanicId(String id)
+	    throws BusinessException {
+	throw new RuntimeException("Not yet implemented.");
+    }
 
-	@Override
-	public List<TrainingHoursRow> findTrainingByVehicleTypeAndMechanic() throws BusinessException {
+    @Override
+    public List<TrainingHoursRow> findTrainingByVehicleTypeAndMechanic()
+	    throws BusinessException {
 
-		return executor.execute(new FindTrainingByVehicleTypeAndMechanic()); // Added in the extension
+	return executor.execute(new FindTrainingByVehicleTypeAndMechanic());
+	// Added in the extension
 
-	}
+    }
 
-	@Override
-	public List<CertificateDto> findCertificatedByVehicleType() throws BusinessException {
-		throw new RuntimeException("Not yet implemented.");
-	}
+    @Override
+    public List<CertificateDto> findCertificatedByVehicleType()
+	    throws BusinessException {
+	throw new RuntimeException("Not yet implemented.");
+    }
 
 }

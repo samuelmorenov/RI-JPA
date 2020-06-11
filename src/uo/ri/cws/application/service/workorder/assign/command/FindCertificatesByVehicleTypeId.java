@@ -10,21 +10,22 @@ import uo.ri.cws.application.util.command.Command;
 import uo.ri.cws.domain.Certificate;
 
 /** Usado para asignar una orden de trabajo a un mecánico. */
-public class FindCertificatesByVehicleTypeId implements Command<List<CertificateDto>> {
+public class FindCertificatesByVehicleTypeId
+	implements Command<List<CertificateDto>> {
 
-	private String id;
-	private CertificateRepository cr = Factory.repository.forCertificate();
+    private String id;
+    private CertificateRepository cr = Factory.repository.forCertificate();
 
-	public FindCertificatesByVehicleTypeId(String id) {
-		this.id = id;
-	}
+    public FindCertificatesByVehicleTypeId(String id) {
+	this.id = id;
+    }
 
-	@Override
-	public List<CertificateDto> execute() throws BusinessException {
+    @Override
+    public List<CertificateDto> execute() throws BusinessException {
 
-		List<Certificate> lc = cr.findCertificatesByVehicleTypeId(id);
-		return DtoAssembler.toCertificateDtoList(lc);
+	List<Certificate> lc = cr.findCertificatesByVehicleTypeId(id);
+	return DtoAssembler.toCertificateDtoList(lc);
 
-	}
+    }
 
 }

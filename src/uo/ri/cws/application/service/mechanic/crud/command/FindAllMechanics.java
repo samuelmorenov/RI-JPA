@@ -9,13 +9,13 @@ import uo.ri.cws.application.util.DtoAssembler;
 import uo.ri.cws.application.util.command.Command;
 import uo.ri.cws.domain.Mechanic;
 
-public class FindAllMechanics implements Command<List<MechanicDto>>{
-	
-	private MechanicRepository mr = Factory.repository.forMechanic();
+public class FindAllMechanics implements Command<List<MechanicDto>> {
 
-	public List<MechanicDto> execute() {
-		List<Mechanic> ms = mr.findAll();
-		return DtoAssembler.toMechanicDtoList(ms);
-	}
+    private MechanicRepository mr = Factory.repository.forMechanic();
+
+    public List<MechanicDto> execute() {
+	List<Mechanic> ms = mr.findAll();
+	return DtoAssembler.toMechanicDtoList(ms);
+    }
 
 }

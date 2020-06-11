@@ -8,20 +8,20 @@ import uo.ri.cws.application.util.command.Command;
 
 public class CreateInvoiceFor implements Command<InvoiceDto> {
 
-	private List<String> workOrderIds;
+    private List<String> workOrderIds;
 
-	public CreateInvoiceFor(List<String> workOrderIds) {
-		this.workOrderIds = workOrderIds;
-	}
+    public CreateInvoiceFor(List<String> workOrderIds) {
+	this.workOrderIds = workOrderIds;
+    }
 
-	List<String> _getWorkOrderIds() {
-		return workOrderIds;
-	}
+    List<String> _getWorkOrderIds() {
+	return workOrderIds;
+    }
 
-	@Override
-	public InvoiceDto execute() throws BusinessException {
-		//TODO: No has terminado las prácticas del laboratorio: CreateInvoiceFor
-		throw new RuntimeException("Not yet implemented.");
-	}
+    @Override
+    public InvoiceDto execute() throws BusinessException {
+	// TODO: No has terminado las prácticas del laboratorio: CreateInvoiceFor
+	throw new RuntimeException("Not yet implemented.");
+    }
 
 }

@@ -29,43 +29,44 @@ import uo.ri.cws.domain.WorkOrder;
  */
 public class AssignWorkOrderToMechanic implements Command<Void> {
 
-	private String woId;
-	private String mechanicId;
-	private MechanicRepository mr = Factory.repository.forMechanic();
-	private WorkOrderRepository wor = Factory.repository.forWorkOrder();
+    private String woId;
+    private String mechanicId;
+    private MechanicRepository mr = Factory.repository.forMechanic();
+    private WorkOrderRepository wor = Factory.repository.forWorkOrder();
 
-	public AssignWorkOrderToMechanic(String woId, String mechanicId) {
-		this.woId = woId;
-		this.mechanicId = mechanicId;
+    public AssignWorkOrderToMechanic(String woId, String mechanicId) {
+	this.woId = woId;
+	this.mechanicId = mechanicId;
+    }
+
+    @Override
+    public Void execute() throws BusinessException {
+
+	Optional<Mechanic> om = mr.findById(mechanicId);
+	BusinessCheck.exists(om, "No se ha encontrado ese mecanico");
+	Mechanic m = om.get();
+
+	Optional<WorkOrder> owo = wor.findById(woId);
+	BusinessCheck.exists(om, "No se ha encontrado esa work order");
+	WorkOrder wo = owo.get();
+
+	VehicleType vt = wo.getVehicle().getVehicleType();
+	boolean encontrado = false;
+	for (Certificate c : m.getCertificates()) {
+	    if (vt == c.getVehicleType()) {
+		encontrado = true;
+		break;
+	    }
 	}
+	BusinessCheck.isTrue(encontrado,
+		"El mecanico no esta certificado para ese vehiculo");
 
-	@Override
-	public Void execute() throws BusinessException {
+	Associations.Assign.link(m, wo);
+	// TODO: Gestión de workOrders (fallos): asignar usa Associations.link y no el
+	// método correspondiente de la entidad
 
-		Optional<Mechanic> om = mr.findById(mechanicId);
-		BusinessCheck.exists(om, "No se ha encontrado ese mecanico");
-		Mechanic m = om.get();
+	return null;
 
-		Optional<WorkOrder> owo = wor.findById(woId);
-		BusinessCheck.exists(om, "No se ha encontrado esa work order");
-		WorkOrder wo = owo.get();
-
-		VehicleType vt = wo.getVehicle().getVehicleType();
-		boolean encontrado = false;
-		for (Certificate c : m.getCertificates()) {
-			if (vt == c.getVehicleType()) {
-				encontrado = true;
-				break;
-			}
-		}
-		BusinessCheck.isTrue(encontrado, "El mecanico no esta certificado para ese vehiculo");
-
-		Associations.Assign.link(m, wo);
-		// TODO: Gestión de workOrders (fallos): asignar usa Associations.link y no el
-		// método correspondiente de la entidad
-
-		return null;
-
-	}
+    }
 
 }

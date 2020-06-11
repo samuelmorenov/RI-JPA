@@ -9,22 +9,22 @@ import uo.ri.cws.domain.Mechanic;
 
 public class AddMechanic implements Command<MechanicDto> {
 
-	private MechanicDto dto;
-	private MechanicRepository mr = Factory.repository.forMechanic();
+    private MechanicDto dto;
+    private MechanicRepository mr = Factory.repository.forMechanic();
 
-	public AddMechanic(MechanicDto mecanico) {
-		this.dto = mecanico;
-	}
+    public AddMechanic(MechanicDto mecanico) {
+	this.dto = mecanico;
+    }
 
-	public MechanicDto execute() throws BusinessException {
+    public MechanicDto execute() throws BusinessException {
 
-		Mechanic m = new Mechanic(dto.dni, dto.name, dto.surname);
+	Mechanic m = new Mechanic(dto.dni, dto.name, dto.surname);
 
-		mr.add(m);
+	mr.add(m);
 
-		dto.id = m.getId();
+	dto.id = m.getId();
 
-		return dto;
-	}
+	return dto;
+    }
 
 }

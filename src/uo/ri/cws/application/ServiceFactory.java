@@ -19,29 +19,40 @@ import uo.ri.cws.application.service.workorder.WorkOrderCrudService;
 
 public interface ServiceFactory {
 
-	// Manager use cases
-	VehicleTypeCrudService forVehicleTypeCrudService();
-	MechanicCrudService forMechanicCrudService();
-	SparePartCrudService forSparePartCrudService();
+    // Manager use cases
+    VehicleTypeCrudService forVehicleTypeCrudService();
 
-	CourseCrudService forCourseCrudService();
-	CourseAttendanceService forCourseAttendanceService();
-	CourseReportService forCourseReportService();
-	CertificateService forCertificateService();
+    MechanicCrudService forMechanicCrudService();
 
-	// Cash use cases
-	CreateInvoiceService forCreateInvoiceService();
-	SettleInvoiceService forSettleInvoiceService();
+    SparePartCrudService forSparePartCrudService();
 
-	// Foreman use cases
-	WorkOrderCrudService forWorkOrderService();
-	AssignWorkOrderService forAssignWorkOrderService();
-	VehicleCrudService forVehicleCrudService();
-	ClientCrudService forClientCrudService();
-	ClientHistoryService forClientHistoryService();
+    CourseCrudService forCourseCrudService();
 
-	// Mechanic use cases
-	CloseWorkOrderService forClosingBreakdown();
-	ViewAssignedWorkOrdersService forViewAssignedWorkOrdersService();
+    CourseAttendanceService forCourseAttendanceService();
+
+    CourseReportService forCourseReportService();
+
+    CertificateService forCertificateService();
+
+    // Cash use cases
+    CreateInvoiceService forCreateInvoiceService();
+
+    SettleInvoiceService forSettleInvoiceService();
+
+    // Foreman use cases
+    WorkOrderCrudService forWorkOrderService();
+
+    AssignWorkOrderService forAssignWorkOrderService();
+
+    VehicleCrudService forVehicleCrudService();
+
+    ClientCrudService forClientCrudService();
+
+    ClientHistoryService forClientHistoryService();
+
+    // Mechanic use cases
+    CloseWorkOrderService forClosingBreakdown();
+
+    ViewAssignedWorkOrdersService forViewAssignedWorkOrdersService();
 
 }

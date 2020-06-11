@@ -16,26 +16,28 @@ import uo.ri.cws.domain.WorkOrder;
  */
 public class DeleteWorkOrder implements Command<Void> {
 
-	private String id;
-	private WorkOrderRepository wor = Factory.repository.forWorkOrder();
+    private String id;
+    private WorkOrderRepository wor = Factory.repository.forWorkOrder();
 
-	public DeleteWorkOrder(String id) {
-		this.id = id;
-	}
+    public DeleteWorkOrder(String id) {
+	this.id = id;
+    }
 
-	@Override
-	public Void execute() throws BusinessException {
-		Optional<WorkOrder> owo = wor.findById(id);
+    @Override
+    public Void execute() throws BusinessException {
+	Optional<WorkOrder> owo = wor.findById(id);
 
-		BusinessCheck.isTrue(owo.isPresent(), "This work order does not exist");
+	BusinessCheck.isTrue(owo.isPresent(),
+		"This work order does not exist");
 
-		WorkOrder wo = owo.get();
+	WorkOrder wo = owo.get();
 
-		BusinessCheck.isTrue(wo.getInterventions().size() == 0, "This work order has interventions");
+	BusinessCheck.isTrue(wo.getInterventions().size() == 0,
+		"This work order has interventions");
 
-		wor.remove(wo);
+	wor.remove(wo);
 
-		return null;
-	}
+	return null;
+    }
 
 }

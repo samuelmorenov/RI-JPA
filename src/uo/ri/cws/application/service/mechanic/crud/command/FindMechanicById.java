@@ -12,17 +12,18 @@ import uo.ri.cws.domain.Mechanic;
 
 public class FindMechanicById implements Command<Optional<MechanicDto>> {
 
-	private String id;
-	private MechanicRepository mr = Factory.repository.forMechanic();
+    private String id;
+    private MechanicRepository mr = Factory.repository.forMechanic();
 
-	public FindMechanicById(String id) {
-		this.id = id;
-	}
+    public FindMechanicById(String id) {
+	this.id = id;
+    }
 
-	public Optional<MechanicDto> execute() throws BusinessException {
+    public Optional<MechanicDto> execute() throws BusinessException {
 
-		Optional<Mechanic> om = mr.findById(id);
-		return om.isPresent() ? Optional.of(DtoAssembler.toDto(om.get())) : Optional.empty();
-	}
+	Optional<Mechanic> om = mr.findById(id);
+	return om.isPresent() ? Optional.of(DtoAssembler.toDto(om.get()))
+		: Optional.empty();
+    }
 
 }

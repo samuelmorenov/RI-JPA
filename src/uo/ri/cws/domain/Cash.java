@@ -5,15 +5,16 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "TCASHES", uniqueConstraints = { @UniqueConstraint(columnNames = { "CLIENT_ID" }) })
+@Table(name = "TCASHES", uniqueConstraints = {
+	@UniqueConstraint(columnNames = { "CLIENT_ID" }) })
 public class Cash extends PaymentMean {
 
-	Cash() {
-	}
+    Cash() {
+    }
 
-	public Cash(Client client) {
-		super();
-		Associations.Pay.link(this, client);
-	}
+    public Cash(Client client) {
+	super();
+	Associations.Pay.link(this, client);
+    }
 
 }

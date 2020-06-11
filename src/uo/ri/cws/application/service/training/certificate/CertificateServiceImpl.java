@@ -8,12 +8,13 @@ import uo.ri.cws.application.util.command.CommandExecutor;
 
 public class CertificateServiceImpl implements CertificateService {
 
-	private CommandExecutor executor = Factory.executor.forExecutor();
+    private CommandExecutor executor = Factory.executor.forExecutor();
 
-	@Override
-	public int generateCertificates() throws BusinessException {
+    @Override
+    public int generateCertificates() throws BusinessException {
 
-		return executor.execute(new GenerateCertificates()); // Added in the extension
-	}
+	return executor.execute(new GenerateCertificates());
+	// Added in the extension
+    }
 
 }

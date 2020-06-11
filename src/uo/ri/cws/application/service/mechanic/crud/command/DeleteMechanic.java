@@ -11,25 +11,26 @@ import uo.ri.cws.domain.Mechanic;
 
 public class DeleteMechanic implements Command<Void> {
 
-	private String mechanicId;
-	private MechanicRepository mr = Factory.repository.forMechanic();
+    private String mechanicId;
+    private MechanicRepository mr = Factory.repository.forMechanic();
 
-	public DeleteMechanic(String idMecanico) {
-		this.mechanicId = idMecanico;
-	}
+    public DeleteMechanic(String idMecanico) {
+	this.mechanicId = idMecanico;
+    }
 
-	public Void execute() throws BusinessException {
+    public Void execute() throws BusinessException {
 
-		Optional<Mechanic> om = mr.findById(mechanicId);
+	Optional<Mechanic> om = mr.findById(mechanicId);
 
-		BusinessCheck.isTrue(om.isPresent(), "This mechanic does not exist");
+	BusinessCheck.isTrue(om.isPresent(), "This mechanic does not exist");
 
-		Mechanic m = om.get();
-		BusinessCheck.isTrue(m.getInterventions().size() == 0, "This mechanics has interventions");
-		
-		mr.remove(m);
+	Mechanic m = om.get();
+	BusinessCheck.isTrue(m.getInterventions().size() == 0,
+		"This mechanics has interventions");
 
-		return null;
-	}
+	mr.remove(m);
+
+	return null;
+    }
 
 }

@@ -8,13 +8,14 @@ import uo.ri.cws.infrastructure.persistence.jpa.util.BaseJpaRepository;
 import uo.ri.cws.infrastructure.persistence.jpa.util.Jpa;
 
 //Added in the second extension
-public class CourseJpaRepository extends BaseJpaRepository<Course> implements CourseRepository {
+public class CourseJpaRepository extends BaseJpaRepository<Course>
+	implements CourseRepository {
 
-	@Override
-	public Optional<Course> findByName(String name) {
-		//TODO: Esto es asi?
-		Course m = Jpa.getManager().find(Course.class, name);
-		return m != null ? Optional.of(m) : Optional.empty();
-	}
-	
+    @Override
+    public Optional<Course> findByName(String name) {
+	// TODO: Esto es asi?
+	Course m = Jpa.getManager().find(Course.class, name);
+	return m != null ? Optional.of(m) : Optional.empty();
+    }
+
 }

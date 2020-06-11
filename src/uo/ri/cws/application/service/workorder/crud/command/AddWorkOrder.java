@@ -21,31 +21,33 @@ import uo.ri.cws.domain.WorkOrder;
  * orden de trabajo estará en estado ABIERTA.
  */
 public class AddWorkOrder implements Command<WorkOrderDto> {
-	private WorkOrderDto dto;
+    private WorkOrderDto dto;
 
-	public AddWorkOrder(WorkOrderDto dto) {
-		this.dto = dto;
-	}
+    public AddWorkOrder(WorkOrderDto dto) {
+	this.dto = dto;
+    }
 
-	public WorkOrderDto execute() throws BusinessException {
+    public WorkOrderDto execute() throws BusinessException {
 
-		WorkOrderRepository wor = Factory.repository.forWorkOrder();
-		VehicleRepository vr = Factory.repository.forVehicle();
+	WorkOrderRepository wor = Factory.repository.forWorkOrder();
+	VehicleRepository vr = Factory.repository.forVehicle();
 
-		Optional<Vehicle> ov = vr.findById(dto.vehicleId);
+	Optional<Vehicle> ov = vr.findById(dto.vehicleId);
 
-		// Se pide que se asuma que existe el vehiculo, pero creo que no pasa nada por
-		// comprobarlo de todos modos
-		BusinessCheck.isTrue(ov.isPresent(), "This vehicle does not exist");
-		Vehicle v = ov.get();
+	// Se pide que se asuma que existe el vehiculo,
+	// pero creo que no pasa nada por
+	// comprobarlo de todos modos
+	BusinessCheck.isTrue(ov.isPresent(), "This vehicle does not exist");
+	Vehicle v = ov.get();
 
-		// Al crear una work order se establece como abierta y se pone la fecha actual
-		WorkOrder wo = new WorkOrder(v, dto.description);
+	// Al crear una work order se establece como abierta y
+	// se pone la fecha actual
+	WorkOrder wo = new WorkOrder(v, dto.description);
 
-		wor.add(wo);
+	wor.add(wo);
 
-		dto.id = wo.getId();
+	dto.id = wo.getId();
 
-		return dto;
-	}
+	return dto;
+    }
 }

@@ -12,18 +12,18 @@ import uo.ri.cws.domain.VehicleType;
 
 public class FindAllVehicleTypes implements Command<List<VehicleTypeDto>> {
 
-	private VehicleTypeRepository vtr = Factory.repository.forVehicleType();
+    private VehicleTypeRepository vtr = Factory.repository.forVehicleType();
 
-	/**
-	 * @return a list of VehicleTypeDto.
-	 * @see VehicleTypeDto class for details.
-	 * 
-	 *      DOES NOT @throws BusinessException
-	 */
-	@Override
-	public List<VehicleTypeDto> execute() throws BusinessException {
-		List<VehicleType> ms = vtr.findAll();
-		return DtoAssembler.toVehicleTypeDtoList(ms);
-	}
+    /**
+     * @return a list of VehicleTypeDto.
+     * @see VehicleTypeDto class for details.
+     * 
+     *      DOES NOT @throws BusinessException
+     */
+    @Override
+    public List<VehicleTypeDto> execute() throws BusinessException {
+	List<VehicleType> ms = vtr.findAll();
+	return DtoAssembler.toVehicleTypeDtoList(ms);
+    }
 
 }

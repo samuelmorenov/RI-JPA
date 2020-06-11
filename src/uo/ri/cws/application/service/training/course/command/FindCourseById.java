@@ -12,23 +12,24 @@ import uo.ri.cws.domain.Course;
 
 public class FindCourseById implements Command<Optional<CourseDto>> {
 
-	private String CourseId;
-	private CourseRepository cr = Factory.repository.forCourse();
+    private String CourseId;
+    private CourseRepository cr = Factory.repository.forCourse();
 
-	public FindCourseById(String cId) {
-		this.CourseId = cId;
-	}
+    public FindCourseById(String cId) {
+	this.CourseId = cId;
+    }
 
-	/**
-	 * @param cId
-	 * @return an Optional, what if there is no course with the specified id? DOES
-	 *         NOT @throws BusinessException
-	 * @throws BusinessException
-	 */
-	@Override
-	public Optional<CourseDto> execute() throws BusinessException {
-		Optional<Course> c = cr.findById(CourseId);
-		return c.isPresent() ? Optional.of(DtoAssembler.toDto(c.get())) : Optional.empty();
-	}
+    /**
+     * @param cId
+     * @return an Optional, what if there is no course with the specified id? DOES
+     *         NOT @throws BusinessException
+     * @throws BusinessException
+     */
+    @Override
+    public Optional<CourseDto> execute() throws BusinessException {
+	Optional<Course> c = cr.findById(CourseId);
+	return c.isPresent() ? Optional.of(DtoAssembler.toDto(c.get()))
+		: Optional.empty();
+    }
 
 }

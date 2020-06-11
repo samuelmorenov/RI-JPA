@@ -19,27 +19,28 @@ import uo.ri.cws.domain.WorkOrder.WorkOrderStatus;
  */
 public class UpdateWorkOrder implements Command<Void> {
 
-	private WorkOrderDto dto;
-	private WorkOrderRepository wor = Factory.repository.forWorkOrder();
+    private WorkOrderDto dto;
+    private WorkOrderRepository wor = Factory.repository.forWorkOrder();
 
-	public UpdateWorkOrder(WorkOrderDto dto) {
-		this.dto = dto;
-	}
+    public UpdateWorkOrder(WorkOrderDto dto) {
+	this.dto = dto;
+    }
 
-	@Override
-	public Void execute() throws BusinessException {
-		Optional<WorkOrder> owo = wor.findById(dto.id);
-		BusinessCheck.exists(owo, "There is no such work order");
+    @Override
+    public Void execute() throws BusinessException {
+	Optional<WorkOrder> owo = wor.findById(dto.id);
+	BusinessCheck.exists(owo, "There is no such work order");
 
-		WorkOrder wo = owo.get();
-		BusinessCheck.isTrue(
-				wo.getStatus().equals(WorkOrderStatus.OPEN) || wo.getStatus().equals(WorkOrderStatus.ASSIGNED),
-				"The work order must be in status open or assigned");
-		BusinessCheck.hasVersion(wo, dto.version);
+	WorkOrder wo = owo.get();
+	BusinessCheck.isTrue(
+		wo.getStatus().equals(WorkOrderStatus.OPEN)
+			|| wo.getStatus().equals(WorkOrderStatus.ASSIGNED),
+		"The work order must be in status open or assigned");
+	BusinessCheck.hasVersion(wo, dto.version);
 
-		wo.setDescription(dto.description);
+	wo.setDescription(dto.description);
 
-		return null;
-	}
+	return null;
+    }
 
 }
