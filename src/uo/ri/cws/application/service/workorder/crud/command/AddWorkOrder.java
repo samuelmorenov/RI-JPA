@@ -33,6 +33,7 @@ public class AddWorkOrder implements Command<WorkOrderDto> {
 		VehicleRepository vr = Factory.repository.forVehicle();
 
 		Optional<Vehicle> ov = vr.findById(dto.vehicleId);
+
 		// Se pide que se asuma que existe el vehiculo, pero creo que no pasa nada por
 		// comprobarlo de todos modos
 		BusinessCheck.isTrue(ov.isPresent(), "This vehicle does not exist");

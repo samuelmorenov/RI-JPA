@@ -30,13 +30,15 @@ public class UpdateCourse implements Command<Void> {
 	 *             filled, even if there is no change in the data. So it must pass
 	 *             the same validation as for new courses.
 	 * 
-	 *             TODO @throws BusinessException if: <br>
-	 *             - it does not exist the course with the specified id, or <br>
-	 *             - the current version of the course does not match the version of
-	 *             the dto, or <br>
-	 *             - the course has its start date in the past, or <br>
-	 *             - the new data does not pass the validation specified in @see
-	 *             registerNew
+	 * @throws BusinessException if: <br>
+	 *                           - it does not exist the course with the specified
+	 *                           id, or <br>
+	 *                           - the current version of the course does not match
+	 *                           the version of the dto, or <br>
+	 *                           - the course has its start date in the past, or
+	 *                           <br>
+	 *                           - the new data does not pass the validation
+	 *                           specified in @see registerNew
 	 * 
 	 */
 	@Override
@@ -48,6 +50,9 @@ public class UpdateCourse implements Command<Void> {
 
 		Course c = oc.get();
 		BusinessCheck.hasVersion(c, course.version);
+
+		BusinessCheck.isTrue(course.version == c.getVersion(),
+				"The current version of the course does not match the new version");
 
 		c.setCode(course.code);
 		c.setDescription(course.description);

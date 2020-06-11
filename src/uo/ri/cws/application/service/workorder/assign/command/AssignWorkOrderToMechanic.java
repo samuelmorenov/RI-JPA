@@ -61,6 +61,8 @@ public class AssignWorkOrderToMechanic implements Command<Void> {
 		BusinessCheck.isTrue(encontrado, "El mecanico no esta certificado para ese vehiculo");
 
 		Associations.Assign.link(m, wo);
+		// TODO: Gestión de workOrders (fallos): asignar usa Associations.link y no el
+		// método correspondiente de la entidad
 
 		return null;
 

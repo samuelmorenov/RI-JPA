@@ -20,6 +20,7 @@ public class CreateInvoiceFor implements Command<InvoiceDto> {
 
 	@Override
 	public InvoiceDto execute() throws BusinessException {
+		//TODO: No has terminado las prácticas del laboratorio: CreateInvoiceFor
 		throw new RuntimeException("Not yet implemented.");
 	}
 

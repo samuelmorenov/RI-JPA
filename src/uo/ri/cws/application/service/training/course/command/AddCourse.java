@@ -8,6 +8,7 @@ import uo.ri.cws.application.repository.CourseRepository;
 import uo.ri.cws.application.repository.VehicleTypeRepository;
 import uo.ri.cws.application.service.BusinessException;
 import uo.ri.cws.application.service.training.CourseDto;
+import uo.ri.cws.application.util.BusinessCheck;
 import uo.ri.cws.application.util.command.Command;
 import uo.ri.cws.domain.Course;
 
@@ -55,7 +56,7 @@ public class AddCourse implements Command<CourseDto> {
 		if (cr.findByName(dto.name) != null) {
 			throw new BusinessException("Ya existe un curso con ese nombre");
 		}
-		
+
 		cr.add(c);
 
 		dto.id = c.getId();
@@ -80,73 +81,56 @@ public class AddCourse implements Command<CourseDto> {
 	 */
 	public static void validateCourse(CourseDto course) throws BusinessException {
 		// any field other than id and version is null
-		if (course.code == null || course.name == null || course.description == null || course.startDate == null
-				|| course.endDate == null) {
-			throw new BusinessException("No puede haber campos vacios en un curso");
-		}
+		BusinessCheck.isNotNull(course.code);
+		BusinessCheck.isNotNull(course.name);
+		BusinessCheck.isNotNull(course.description);
+		BusinessCheck.isNotNull(course.startDate);
+		BusinessCheck.isNotNull(course.endDate);
 
 		// any field other than id and version is empty
-		if (course.code.equals("") || course.name.equals("") || course.description.equals("")) {
-			throw new BusinessException("No puede haber campos vacios en un curso");
-		}
+		BusinessCheck.isNotEmpty(course.code, "The code field can not be empty");
+		BusinessCheck.isNotEmpty(course.name, "The name field can not be empty");
+		BusinessCheck.isNotEmpty(course.description, 
+				"The code description can not be empty");
 
 		// the initial and final dates are inverted
-		if (course.startDate.getTime() >= course.endDate.getTime()) {
-			throw new BusinessException("Las fechas estan invertidas");
-		}
+		BusinessCheck.isFalse(course.startDate.getTime() >= course.endDate.getTime(),
+				"Las fechas estan invertidas");
+
 		// the initial date are in the past
 		Date now = new Date();
-		if (course.startDate.getTime() < now.getTime()) {
-			throw new BusinessException("La fecha de inicio ya han pasado");
-		}
+		BusinessCheck.isFalse(course.startDate.getTime() < now.getTime(),
+				"La fecha de inicio ya han pasado");
+
 		// the final dates are in the past
-		if (course.endDate.getTime() < now.getTime()) {
-			throw new BusinessException("La fecha de fin ya han pasado");
-		}
+		BusinessCheck.isFalse(course.endDate.getTime() < now.getTime(), "La fecha de fin ya han pasado");
 
 		// the number of hours are zero or negative
-		if (course.hours <= 0) {
-			throw new BusinessException("El numero de horas no puede ser menor o igual a 0");
-		}
+		BusinessCheck.isFalse(course.hours <= 0, "El numero de horas no puede ser menor o igual a 0");
 
 		// there is percentage devoted to a non existing vehicle type
 		VehicleTypeRepository vtg = Factory.repository.forVehicleType();
 		for (String key : course.percentages.keySet()) {
-			if (vtg.findById(key) == null) {
-				throw new BusinessException("Existen porcentajes asociados a vehiculos que no existen");
-			}
+			BusinessCheck.isNotNull(vtg.findById(key), "Existen porcentajes asociados a vehiculos que no existen");
 		}
 
 		Map<String, Integer> dedications = course.percentages;
 
 		// there are no dedications specified
-		if (dedications == null) {
-			throw new BusinessException("No se han especificado los vehiculos dedicados");
-		}
-		if (dedications.isEmpty()) {
-			throw new BusinessException("No se han especificado los vehiculos dedicados");
-		}
+		BusinessCheck.isNotNull(dedications, "No se han especificado los vehiculos dedicados");
+		BusinessCheck.isFalse(dedications.isEmpty(), "No se han especificado los vehiculos dedicados");
 
 		int suma = 0;
 		for (String key : dedications.keySet()) {
 			// the are any dedication with an invalid percentage (empty)
-			if (dedications.get(key) == null) {
-				throw new BusinessException("Hay procentajes mal definidos (Vacio)");
-			}
-			// the are any dedication with an invalid percentage (zero, negative)
-			int dedication = dedications.get(key);
-			if (dedication <= 0) {
-				if (dedications.get(key) == null) {
-					throw new BusinessException("Hay procentajes mal definidos (cero o negativo)");
-				}
-			}
+			BusinessCheck.isNotNull(dedications.get(key), "Hay procentajes mal definidos (Vacio)");
 
+			// the are any dedication with an invalid percentage (zero, negative)
+			BusinessCheck.isFalse(dedications.get(key) <= 0, "Hay procentajes mal definidos (cero o negativo)");
 			suma += dedications.get(key);
 		}
 		// the sum of devoted percentages does not equals 100%
-		if (suma != 100) {
-			throw new BusinessException("El porcentaje total debe ser del 100%");
-		}
+		BusinessCheck.isTrue(suma == 100, "El porcentaje total debe ser del 100%");
 
 	}
 
