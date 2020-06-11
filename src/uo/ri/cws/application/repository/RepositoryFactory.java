@@ -12,5 +12,6 @@ public interface RepositoryFactory {
 	VehicleRepository forVehicle();
 	VehicleTypeRepository forVehicleType();
 	CertificateRepository forCertificate(); //Added in the extension
+	CourseRepository forCourse(); //Added in the second extension
 
 }

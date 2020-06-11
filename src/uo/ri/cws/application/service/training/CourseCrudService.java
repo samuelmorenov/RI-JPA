@@ -78,10 +78,10 @@ public interface CourseCrudService {
 	List<CourseDto> findAllCourses() throws BusinessException;
 
 	/**
-	 * @return a list of VehicleTypeDto. 
+	 * @return a list of VehicleTypeDto.
 	 * @see VehicleTypeDto class for details.
 	 * 
-	 * DOES NOT @throws BusinessException
+	 *      DOES NOT @throws BusinessException
 	 */
 	List<VehicleTypeDto> findAllVehicleTypes() throws BusinessException;
 

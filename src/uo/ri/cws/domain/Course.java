@@ -53,7 +53,7 @@ public class Course extends BaseEntity {
 		super();
 		this.code = code;
 
-		Argument.isTrue(code!= null && ! code.trim().isEmpty(), "Code can not be empty");
+		Argument.isTrue(code != null && !code.trim().isEmpty(), "Code can not be empty");
 	}
 
 	public Course(String code, String name, String description, Date startDate, Date endDate, int duration) {
@@ -63,9 +63,9 @@ public class Course extends BaseEntity {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.hours = duration;
-		
-		Argument.isTrue(name != null && ! name.trim().isEmpty(), "Name can not be empty");
-		Argument.isTrue(description!= null && ! description.trim().isEmpty(), "Description can not be empty");
+
+		Argument.isTrue(name != null && !name.trim().isEmpty(), "Name can not be empty");
+		Argument.isTrue(description != null && !description.trim().isEmpty(), "Description can not be empty");
 		Argument.isNotNull(startDate, "Start date can not be empty");
 		Argument.isNotNull(endDate, "End date can not be empty");
 		Argument.isTrue(startDate.before(endDate), "Start date can not be after end date");
@@ -96,6 +96,33 @@ public class Course extends BaseEntity {
 	public Date getStartDate() {
 		return new Date(startDate.getTime());
 	}
+	///////////////////////////////////////////////////////
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public void setHours(int hours) {
+		this.hours = hours;
+	}
+
+	///////////////////////////////////////////////////////
 
 	Set<Dedication> _getDedications() {
 		return dedications;
