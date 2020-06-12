@@ -27,6 +27,24 @@ public class AddWorkOrder implements Command<WorkOrderDto> {
 	this.dto = dto;
     }
 
+    /**
+     * Registers a new work order out of the data received. Only this fields will be
+     * taken into account: - the vehicle id, and - the description of the work to be
+     * done The rest of fields will assigned by the service, thus any provided value
+     * will be ignored.
+     *
+     * @param dto. Just vehicle id and description.
+     *
+     * @return another dto with the provided values and service-assigned fields
+     *         filled: id, date and status
+     *
+     *         @throws BusinessException if <br>
+     *         - there is another work order for the same vehicle at the same date
+     *         and time (timestamp), or <br>
+     *         - the vehicle does not exist
+     */
+    // Gestión de workOrders (fallos): Faltan comprobaciones: existe la
+    // workorder, existe mecánico, existe tipo vehículo, existe id, …
     public WorkOrderDto execute() throws BusinessException {
 
 	WorkOrderRepository wor = Factory.repository.forWorkOrder();
@@ -39,6 +57,10 @@ public class AddWorkOrder implements Command<WorkOrderDto> {
 	// comprobarlo de todos modos
 	BusinessCheck.isTrue(ov.isPresent(), "This vehicle does not exist");
 	Vehicle v = ov.get();
+
+	BusinessCheck.isFalse(
+		wor.SearchWorkOrder(dto.vehicleId, dto.date).isPresent(),
+		"Ya existe una work order para ese vehiculo con esta fecha");
 
 	// Al crear una work order se establece como abierta y
 	// se pone la fecha actual

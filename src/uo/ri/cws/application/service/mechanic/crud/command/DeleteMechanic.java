@@ -18,6 +18,12 @@ public class DeleteMechanic implements Command<Void> {
 	this.mechanicId = idMecanico;
     }
 
+    /**
+     * @param idMecanico
+     * 
+     * @throws BusinessException if <br>
+     *                           the mechanic does not exist
+     */
     public Void execute() throws BusinessException {
 
 	Optional<Mechanic> om = mr.findById(mechanicId);

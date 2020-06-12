@@ -10,6 +10,16 @@ import uo.ri.cws.application.util.command.Command;
 import uo.ri.cws.domain.Certificate;
 
 /** Usado para asignar una orden de trabajo a un mecánico. */
+/**
+ * Returns a list of certificates (i.e, certified mechanics) for the vehicle
+ * type. Every certificate includes full mechanic data (@see MechanicDto).
+ *
+ * @param id of the vehicle type
+ *
+ * @return the list. It might be empty if no mechanic is certified for the
+ *         specified vehicle type.
+ * @throws BusinessException
+ */
 public class FindCertificatesByVehicleTypeId
 	implements Command<List<CertificateDto>> {
 

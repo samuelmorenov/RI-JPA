@@ -26,6 +26,19 @@ public class UpdateWorkOrder implements Command<Void> {
 	this.dto = dto;
     }
 
+    /**
+     * Updates the description of the work order specified by the id and version
+     * fields. No other field is taken for the update. Only work orders with status
+     * of OPEN or ASSIGNED can be updated.
+     *
+     * @param dto, with work order id, version and description.
+     *
+     *             @throws BusinessException if <br>
+     *             - there is no work order with that id, or <br>
+     *             - there work order has not the specified version (optimistic
+     *             lock), or <br>
+     *             - the work order is not in the OPEN or ASSIGNED status
+     */
     @Override
     public Void execute() throws BusinessException {
 	Optional<WorkOrder> owo = wor.findById(dto.id);

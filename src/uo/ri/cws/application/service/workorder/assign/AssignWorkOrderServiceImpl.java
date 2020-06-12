@@ -9,6 +9,7 @@ import uo.ri.cws.application.service.workorder.AssignWorkOrderService;
 import uo.ri.cws.application.service.workorder.WorkOrderDto;
 import uo.ri.cws.application.service.workorder.assign.command.AssignWorkOrderToMechanic;
 import uo.ri.cws.application.service.workorder.assign.command.FindCertificatesByVehicleTypeId;
+import uo.ri.cws.application.service.workorder.assign.command.FindUnfinishedWorkOrders;
 import uo.ri.cws.application.util.command.CommandExecutor;
 
 public class AssignWorkOrderServiceImpl implements AssignWorkOrderService {
@@ -36,8 +37,9 @@ public class AssignWorkOrderServiceImpl implements AssignWorkOrderService {
     @Override
     public List<WorkOrderDto> findUnfinishedWorkOrders()
 	    throws BusinessException {
-	// TODO find unfinished no está implementado
-	throw new RuntimeException("Not yet implemented.");
+
+	return executor.execute(new FindUnfinishedWorkOrders());
+	// Added in the second extension
     }
 
 }

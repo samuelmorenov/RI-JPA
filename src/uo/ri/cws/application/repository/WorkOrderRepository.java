@@ -1,6 +1,8 @@
 package uo.ri.cws.application.repository;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import uo.ri.cws.domain.WorkOrder;
 
@@ -12,4 +14,7 @@ public interface WorkOrderRepository extends Repository<WorkOrder> {
      *         hay ninguna
      */
     List<WorkOrder> findByIds(List<String> workOrderIds);
+
+    Optional<WorkOrder> SearchWorkOrder(String vehicleId, Date date);
+
 }

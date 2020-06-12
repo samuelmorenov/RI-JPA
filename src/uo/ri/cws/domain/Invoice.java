@@ -88,6 +88,14 @@ public class Invoice extends BaseEntity {
 	return vat;
     }
 
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public void setVat(double vat) {
+        this.vat = vat;
+    }
+
     public InvoiceStatus getStatus() {
 	return status;
     }

@@ -5,8 +5,6 @@ import java.util.List;
 import uo.ri.cws.application.service.BusinessException;
 import uo.ri.cws.application.service.training.CertificateDto;
 
-//TODO: No hay validación de argumentos en clases del modelo
-
 public interface AssignWorkOrderService {
 
     /**

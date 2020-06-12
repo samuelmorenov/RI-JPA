@@ -19,6 +19,13 @@ public class UpdateMechanic implements Command<Void> {
 	this.dto = dto;
     }
 
+    /**
+     * Updates values for the mechanic specified by the id field, just name and
+     * surname will be updated
+     * 
+     * @param mechanic dto, the id field, name and surname cannot be null
+     * @throws BusinessException if the mechanic does not exist
+     */
     public Void execute() throws BusinessException {
 
 	Optional<Mechanic> om = mr.findById(dto.id);

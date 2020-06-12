@@ -23,6 +23,15 @@ public class DeleteWorkOrder implements Command<Void> {
 	this.id = id;
     }
 
+    /**
+     * Removes the work order form the system if it still do not have interventions.
+     *
+     * @param id, of the work order
+     *
+     * @throws BusinessException if <br>
+     *                           - the work order does not exist, or <br>
+     *                           - there already is some intervention registered.
+     */
     @Override
     public Void execute() throws BusinessException {
 	Optional<WorkOrder> owo = wor.findById(id);
