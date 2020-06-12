@@ -13,9 +13,11 @@ public class CourseJpaRepository extends BaseJpaRepository<Course>
 
     @Override
     public Optional<Course> findByName(String name) {
-	// TODO Auto-generated method stub
-	Course m = Jpa.getManager().find(Course.class, name);
-	return m != null ? Optional.of(m) : Optional.empty();
+	return Jpa.getManager()
+		  .createNamedQuery("Course.findByName", //TODO Añadir a orm
+			  Course.class)
+		  .setParameter(1, name)
+		  .getResultStream()
+		  .findFirst();
     }
-
 }

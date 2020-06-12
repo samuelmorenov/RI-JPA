@@ -17,4 +17,12 @@ public interface WorkOrderRepository extends Repository<WorkOrder> {
 
     Optional<WorkOrder> SearchWorkOrder(String vehicleId, Date date);
 
+    List<WorkOrder> findAll();
+
+    List<WorkOrder> findByPlateNumber(String plate);
+
+    List<WorkOrder> findByVehicleId(String id);
+
+    List<WorkOrder> findUnfinishedWorkOrders();
+
 }

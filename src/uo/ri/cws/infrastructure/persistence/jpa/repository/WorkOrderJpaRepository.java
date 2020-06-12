@@ -22,8 +22,38 @@ public class WorkOrderJpaRepository extends BaseJpaRepository<WorkOrder>
 
     @Override
     public Optional<WorkOrder> SearchWorkOrder(String vehicleId, Date date) {
-	// TODO Auto-generated method stub
-	return null;
+	return Jpa.getManager()
+		  .createNamedQuery("WorkOrder.SearchWorkOrder", //TODO Añadir a orm
+			  WorkOrder.class)
+		  .setParameter(1, vehicleId)
+		  .setParameter(2, date)
+		  .getResultStream()
+		  .findFirst();
+    }
+
+    @Override
+    public List<WorkOrder> findByPlateNumber(String plate) {
+	return Jpa.getManager()
+		  .createNamedQuery("WorkOrder.findByPlateNumber", //TODO Añadir a orm
+			  WorkOrder.class)
+		  .setParameter(1, plate)
+		  .getResultList();
+    }
+
+    @Override
+    public List<WorkOrder> findByVehicleId(String id) {
+	return Jpa.getManager()
+		  .createNamedQuery("WorkOrder.findByVehicleId", //TODO Añadir a orm
+			  WorkOrder.class)
+		  .setParameter(1, id)
+		  .getResultList();
+    }
+
+    @Override
+    public List<WorkOrder> findUnfinishedWorkOrders() {
+	return Jpa.getManager().createNamedQuery("WorkOrder.findUnfinished", //TODO Añadir a orm
+		WorkOrder.class)
+		.getResultList();
     }
 
 }
