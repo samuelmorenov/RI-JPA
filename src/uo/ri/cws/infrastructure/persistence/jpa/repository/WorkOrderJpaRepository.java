@@ -22,8 +22,9 @@ public class WorkOrderJpaRepository extends BaseJpaRepository<WorkOrder>
 
     @Override
     public Optional<WorkOrder> SearchWorkOrder(String vehicleId, Date date) {
+	System.out.println("Test SearchWorkOrder");//TODO testear
 	return Jpa.getManager()
-		  .createNamedQuery("WorkOrder.SearchWorkOrder", //TODO Añadir a orm
+		  .createNamedQuery("WorkOrder.SearchWorkOrder",
 			  WorkOrder.class)
 		  .setParameter(1, vehicleId)
 		  .setParameter(2, date)
@@ -33,8 +34,9 @@ public class WorkOrderJpaRepository extends BaseJpaRepository<WorkOrder>
 
     @Override
     public List<WorkOrder> findByPlateNumber(String plate) {
+	System.out.println("Test findByPlateNumber");//TODO testear
 	return Jpa.getManager()
-		  .createNamedQuery("WorkOrder.findByPlateNumber", //TODO Añadir a orm
+		  .createNamedQuery("WorkOrder.findByPlateNumber",
 			  WorkOrder.class)
 		  .setParameter(1, plate)
 		  .getResultList();
@@ -42,8 +44,9 @@ public class WorkOrderJpaRepository extends BaseJpaRepository<WorkOrder>
 
     @Override
     public List<WorkOrder> findByVehicleId(String id) {
+	System.out.println("Test findByVehicleId");//TODO testear
 	return Jpa.getManager()
-		  .createNamedQuery("WorkOrder.findByVehicleId", //TODO Añadir a orm
+		  .createNamedQuery("WorkOrder.findByVehicleId",
 			  WorkOrder.class)
 		  .setParameter(1, id)
 		  .getResultList();
@@ -51,7 +54,8 @@ public class WorkOrderJpaRepository extends BaseJpaRepository<WorkOrder>
 
     @Override
     public List<WorkOrder> findUnfinishedWorkOrders() {
-	return Jpa.getManager().createNamedQuery("WorkOrder.findUnfinished", //TODO Añadir a orm
+	System.out.println("Test findUnfinishedWorkOrders");//TODO testear
+	return Jpa.getManager().createNamedQuery("WorkOrder.findUnfinished", 
 		WorkOrder.class)
 		.getResultList();
     }

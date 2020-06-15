@@ -13,8 +13,9 @@ public class CourseJpaRepository extends BaseJpaRepository<Course>
 
     @Override
     public Optional<Course> findByName(String name) {
+	System.out.println("Test findByName");//TODO testear
 	return Jpa.getManager()
-		  .createNamedQuery("Course.findByName", //TODO Añadir a orm
+		  .createNamedQuery("Course.findByName",
 			  Course.class)
 		  .setParameter(1, name)
 		  .getResultStream()
