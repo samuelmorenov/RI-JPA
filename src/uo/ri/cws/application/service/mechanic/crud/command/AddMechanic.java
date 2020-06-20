@@ -29,6 +29,10 @@ public class AddMechanic implements Command<MechanicDto> {
      *                           dni
      */
     public MechanicDto execute() throws BusinessException {
+	
+	BusinessCheck.isNotNull(dto.dni);
+	BusinessCheck.isNotNull(dto.name);
+	BusinessCheck.isNotNull(dto.surname);
 
 	Mechanic m = new Mechanic(dto.dni, dto.name, dto.surname);
 
@@ -41,5 +45,7 @@ public class AddMechanic implements Command<MechanicDto> {
 
 	return dto;
     }
+    
+
 
 }

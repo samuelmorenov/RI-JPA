@@ -13,7 +13,6 @@ public class CourseJpaRepository extends BaseJpaRepository<Course>
 
     @Override
     public Optional<Course> findByName(String name) {
-	System.out.println("Test findByName");//TODO testear
 	return Jpa.getManager()
 		  .createNamedQuery("Course.findByName",
 			  Course.class)

@@ -27,6 +27,10 @@ public class UpdateMechanic implements Command<Void> {
      * @throws BusinessException if the mechanic does not exist
      */
     public Void execute() throws BusinessException {
+	
+	BusinessCheck.isNotNull(dto.dni);
+	BusinessCheck.isNotNull(dto.name);
+	BusinessCheck.isNotNull(dto.surname);
 
 	Optional<Mechanic> om = mr.findById(dto.id);
 	BusinessCheck.exists(om, "There is no such mechanic");

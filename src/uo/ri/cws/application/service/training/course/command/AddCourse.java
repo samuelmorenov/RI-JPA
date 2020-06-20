@@ -54,9 +54,8 @@ public class AddCourse implements Command<CourseDto> {
 	Course c = new Course(dto.code, dto.name, dto.description,
 		dto.startDate, dto.endDate, dto.hours);
 
-	if (cr.findByName(dto.name) != null) {
-	    throw new BusinessException("Ya existe un curso con ese nombre");
-	}
+	BusinessCheck.isFalse(cr.findByName(dto.name).isPresent(),
+		"Ya existe un curso con ese nombre");
 
 	cr.add(c);
 
@@ -83,11 +82,16 @@ public class AddCourse implements Command<CourseDto> {
     public static void validateCourse(CourseDto course)
 	    throws BusinessException {
 	// any field other than id and version is null
-	BusinessCheck.isNotNull(course.code);
-	BusinessCheck.isNotNull(course.name);
-	BusinessCheck.isNotNull(course.description);
-	BusinessCheck.isNotNull(course.startDate);
-	BusinessCheck.isNotNull(course.endDate);
+	BusinessCheck.isNotNull(course.code,
+		"The code field can not be null");
+	BusinessCheck.isNotNull(course.name,
+		"The name field can not be null");
+	BusinessCheck.isNotNull(course.description,
+		"The description field can not be null");
+	BusinessCheck.isNotNull(course.startDate,
+		"The startDate field can not be null");
+	BusinessCheck.isNotNull(course.endDate,
+		"The endDate field can not be null");
 
 	// any field other than id and version is empty
 	BusinessCheck.isNotEmpty(course.code,
@@ -95,12 +99,7 @@ public class AddCourse implements Command<CourseDto> {
 	BusinessCheck.isNotEmpty(course.name,
 		"The name field can not be empty");
 	BusinessCheck.isNotEmpty(course.description,
-		"The code description can not be empty");
-
-	// the initial and final dates are inverted
-	BusinessCheck.isFalse(
-		course.startDate.getTime() >= course.endDate.getTime(),
-		"Las fechas estan invertidas");
+		"The description field can not be empty");
 
 	// the initial date are in the past
 	Date now = new Date();
@@ -111,16 +110,14 @@ public class AddCourse implements Command<CourseDto> {
 	BusinessCheck.isFalse(course.endDate.getTime() < now.getTime(),
 		"La fecha de fin ya han pasado");
 
+	// the initial and final dates are inverted
+	BusinessCheck.isTrue(
+		course.startDate.getTime() < course.endDate.getTime(),
+		"Las fechas estan invertidas");
+
 	// the number of hours are zero or negative
 	BusinessCheck.isFalse(course.hours <= 0,
 		"El numero de horas no puede ser menor o igual a 0");
-
-	// there is percentage devoted to a non existing vehicle type
-	VehicleTypeRepository vtg = Factory.repository.forVehicleType();
-	for (String key : course.percentages.keySet()) {
-	    BusinessCheck.isNotNull(vtg.findById(key),
-		    "Existen porcentajes asociados a vehiculos que no existen");
-	}
 
 	Map<String, Integer> dedications = course.percentages;
 
@@ -129,6 +126,13 @@ public class AddCourse implements Command<CourseDto> {
 		"No se han especificado los vehiculos dedicados");
 	BusinessCheck.isFalse(dedications.isEmpty(),
 		"No se han especificado los vehiculos dedicados");
+
+	// there is percentage devoted to a non existing vehicle type
+	VehicleTypeRepository vtg = Factory.repository.forVehicleType();
+	for (String key : dedications.keySet()) {
+	    BusinessCheck.isNotNull(vtg.findById(key),
+		    "Existen porcentajes asociados a vehiculos que no existen");
+	}
 
 	int suma = 0;
 	for (String key : dedications.keySet()) {

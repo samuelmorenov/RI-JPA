@@ -54,14 +54,23 @@ public class UpdateCourse implements Command<Void> {
 	BusinessCheck.isTrue(course.version == c.getVersion(),
 		"The current version of the course does not match the new version");
 
-	c.setCode(course.code);
-	c.setDescription(course.description);
-	c.setEndDate(course.endDate);
-	c.setHours(course.hours);
-	c.setName(course.name);
-	c.setStartDate(course.startDate);
+	if (c.getName() != course.name) {
+	    BusinessCheck.isFalse(cr.findByName(course.name).isPresent(),
+		    "Ya existe un curso con ese nombre");
+	}
+
+	update(c, course);
 
 	return null;
+    }
+    
+    private void update(Course c, CourseDto dto) {
+	c.setCode(dto.code);
+	c.setDescription(dto.description);
+	c.setEndDate(dto.endDate);
+	c.setHours(dto.hours);
+	c.setName(dto.name);
+	c.setStartDate(dto.startDate);
     }
 
 }
