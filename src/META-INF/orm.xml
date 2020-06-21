@@ -16,11 +16,11 @@
 	</named-query>
 	
 	<named-query name="WorkOrder.SearchWorkOrder">
-		<query>select a from WorkOrder a where a.vehicle.id in ?1 and a.date in ?2</query>
+		<query>select a from WorkOrder a where a.vehicle.id = ?1 and a.date = ?2</query>
 	</named-query>
 	
 	<named-query name="WorkOrder.findByPlateNumber">
-		<query>select a from WorkOrder a where a.vehicle.plateNumber in ?1</query>
+		<query>select a from WorkOrder a join Vehicle v where a.vehicle.id = v.id and v.plateNumber = ?1</query>
 	</named-query>
 	
 	<named-query name="WorkOrder.findByVehicleId">
@@ -28,7 +28,7 @@
 	</named-query>
 	
 	<named-query name="WorkOrder.findUnfinished">
-		<query>select a from WorkOrder a where a.status = 'FINISHED'</query>
+		<query>select a from WorkOrder a where a.status != uo.ri.cws.domain.WorkOrder.WorkOrderStatus.FINISHED</query>
 	</named-query>
 	
 	<!-- PaymentMean queries -->

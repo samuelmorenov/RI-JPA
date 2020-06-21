@@ -22,7 +22,6 @@ import uo.ri.cws.infrastructure.persistence.jpa.executor.JpaExecutorFactory;
 import uo.ri.cws.infrastructure.persistence.jpa.repository.JpaRepositoryFactory;
 import uo.ri.cws.infrastructure.persistence.jpa.util.Jpa;
 
-//TODO: In progress CVVS
 public class AddCourseTests {
 
     private Date startDate = Dates.addDays(Dates.today(), 15);
@@ -106,34 +105,6 @@ public class AddCourseTests {
 	}
 
     }
-
-//    /**
-//     * Hay un curso con el mismo code TODO: Borrar
-//     */
-//    @Test
-//    public void AniadirCursoCodeRepetido() throws BusinessException {
-//	CourseCrudService ccs = Factory.service.forCourseCrudService();
-//
-//	CourseDto curso2 = new CourseDto();
-//	curso2.code = "Test course code";
-//	curso2.name = "Test course name 2";
-//	curso2.description = "Test course descripcion";
-//	curso2.hours = 15;
-//	curso2.startDate = startDate;
-//	curso2.endDate = endDate;
-//	curso2.percentages = new HashMap<String, Integer>();
-//	curso2.percentages.put("564b1950-d0bc-4fe9-8a5d-680a35a41e54", 100);
-//
-//	ccs.registerNew(curso);
-//
-//	try {
-//	    ccs.registerNew(curso2);
-//	} catch (BusinessException e) {
-//	    assertTrue(e.getMessage()
-//			.contains("Ya existe un curso con ese codigo"));
-//	}
-//
-//    }
 
     /**
      * Hay campos null

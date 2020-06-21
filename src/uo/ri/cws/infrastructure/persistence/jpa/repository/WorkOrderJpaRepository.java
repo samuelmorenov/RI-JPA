@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import uo.ri.cws.application.repository.WorkOrderRepository;
 import uo.ri.cws.domain.WorkOrder;
+
 import uo.ri.cws.infrastructure.persistence.jpa.util.BaseJpaRepository;
 import uo.ri.cws.infrastructure.persistence.jpa.util.Jpa;
 
@@ -22,7 +23,6 @@ public class WorkOrderJpaRepository extends BaseJpaRepository<WorkOrder>
 
     @Override
     public Optional<WorkOrder> SearchWorkOrder(String vehicleId, Date date) {
-	System.out.println("Test SearchWorkOrder");//TODO testear
 	return Jpa.getManager()
 		  .createNamedQuery("WorkOrder.SearchWorkOrder",
 			  WorkOrder.class)
@@ -34,7 +34,6 @@ public class WorkOrderJpaRepository extends BaseJpaRepository<WorkOrder>
 
     @Override
     public List<WorkOrder> findByPlateNumber(String plate) {
-	System.out.println("Test findByPlateNumber");//TODO testear
 	return Jpa.getManager()
 		  .createNamedQuery("WorkOrder.findByPlateNumber",
 			  WorkOrder.class)
@@ -44,7 +43,6 @@ public class WorkOrderJpaRepository extends BaseJpaRepository<WorkOrder>
 
     @Override
     public List<WorkOrder> findByVehicleId(String id) {
-	System.out.println("Test findByVehicleId");//TODO testear
 	return Jpa.getManager()
 		  .createNamedQuery("WorkOrder.findByVehicleId",
 			  WorkOrder.class)
@@ -54,7 +52,6 @@ public class WorkOrderJpaRepository extends BaseJpaRepository<WorkOrder>
 
     @Override
     public List<WorkOrder> findUnfinishedWorkOrders() {
-	System.out.println("Test findUnfinishedWorkOrders");//TODO testear
 	return Jpa.getManager().createNamedQuery("WorkOrder.findUnfinished", 
 		WorkOrder.class)
 		.getResultList();

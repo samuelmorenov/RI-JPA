@@ -1,5 +1,6 @@
 package uo.ri.cws.application.service.training.course.command;
 
+import java.util.Date;
 import java.util.Optional;
 
 import uo.ri.conf.Factory;
@@ -50,6 +51,8 @@ public class UpdateCourse implements Command<Void> {
 
 	Course c = oc.get();
 	BusinessCheck.hasVersion(c, course.version);
+	BusinessCheck.isFalse(c.getStartDate().before(new Date()),
+		"El curso ya ha empezado");
 
 	BusinessCheck.isTrue(course.version == c.getVersion(),
 		"The current version of the course does not match the new version");
@@ -63,7 +66,7 @@ public class UpdateCourse implements Command<Void> {
 
 	return null;
     }
-    
+
     private void update(Course c, CourseDto dto) {
 	c.setCode(dto.code);
 	c.setDescription(dto.description);

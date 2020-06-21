@@ -51,7 +51,7 @@ public class FindTrainingByVehicleTypeAndMechanic
 			mechanic.getName() + " " + mechanic.getSurname();
 		tfr.vehicleTypeName = vehicleType.getName();
 		tfr.enrolledHours =
-			TrainingHours.Calculate(mechanic, vehicleType); //TODO: Esta parte es la que esta mal 
+			TrainingHours.Calculate(mechanic, vehicleType); 
 
 		// Aclaracion: no se especifica si se tienen que mostrar en caso de que sean 0
 		// de ser asi comentar la siguiente linea
