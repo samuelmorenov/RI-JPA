@@ -24,4 +24,6 @@ public interface RepositoryFactory {
 
     CourseRepository forCourse(); // Added in the second extension
 
+    DedicationRepository forDedication();
+
 }
