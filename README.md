@@ -10,6 +10,8 @@ Entrega realizada en el año 2020
 
 # Proyecto De JPA
 
+![Imagen del modelo del dominio](https://github.com/samuelmorenov/RI-JPA/blob/master/Modelo%20del%20dominio%20con%20extension.jpg?raw=true)
+
 ## Casos de uso implementados:
 
 Admin   - Generacion de certificados
